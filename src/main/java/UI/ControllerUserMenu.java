@@ -1,4 +1,4 @@
-package com.example.spotify;
+package UI;
 
 public class ControllerUserMenu {
 }

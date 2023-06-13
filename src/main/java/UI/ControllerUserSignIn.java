@@ -1,4 +1,4 @@
-package com.example.spotify;
+package UI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,23 +9,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ControllerUserSignUp {
+public class ControllerUserSignIn {
     Parent root;
     Stage stage;
     Scene scene;
+
     @FXML
     TextField usernameField;
     @FXML
     PasswordField passwordField;
     @FXML
-    TextField emailField;
-    @FXML
     Label warning;
+
+
 
     public void switchToUserMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("userMenu.fxml"));
@@ -34,22 +34,21 @@ public class ControllerUserSignUp {
         stage.setScene(scene);
         stage.show();
     }
-    public void userSignUp (ActionEvent event) {
-        if (!usernameField.getText().isBlank() && !passwordField.getText().isBlank() && !emailField.getText().isBlank()) {
+    public void userSignIn (ActionEvent event) throws IOException {
+        if (!usernameField.getText().isBlank() && !passwordField.getText().isBlank()) {
+            // validating username & password
             /*
-            if (found) {
-                warning.setText("This username was taken!");
+            if (validation) {
+                switchToUserMenu(event);
             }
             else {
-                switchToUserMenu(event);
-                // add to DB
+                warning.setText("Invalid username or password!");
             }
              */
         }
         else {
             warning.setText("Please Enter username and password!");
         }
-
     }
     public void switchToSceneUser(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("sceneUser.fxml"));
@@ -58,4 +57,5 @@ public class ControllerUserSignUp {
         stage.setScene(scene);
         stage.show();
     }
+
 }
