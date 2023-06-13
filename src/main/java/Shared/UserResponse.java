@@ -1,7 +1,6 @@
 package Shared;
 
 import User.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class UserResponse {
 
     // Public Functions
     public String checkUsernameExist(String username) throws SQLException {
-        String sqlCommand = "SELECT count(*) FROM client WHERE username = " + '"' + username + '"';
+        String sqlCommand = "SELECT count(*) FROM user WHERE username = " + '"' + username + '"';
         ResultSet checkUsernameResult = statement.executeQuery(sqlCommand);
         checkUsernameResult.next();
         int numberCheck = Integer.parseInt(checkUsernameResult.getString("count(*)"));
@@ -35,25 +34,32 @@ public class UserResponse {
 
     public String checkPasswordForLoginOperation(String username, String password) throws SQLException, IOException {
         User user = null;
-        String sqlCommand = "SELECT client_id, password, email_address FROM client WHERE username = " + '"' + username + '"';
-        ResultSet checkForClientResult = statement.executeQuery(sqlCommand);
-        checkForClientResult.next();
-        String dbPassword = checkForClientResult.getString("password");
+        String sqlCommand = "SELECT user_id, password, email_address FROM user WHERE username = " + '"' + username + '"';
+        ResultSet checkForUserResult = statement.executeQuery(sqlCommand);
+        checkForUserResult.next();
+        String dbPassword = checkForUserResult.getString("password");
         if (dbPassword.equals(password)) {
-            String id = checkForClientResult.getString("id");
-            String email_address = checkForClientResult.getString("email_address");
-            user = new User(id, username, dbPassword, email_address);
+            String iD = checkForUserResult.getString("user_id");
+            String email_address = checkForUserResult.getString("email_address");
+            user = new User(iD, username, password, email_address);
         }
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonData = objectMapper.writeValueAsString(user);
+        String jsonData = "";
+        if (user != null) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("iD", user.getiD());
+            jsonObject.put("username", user.getUsername());
+            jsonObject.put("password", user.getPassword());
+            jsonObject.put("email_address", user.getEmailAddress());
+            jsonData = jsonObject.toString();
+        }
         return jsonData;
     }
 
-    public String addClientToDB(JSONObject jsonObject) throws SQLException {
-        String sqlCommand = "INSERT INTO client VALUES (\"" + jsonObject.getString("iD") + "\",\"" +
+    public String addUserToDB(JSONObject jsonObject) throws SQLException {
+        String sqlCommand = "INSERT INTO user VALUES (\"" + jsonObject.getString("iD") + "\",\"" +
                 jsonObject.getString("username") + "\",\"" + jsonObject.getString("password") + "\",\"" +
                 jsonObject.getString("emailAddress") + "\")";
-        int addClient = statement.executeUpdate(sqlCommand);
+        int addUser = statement.executeUpdate(sqlCommand);
         return "";
     }
 }

@@ -60,7 +60,7 @@ public class ServerServiceForUser implements Runnable{
                         jsonObject.getString("password"));
                 break;
             case 3:
-                answer = userResponse.addClientToDB(jsonObject.getJSONObject("client"));
+                answer = userResponse.addUserToDB(jsonObject.getJSONObject("client"));
                 break;
 
         }

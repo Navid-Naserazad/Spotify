@@ -14,7 +14,7 @@ public class ServerMain {
     public static void main(String[] args) throws IOException, SQLException {
         final int SBAP_PORT = 6666;
         ServerSocket serverSocket = new ServerSocket(SBAP_PORT);
-        System.out.println("Waiting for user to connect...");
+        System.out.println("Waiting for client to connect...");
         while (true) {
             Socket myUser = serverSocket.accept();
             Scanner input = new Scanner(myUser.getInputStream());
@@ -30,7 +30,7 @@ public class ServerMain {
                     artistThread.start();
                     break;
                 case "2":
-                    System.out.println("Client Connected.");
+                    System.out.println("User Connected.");
                     UserResponse clientResponse = new UserResponse();
                     ServerServiceForUser serverServiceForUser = new ServerServiceForUser(myUser, input,
                             output, clientResponse);

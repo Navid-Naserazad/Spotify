@@ -1,7 +1,6 @@
 package Shared;
 
 import User.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class UserRequest {
         return Boolean.parseBoolean(answer);
     }
 
-    public User checkPasswordForLoginOperation (String username, String password) throws IOException {
+    public User checkPasswordForLoginOperation (String username, String password) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "2");
         jsonObject.put("username", username);
@@ -46,18 +45,28 @@ public class UserRequest {
         output.println(jsonCommand);
         output.flush();
         String answer = input.nextLine();
-        return new ObjectMapper().readValue(answer, User.class);
+        if (answer.equals("")) {
+            return null;
+        }
+        else {
+            JSONObject getUser = new JSONObject(answer);
+            return new User(getUser.getString("iD"), getUser.getString("username")
+                    , getUser.getString("password"), getUser.getString("email_address"));
+        }
     }
 
-    public String addClientToDB(User user) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonData = objectMapper.writeValueAsString(user);
+    public void addClientToDB(User user) {
+        JSONObject userJson = new JSONObject();
+        userJson.put("iD", user.getiD());
+        userJson.put("username", user.getUsername());
+        userJson.put("password", user.getPassword());
+        userJson.put("emailAddress", user.getEmailAddress());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "3");
-        jsonObject.put("client", jsonData);
+        jsonObject.put("client", userJson);
         String jsonCommand = jsonObject.toString();
         output.println(jsonCommand);
         output.flush();
-        return input.nextLine();
+        input.nextLine();
     }
 }

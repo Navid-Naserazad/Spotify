@@ -14,24 +14,28 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Main extends Application {
-    static PrintWriter output;
-    static Scanner input;
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
+        // Socket Connecting
         final int PORT = 6666;
         try {
             Socket socket = new Socket("localhost", PORT);
             InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
-            input = new Scanner(inputStream);
-            output = new PrintWriter(outputStream);
+            Scanner input = new Scanner(inputStream);
+            PrintWriter output = new PrintWriter(outputStream);
+
+            // UI
             primaryStage.setTitle("Spotify");
             primaryStage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
-            Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
+            Parent root = loader.load();
+            ControllerScene1 controllerScene1 = loader.getController();
+            controllerScene1.setInput(input);
+            controllerScene1.setOutput(output);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -39,12 +43,5 @@ public class Main extends Application {
         catch (Exception exception) {
             exception.printStackTrace();
         }
-    }
-    public static PrintWriter getOutput() {
-        return output;
-    }
-
-    public static Scanner getInput() {
-        return input;
     }
 }

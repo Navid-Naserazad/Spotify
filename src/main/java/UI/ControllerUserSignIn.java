@@ -1,5 +1,8 @@
 package UI;
 
+import User.User;
+
+import Shared.UserRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +15,18 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class ControllerUserSignIn {
+
+    // Attributes
     Parent root;
     Stage stage;
     Scene scene;
+    private Scanner input;
+    private PrintWriter output;
+    private UserRequest userRequest;
 
     @FXML
     TextField usernameField;
@@ -25,9 +35,8 @@ public class ControllerUserSignIn {
     @FXML
     Label warning;
 
-
-
-    public void switchToUserMenu(ActionEvent event) throws IOException {
+    // Public Functions
+    public void switchToUserMenu(ActionEvent event, User user) throws IOException {
         root = FXMLLoader.load(getClass().getResource("userMenu.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -36,15 +45,20 @@ public class ControllerUserSignIn {
     }
     public void userSignIn (ActionEvent event) throws IOException {
         if (!usernameField.getText().isBlank() && !passwordField.getText().isBlank()) {
-            // validating username & password
-            /*
-            if (validation) {
-                switchToUserMenu(event);
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            if (userRequest.usernameCheckingRequest(username)) {
+                User user = userRequest.checkPasswordForLoginOperation(username, password);
+                if(user == null) {
+                    warning.setText("Invalid Password!");
+                }
+                else{
+                    switchToUserMenu(event , user);
+                }
             }
             else {
-                warning.setText("Invalid username or password!");
+                warning.setText("There is no username such this in database!");
             }
-             */
         }
         else {
             warning.setText("Please Enter username and password!");
@@ -58,4 +72,17 @@ public class ControllerUserSignIn {
         stage.show();
     }
 
+    // Setter
+
+    public void setInput(Scanner input) {
+        this.input = input;
+    }
+
+    public void setOutput(PrintWriter output) {
+        this.output = output;
+    }
+
+    public void setUserRequest(UserRequest userRequest) {
+        this.userRequest = userRequest;
+    }
 }
