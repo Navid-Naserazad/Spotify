@@ -19,7 +19,7 @@ public class ArtistResponse {
     public ArtistResponse() throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spotify",
                 "root",
-                "Nariman@1383");
+                "password");
         this.statement = connection.createStatement();
     }
 

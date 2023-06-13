@@ -53,6 +53,9 @@ public class ControllerUserSignUp {
                 userRequest.addClientToDB(user);
                 switchToUserMenu(event, user);
             }
+            else {
+                warning.setText("This username is taken!");
+            }
         }
         else {
             warning.setText("Please fill all blankets!");
