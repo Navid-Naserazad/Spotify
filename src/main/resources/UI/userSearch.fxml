@@ -43,11 +43,6 @@
     <center>
         <AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #1ed760;" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="warningUserSignIn" alignment="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="30.0" prefWidth="378.0" textFill="RED">
-                    <font>
-                        <Font name="System Italic" size="20.0" />
-                    </font>
-                </Label>
                 <Button layoutX="51.0" layoutY="29.0" mnemonicParsing="false" onAction="#switchToSearchMusic" prefHeight="65.0" prefWidth="299.0" style="-fx-background-color: #191414;" text="Search Music" textFill="#1ed760">
                     <font>
                         <Font name="System Bold Italic" size="30.0" />

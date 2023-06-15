@@ -48,16 +48,21 @@
                         <Font name="System Bold Italic" size="30.0" />
                     </font>
                 </Button>
-                <Button layoutX="51.0" layoutY="159.0" mnemonicParsing="false" onAction="#switchToCreatePlaylist" prefHeight="65.0" prefWidth="299.0" style="-fx-background-color: #191414;" text="Create playlist" textFill="#1ed760">
+                <Button layoutX="51.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchToCreatePlaylist" prefHeight="65.0" prefWidth="299.0" style="-fx-background-color: #191414;" text="Create playlist" textFill="#1ed760">
                     <font>
                         <Font name="System Bold Italic" size="30.0" />
                     </font>
                 </Button>
-                <Button layoutX="51.0" layoutY="280.0" mnemonicParsing="false" onAction="#switchToUserMenu" prefHeight="65.0" prefWidth="299.0" style="-fx-background-color: #191414;" text="Back" textFill="#1ed760">
+                <Button layoutX="51.0" layoutY="303.0" mnemonicParsing="false" onAction="#switchToUserMenu" prefHeight="65.0" prefWidth="299.0" style="-fx-background-color: #191414;" text="Back" textFill="#1ed760">
                     <font>
                         <Font name="System Bold Italic" size="30.0" />
                     </font>
                 </Button>
+            <Button layoutX="51.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchToEditPlaylist" prefHeight="65.0" prefWidth="299.0" style="-fx-background-color: #191414;" text="Edit playlist" textFill="#1ed760">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </center>
