@@ -52,7 +52,7 @@ public class ControllerSearchMusic implements Initializable  {
 
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getDBConnection();
-        String query = "SELECT title, genre, album, artists FROM music";
+        String query = "SELECT title, genre, album, artists FROM music ASC ...";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
