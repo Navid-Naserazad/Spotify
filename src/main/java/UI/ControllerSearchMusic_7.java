@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -64,45 +65,44 @@ public class ControllerSearchMusic_7 implements Initializable  {
             String duration = jsonObject.getString("duration");
             musicObservableList.add(new Music(title, genre, album, artists, duration));
         }
-//            titleColumn.setCellFactory(new PropertyValueFactory<Music, String>("title"));
-//            genreColumn.setCellFactory(new PropertyValueFactory<Music, String>("genre"));
-//            albumColumn.setCellFactory(new PropertyValueFactory<Music, String >("album"));
-//            artistsColumn.setCellFactory(new PropertyValueFactory<Music, String>("artists"));
-//            durationColumn.setCellFactory(new PropertyValueFactory<Music, String>("duration"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
+        artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
 
-            tableView.setItems(musicObservableList);
+        tableView.setItems(musicObservableList);
 
-            FilteredList<Music> filteredList = new FilteredList<>(musicObservableList, b-> true);
+        FilteredList<Music> filteredList = new FilteredList<>(musicObservableList, b-> true);
 
-            search.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredList.setPredicate(music -> {
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(music -> {
 
-                    if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
-                        return  true;
-                    }
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return  true;
+                }
 
-                    String searchKeyword = newValue.toLowerCase();
-                    if (music.getTitle().toLowerCase().indexOf(searchKeyword ) > -1){
-                        return true;
-                    }
-                    else if (music.getGenre().toLowerCase().indexOf(searchKeyword) > -1) {
-                        return true;
-                    }
-                    else if (music.getAlbum().toLowerCase().indexOf(searchKeyword) > -1) {
-                        return true;
-                    }
-                    else if (music.getArtists().toLowerCase().indexOf(searchKeyword) > -1) {
-                        return true;
-                    }
-                    else {
+                String searchKeyword = newValue.toLowerCase();
+                if (music.getTitle().toLowerCase().indexOf(searchKeyword ) > -1){
+                    return true;
+                }
+                else if (music.getGenre().toLowerCase().indexOf(searchKeyword) > -1) {
+                    return true;
+                }
+                else if (music.getAlbum().toLowerCase().indexOf(searchKeyword) > -1) {
+                    return true;
+                }
+                else if (music.getArtists().toLowerCase().indexOf(searchKeyword) > -1) {
+                    return true;
+                }
+                else {
                         return false;
-                    }
-                });
+                }
             });
+        });
 
-            SortedList<Music> sortedList = new SortedList<>(filteredList);
-            sortedList.comparatorProperty().bind(tableView.comparatorProperty());
-            tableView.setItems(sortedList);
+        SortedList<Music> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
     }
 
     public void playButton(ActionEvent event) throws IOException {
