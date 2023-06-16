@@ -62,7 +62,12 @@ public class ServerServiceForUser implements Runnable{
             case 3:
                 answer = userResponse.addUserToDB(jsonObject.getJSONObject("client"));
                 break;
-
+            case 4:
+                answer = userResponse.numberOfAllMusics();
+                break;
+            case 5:
+                answer = userResponse.getRow_iMusic(jsonObject.getInt("row"));
+                break;
         }
         output.println(answer);
         output.flush();

@@ -62,4 +62,26 @@ public class UserResponse {
         int addUser = statement.executeUpdate(sqlCommand);
         return "";
     }
+
+    public String numberOfAllMusics() throws SQLException {
+        String sqlCommand = "SELECT count(*) FROM music";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        return resultSet.getString(1);
+    }
+
+    public String getRow_iMusic(int n) throws SQLException {
+        String sqlCommand = "SELECT * FROM music";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        for (int i = 0; i < n; i++) {
+            resultSet.next();
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("title", resultSet.getString("title"));
+        jsonObject.put("genre", resultSet.getString("genre"));
+        jsonObject.put("play_list", resultSet.getString("play_list"));
+        jsonObject.put("artist", resultSet.getString("artist"));
+        jsonObject.put("duration", resultSet.getTime("duration"));
+        return jsonObject.toString();
+    }
 }

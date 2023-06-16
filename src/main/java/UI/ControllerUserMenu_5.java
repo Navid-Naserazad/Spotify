@@ -1,5 +1,6 @@
 package UI;
 
+import Shared.UserRequest;
 import User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +10,29 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
-public class ControllerUserMenu {
+public class ControllerUserMenu_5 {
+
+    // Attributes
     Parent root;
     Stage stage;
     Scene scene;
+    private Scanner input;
+    private PrintWriter output;
+    private User user;
+    private UserRequest userRequest;
+
+    // Public Functions
     public void switchToUserSearch(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("userSearch.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("userSearch.fxml"));
+        root = loader.load();
+        ControllerUserSearch_6 controllerUserSearch_6 = loader.getController();
+        controllerUserSearch_6.setUser(this.user);
+        controllerUserSearch_6.setUserRequest(this.userRequest);
+        controllerUserSearch_6.setInput(this.input);
+        controllerUserSearch_6.setOutput(this.output);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -64,6 +81,21 @@ public class ControllerUserMenu {
         stage.show();
     }
 
+    // Setter
 
+    public void setInput(Scanner input) {
+        this.input = input;
+    }
 
+    public void setOutput(PrintWriter output) {
+        this.output = output;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setUserRequest(UserRequest userRequest) {
+        this.userRequest = userRequest;
+    }
 }

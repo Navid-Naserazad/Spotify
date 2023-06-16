@@ -69,4 +69,23 @@ public class UserRequest {
         output.flush();
         input.nextLine();
     }
+
+    public int numberOFAllMusics() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "4");
+        String jsonCommand = jsonObject.toString();
+        this.output.println(jsonCommand);
+        this.output.flush();
+        return Integer.parseInt(this.input.nextLine());
+    }
+
+    public JSONObject getRow_iMusic(int i) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "5");
+        jsonObject.put("row", i);
+        String jsonCommand = jsonObject.toString();
+        this.output.println(jsonCommand);
+        this.output.flush();
+        return new JSONObject(this.input.nextLine());
+    }
 }

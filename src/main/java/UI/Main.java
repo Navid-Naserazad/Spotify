@@ -33,7 +33,7 @@ public class Main extends Application {
             primaryStage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
             Parent root = loader.load();
-            ControllerScene1 controllerScene1 = loader.getController();
+            ControllerScene1_1 controllerScene1 = loader.getController();
             controllerScene1.setInput(input);
             controllerScene1.setOutput(output);
             Scene scene = new Scene(root);

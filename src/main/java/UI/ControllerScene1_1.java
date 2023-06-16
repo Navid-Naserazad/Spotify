@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class ControllerScene1 {
+public class ControllerScene1_1 {
 
     // Attributes
     Parent root;
@@ -27,7 +27,7 @@ public class ControllerScene1 {
         UserRequest userRequest = new UserRequest(input, output);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sceneUser.fxml"));
         root = loader.load();
-        ControllerSceneUser controllerSceneUser = loader.getController();
+        ControllerSceneUser_2 controllerSceneUser = loader.getController();
         controllerSceneUser.setInput(input);
         controllerSceneUser.setOutput(output);
         controllerSceneUser.setUserRequest(userRequest);

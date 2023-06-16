@@ -1,8 +1,7 @@
 package UI;
 
-import User.User;
-
 import Shared.UserRequest;
+import User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,51 +17,56 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class ControllerUserSignIn {
+public class ControllerUserSignUp_4 {
 
     // Attributes
     Parent root;
     Stage stage;
     Scene scene;
-    private Scanner input;
-    private PrintWriter output;
-    private UserRequest userRequest;
-
     @FXML
     TextField usernameField;
     @FXML
     PasswordField passwordField;
     @FXML
+    TextField emailField;
+    @FXML
     Label warning;
+    private Scanner input;
+    private PrintWriter output;
+    private UserRequest userRequest;
 
     // Public Functions
     public void switchToUserMenu(ActionEvent event, User user) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("userMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("userMenu.fxml"));
+        root = loader.load();
+        ControllerUserMenu_5 controllerUserMenu_5 = loader.getController();
+        controllerUserMenu_5.setInput(this.input);
+        controllerUserMenu_5.setOutput(this.output);
+        controllerUserMenu_5.setUser(user);
+        controllerUserMenu_5.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    public void userSignIn (ActionEvent event) throws IOException {
-        if (!usernameField.getText().isBlank() && !passwordField.getText().isBlank()) {
+    public void userSignUp (ActionEvent event) throws IOException {
+        if (!usernameField.getText().isBlank() && !passwordField.getText().isBlank() && !emailField.getText().isBlank()) {
             String username = usernameField.getText();
             String password = passwordField.getText();
-            if (userRequest.usernameCheckingRequest(username)) {
-                User user = userRequest.checkPasswordForLoginOperation(username, password);
-                if(user == null) {
-                    warning.setText("Invalid Password!");
-                }
-                else{
-                    switchToUserMenu(event , user);
-                }
+            String emailAddress = emailField.getText();
+            if (!userRequest.usernameCheckingRequest(username)) {
+                User user = new User(username, password, emailAddress);
+                userRequest.addClientToDB(user);
+                switchToUserMenu(event, user);
             }
             else {
-                warning.setText("There is no username such this in database!");
+                warning.setText("This username is taken!");
             }
         }
         else {
-            warning.setText("Please Enter username and password!");
+            warning.setText("Please fill all blankets!");
         }
+
     }
     public void switchToSceneUser(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("sceneUser.fxml"));
