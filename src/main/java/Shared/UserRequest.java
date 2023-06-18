@@ -3,19 +3,18 @@ package Shared;
 import User.User;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class UserRequest {
 
     // Attributes
-    private Scanner input;
-    private PrintWriter output;
+    private DataInputStream input;
+    private DataOutputStream output;
 
-    public UserRequest(Scanner input, PrintWriter output) {
-        this.output = output;
+    public UserRequest(DataInputStream input, DataOutputStream output) {
         this.input = input;
+        this.output = output;
     }
 
     // Exit From App
@@ -25,26 +24,31 @@ public class UserRequest {
 
     // Public Functions
 
-    public boolean usernameCheckingRequest(String username) {
+    public void sendUserPosition() throws IOException {
+        output.writeUTF("2");
+        output.flush();
+    }
+
+    public boolean usernameCheckingRequest(String username) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "1");
         jsonObject.put("username", username);
         String jsonCommand = jsonObject.toString();
-        output.println(jsonCommand);
+        output.writeUTF(jsonCommand);
         output.flush();
-        String answer = input.nextLine();
+        String answer = input.readUTF();
         return Boolean.parseBoolean(answer);
     }
 
-    public User checkPasswordForLoginOperation (String username, String password) {
+    public User checkPasswordForLoginOperation (String username, String password) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "2");
         jsonObject.put("username", username);
         jsonObject.put("password", password);
         String jsonCommand = jsonObject.toString();
-        output.println(jsonCommand);
+        output.writeUTF(jsonCommand);
         output.flush();
-        String answer = input.nextLine();
+        String answer = input.readUTF();
         if (answer.equals("")) {
             return null;
         }
@@ -55,7 +59,7 @@ public class UserRequest {
         }
     }
 
-    public void addClientToDB(User user) {
+    public void addClientToDB(User user) throws IOException {
         JSONObject userJson = new JSONObject();
         userJson.put("iD", user.getiD());
         userJson.put("username", user.getUsername());
@@ -65,27 +69,27 @@ public class UserRequest {
         jsonObject.put("number", "3");
         jsonObject.put("client", userJson);
         String jsonCommand = jsonObject.toString();
-        output.println(jsonCommand);
+        output.writeUTF(jsonCommand);
         output.flush();
-        input.nextLine();
+        input.readUTF();
     }
 
-    public int numberOFAllMusics() {
+    public int numberOFAllMusics() throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "4");
         String jsonCommand = jsonObject.toString();
-        this.output.println(jsonCommand);
+        this.output.writeUTF(jsonCommand);
         this.output.flush();
-        return Integer.parseInt(this.input.nextLine());
+        return Integer.parseInt(this.input.readUTF());
     }
 
-    public JSONObject getRow_iMusic(int i) {
+    public JSONObject getRow_iMusic(int i) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "5");
         jsonObject.put("row", i);
         String jsonCommand = jsonObject.toString();
-        this.output.println(jsonCommand);
+        this.output.writeUTF(jsonCommand);
         this.output.flush();
-        return new JSONObject(this.input.nextLine());
+        return new JSONObject(this.input.readUTF());
     }
 }

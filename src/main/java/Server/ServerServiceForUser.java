@@ -3,22 +3,22 @@ package Server;
 import Shared.UserResponse;
 import org.json.JSONObject;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class ServerServiceForUser implements Runnable{
 
     // Attributes
     private Socket client;
-    private Scanner input;
-    private PrintWriter output;
+    private DataInputStream input;
+    private DataOutputStream output;
     private UserResponse userResponse;
 
     // Constructor
-    public ServerServiceForUser(Socket client, Scanner input, PrintWriter output, UserResponse userResponse) {
+    public ServerServiceForUser(Socket client, DataInputStream input, DataOutputStream output, UserResponse userResponse) {
         this.client = client;
         this.input = input;
         this.output = output;
@@ -40,9 +40,7 @@ public class ServerServiceForUser implements Runnable{
     // Public Functions
     public void doService() throws SQLException, IOException {
         while (true) {
-            if(!input.hasNext())
-                return;
-            String command = input.nextLine();
+            String command = input.readUTF();
             JSONObject jsonObject = new JSONObject(command);
             int number = Integer.parseInt(jsonObject.getString("number"));
             executeCommand(number, jsonObject);
@@ -69,7 +67,7 @@ public class ServerServiceForUser implements Runnable{
                 answer = userResponse.getRow_iMusic(jsonObject.getInt("row"));
                 break;
         }
-        output.println(answer);
+        output.writeUTF(answer);
         output.flush();
     }
 }

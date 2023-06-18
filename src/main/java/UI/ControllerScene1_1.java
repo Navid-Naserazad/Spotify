@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -17,19 +20,14 @@ public class ControllerScene1_1 {
     Parent root;
     Stage stage;
     Scene scene;
-    private PrintWriter output;
-    private Scanner input;
+    private UserRequest userRequest;
 
     // Public Functions
     public void switchToSceneUser(ActionEvent event) throws IOException {
-        output.println("2");
-        output.flush();
-        UserRequest userRequest = new UserRequest(input, output);
+        userRequest.sendUserPosition();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sceneUser.fxml"));
         root = loader.load();
         ControllerSceneUser_2 controllerSceneUser = loader.getController();
-        controllerSceneUser.setInput(input);
-        controllerSceneUser.setOutput(output);
         controllerSceneUser.setUserRequest(userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -46,11 +44,8 @@ public class ControllerScene1_1 {
 
     // Setter
 
-    public void setOutput(PrintWriter output) {
-        this.output = output;
+    public void setUserRequest(UserRequest userRequest) {
+        this.userRequest = userRequest;
     }
 
-    public void setInput(Scanner input) {
-        this.input = input;
-    }
 }

@@ -3,12 +3,12 @@ package Server;
 import Shared.ArtistResponse;
 import Shared.UserResponse;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class ServerMain {
     public static void main(String[] args) throws IOException, SQLException {
@@ -17,9 +17,9 @@ public class ServerMain {
         System.out.println("Waiting for client to connect...");
         while (true) {
             Socket myUser = serverSocket.accept();
-            Scanner input = new Scanner(myUser.getInputStream());
-            PrintWriter output = new PrintWriter(myUser.getOutputStream());
-            String position = input.nextLine();
+            DataInputStream input = new DataInputStream(myUser.getInputStream());
+            DataOutputStream output = new DataOutputStream(myUser.getOutputStream());
+            String position = input.readUTF();
             switch (position) {
                 case "1":
                     System.out.println("Artist Connected.");

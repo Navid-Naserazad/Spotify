@@ -14,8 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 public class ControllerUserSignUp_4 {
 
@@ -31,8 +29,6 @@ public class ControllerUserSignUp_4 {
     TextField emailField;
     @FXML
     Label warning;
-    private Scanner input;
-    private PrintWriter output;
     private UserRequest userRequest;
 
     // Public Functions
@@ -40,8 +36,6 @@ public class ControllerUserSignUp_4 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userMenu.fxml"));
         root = loader.load();
         ControllerUserMenu_5 controllerUserMenu_5 = loader.getController();
-        controllerUserMenu_5.setInput(this.input);
-        controllerUserMenu_5.setOutput(this.output);
         controllerUserMenu_5.setUser(user);
         controllerUserMenu_5.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -77,14 +71,6 @@ public class ControllerUserSignUp_4 {
     }
 
     // Setter
-
-    public void setInput(Scanner input) {
-        this.input = input;
-    }
-
-    public void setOutput(PrintWriter output) {
-        this.output = output;
-    }
 
     public void setUserRequest(UserRequest userRequest) {
         this.userRequest = userRequest;

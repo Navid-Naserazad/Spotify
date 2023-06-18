@@ -10,8 +10,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 public class ControllerUserMenu_5 {
 
@@ -19,8 +17,6 @@ public class ControllerUserMenu_5 {
     Parent root;
     Stage stage;
     Scene scene;
-    private Scanner input;
-    private PrintWriter output;
     private User user;
     private UserRequest userRequest;
 
@@ -31,8 +27,6 @@ public class ControllerUserMenu_5 {
         ControllerUserSearch_6 controllerUserSearch_6 = loader.getController();
         controllerUserSearch_6.setUser(this.user);
         controllerUserSearch_6.setUserRequest(this.userRequest);
-        controllerUserSearch_6.setInput(this.input);
-        controllerUserSearch_6.setOutput(this.output);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -82,14 +76,6 @@ public class ControllerUserMenu_5 {
     }
 
     // Setter
-
-    public void setInput(Scanner input) {
-        this.input = input;
-    }
-
-    public void setOutput(PrintWriter output) {
-        this.output = output;
-    }
 
     public void setUser(User user) {
         this.user = user;

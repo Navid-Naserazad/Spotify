@@ -10,8 +10,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 public class ControllerUserSearch_6 {
 
@@ -19,8 +17,6 @@ public class ControllerUserSearch_6 {
     Parent root;
     Stage stage;
     Scene scene;
-    private Scanner input;
-    private PrintWriter output;
     private User user;
     private UserRequest userRequest;
 
@@ -31,8 +27,6 @@ public class ControllerUserSearch_6 {
         ControllerSearchMusic_7 controllerSearchMusic_7 = loader.getController();
         controllerSearchMusic_7.setUser(this.user);
         controllerSearchMusic_7.setUserRequest(this.userRequest);
-        controllerSearchMusic_7.setInput(this.input);
-        controllerSearchMusic_7.setOutput(this.output);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -61,13 +55,6 @@ public class ControllerUserSearch_6 {
     }
 
     // Setter
-    public void setInput(Scanner input) {
-        this.input = input;
-    }
-
-    public void setOutput(PrintWriter output) {
-        this.output = output;
-    }
 
     public void setUser(User user) {
         this.user = user;
