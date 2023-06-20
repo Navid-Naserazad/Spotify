@@ -6,6 +6,7 @@ public class Artist {
 
     // Attributes
     private String iD;
+
     public String name;
     private String password;
     private String emailAddress;

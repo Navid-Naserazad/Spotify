@@ -25,12 +25,17 @@
                   <Font name="Bodoni MT Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="12.0" layoutY="215.0" mnemonicParsing="false" onAction="#playButton" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="Play" textFill="#191414">
+            <Button layoutX="12.0" layoutY="185.0" mnemonicParsing="false" onAction="#playButton" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="Play" textFill="#191414">
                <font>
                   <Font name="System Bold Italic" size="25.0" />
                </font>
             </Button>
-            <Button layoutX="12.0" layoutY="292.0" mnemonicParsing="false" onAction="#downloadButton" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: #1ed760;" text="Downlaod" textFill="#191414">
+            <Button layoutX="12.0" layoutY="256.0" mnemonicParsing="false" onAction="#downloadButton" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: #1ed760;" text="Downlaod" textFill="#191414">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="12.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchToUserSearch" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: #1ed760;" text="Back" textFill="#191414">
                <font>
                   <Font name="System Bold Italic" size="25.0" />
                </font>
@@ -41,7 +46,7 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #1ed760;" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="39.0" layoutY="83.0" prefHeight="397.0" prefWidth="654.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+            <TableView fx:id="tableView" layoutX="39.0" layoutY="83.0" prefHeight="397.0" prefWidth="654.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
               <columns>
                 <TableColumn fx:id="titleColumn" prefWidth="182.0" style="-fx-background-color: #1394ab;" text="Title" />
                   <TableColumn fx:id="genreColumn" prefWidth="88.0" style="-fx-background-color: #1394ab;" text="Genre" />
