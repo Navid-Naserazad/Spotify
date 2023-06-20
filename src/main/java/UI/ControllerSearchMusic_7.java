@@ -5,6 +5,8 @@ import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,9 +50,23 @@ public class ControllerSearchMusic_7 implements Initializable  {
     // Public Functions
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        int allMusicsNumber = userRequest.numberOFAllMusics();
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
+        artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
+//        int allMusicsNumber = 0;
+//        try {
+//            allMusicsNumber = userRequest.numberOFAllMusics();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 //        for (int i = 1; i <= allMusicsNumber; i++) {
-//            JSONObject jsonObject = userRequest.getRow_iMusic(i);
+//            JSONObject jsonObject = null;
+//            try {
+//                jsonObject = userRequest.getRow_iMusic(i);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
 //
 //            String title = jsonObject.getString("title");
 //            String genre = jsonObject.getString("genre");
@@ -57,11 +75,6 @@ public class ControllerSearchMusic_7 implements Initializable  {
 //            String duration = jsonObject.getString("duration");
 //            musicObservableList.add(new Music(title, genre, album, artists, duration));
 //        }
-//        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-//        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
-//        albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
-//        artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
-//
 //        tableView.setItems(musicObservableList);
 //
 //        FilteredList<Music> filteredList = new FilteredList<>(musicObservableList, b-> true);
