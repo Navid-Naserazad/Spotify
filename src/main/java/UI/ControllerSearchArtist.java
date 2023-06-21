@@ -31,7 +31,7 @@ public class ControllerSearchArtist implements Initializable {
     @FXML
     private TableColumn<Artist, String> artistColumn;
 
-    ObservableList<Artist> artistObservableList = FXCollections.observableArrayList();
+    ObservableList<Artist> artistsObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

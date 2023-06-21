@@ -64,6 +64,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
+<<<<<<< Updated upstream
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
             int allMusicsNumber = 0;
         try {
@@ -120,6 +121,62 @@ public class ControllerSearchMusic_7 implements Initializable  {
         SortedList<Music> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableView.comparatorProperty());
         tableView.setItems(sortedList);
+=======
+//        int allMusicsNumber = 0;
+//        try {
+//            allMusicsNumber = userRequest.numberOFAllMusics();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        for (int i = 1; i <= allMusicsNumber; i++) {
+//            JSONObject jsonObject = null;
+//            try {
+//                jsonObject = userRequest.getRow_iMusic(i);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//            String title = jsonObject.getString("title");
+//            String genre = jsonObject.getString("genre");
+//            String album = jsonObject.getString("album");
+//            String artists = jsonObject.getString("artist");
+//            String duration = jsonObject.getString("duration");
+//            musicObservableList.add(new Music(title, genre, album, artists, duration));
+//        }
+//        tableView.setItems(musicObservableList);
+//
+//        FilteredList<Music> filteredList = new FilteredList<>(musicObservableList, b-> true);
+//
+//        search.textProperty().addListener((observable, oldValue, newValue) -> {
+//            filteredList.setPredicate(music -> {
+//
+//                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+//                    return  true;
+//                }
+//
+//                String searchKeyword = newValue.toLowerCase();
+//                if (music.getTitle().toLowerCase().indexOf(searchKeyword ) > -1){
+//                    return true;
+//                }
+//                else if (music.getGenre().toLowerCase().indexOf(searchKeyword) > -1) {
+//                    return true;
+//                }
+//                else if (music.getAlbum().toLowerCase().indexOf(searchKeyword) > -1) {
+//                    return true;
+//                }
+//                else if (music.getArtists().toLowerCase().indexOf(searchKeyword) > -1) {
+//                    return true;
+//                }
+//                else {
+//                        return false;
+//                }
+//            });
+//        });
+//
+//        SortedList<Music> sortedList = new SortedList<>(filteredList);
+//        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+//        tableView.setItems(sortedList);
+>>>>>>> Stashed changes
     }
 
     public void playButton(ActionEvent event) throws IOException {
