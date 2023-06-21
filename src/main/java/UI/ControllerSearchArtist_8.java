@@ -38,6 +38,8 @@ public class ControllerSearchArtist_8 implements Initializable {
     @FXML
     private TableColumn<Artist, String> artistColumn;
     @FXML
+    private TableColumn<Artist, String> biographyColumn;
+    @FXML
     private TextField search;
 
     ObservableList<Artist> artistsObservableList = FXCollections.observableArrayList();
@@ -53,6 +55,7 @@ public class ControllerSearchArtist_8 implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        biographyColumn.setCellValueFactory(new PropertyValueFactory<>("biography"));
         int allArtists = 0;
         try {
             allArtists = userRequest.numberOfAllArtist();

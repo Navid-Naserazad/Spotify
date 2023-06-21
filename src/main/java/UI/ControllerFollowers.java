@@ -36,5 +36,7 @@ public class ControllerFollowers implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+
+        
     }
 }
