@@ -22,19 +22,23 @@ public class ControllerUserSearch_6 {
 
     // Public Functions
     public void switchToSearchMusic(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("userPlaylist.fxml"));
-        root = loader.load();
-<<<<<<< Updated upstream
-        ControllerSearchMusic_7 controllerSearchMusic_7 = loader.getController();
-        controllerSearchMusic_7.setUser(this.user);
-        controllerSearchMusic_7.setUserRequest(this.userRequest);
-=======
-//        ControllerSearchMusic_7 controllerSearchMusic_7 = loader.getController();
+//        ControllerSearchMusic_7 controllerSearchMusic_7  = new ControllerSearchMusic_7(this.user, this.userRequest);
 //        controllerSearchMusic_7.setUser(this.user);
-//        controllerSearchMusic_7.setUserRequest(this.userRequest);
-//        controllerSearchMusic_7.setInput(this.input);
-//        controllerSearchMusic_7.setOutput(this.output);
->>>>>>> Stashed changes
+//        controllerSearchMusic_7.setUserRequest(userRequest);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("searchMusic.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerSearchMusic_7.class) {
+                return new ControllerSearchMusic_7(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -61,9 +65,12 @@ public class ControllerUserSearch_6 {
         stage.setScene(scene);
         stage.show();
     }
+    // Getter
+    public UserRequest getUserRequest() {
+        return userRequest;
+    }
 
     // Setter
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -71,4 +78,5 @@ public class ControllerUserSearch_6 {
     public void setUserRequest(UserRequest userRequest) {
         this.userRequest = userRequest;
     }
+
 }

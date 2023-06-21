@@ -31,8 +31,6 @@ public class ControllerSearchMusic_7 implements Initializable  {
     Parent root;
     Stage stage;
     Scene scene;
-    private User user;
-    private UserRequest userRequest;
 
     @FXML
     private TableView<Music> tableView;
@@ -48,18 +46,26 @@ public class ControllerSearchMusic_7 implements Initializable  {
     private TableColumn<Music, String> durationColumn;
     @FXML
     private TextField search;
-
+    private User user;
+    private UserRequest userRequest;
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
+
+    // Constructor
+
+    public ControllerSearchMusic_7(User user, UserRequest userRequest) {
+        this.user = user;
+        this.userRequest = userRequest;
+    }
 
     // Public Functions
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(this.userRequest);
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
-        int allMusicsNumber = 0;
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+            int allMusicsNumber = 0;
         try {
             allMusicsNumber = userRequest.numberOFAllMusics();
         } catch (IOException e) {
@@ -75,9 +81,10 @@ public class ControllerSearchMusic_7 implements Initializable  {
 
             String title = jsonObject.getString("title");
             String genre = jsonObject.getString("genre");
-            String album = jsonObject.getString("album");
+            String album = jsonObject.getString("play_list");
             String artists = jsonObject.getString("artist");
             String duration = jsonObject.getString("duration");
+            System.out.println(title + " " + genre + " " + album + " " + artists + " " + duration);
             musicObservableList.add(new Music(title, genre, album, artists, duration));
         }
         tableView.setItems(musicObservableList);
@@ -141,14 +148,12 @@ public class ControllerSearchMusic_7 implements Initializable  {
         stage.setScene(scene);
         stage.show();
     }
-
     // Setter
 
     public void setUser(User user) {
         this.user = user;
     }
-
-    public void setUserRequest(UserRequest userRequest) {
+    public void setUserRequest(UserRequest userRequest){
         this.userRequest = userRequest;
     }
 }

@@ -8,4 +8,6 @@ module UI {
 
     opens UI to javafx.fxml;
     exports UI;
+    opens Artist to javafx.fxml;
+    exports Artist;
 }
