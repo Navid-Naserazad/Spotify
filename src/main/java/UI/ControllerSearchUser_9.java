@@ -36,6 +36,8 @@ public class ControllerSearchUser_9 implements Initializable {
     private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> userColumn;
+    @FXML
+    private TextField search;
     private User user;
     private UserRequest userRequest;
 
