@@ -92,4 +92,15 @@ public class UserRequest {
         this.output.flush();
         return new JSONObject(this.input.readUTF());
     }
+
+    // To String
+
+
+    @Override
+    public String toString() {
+        return "UserRequest{" +
+                "input=" + input +
+                ", output=" + output +
+                '}';
+    }
 }
