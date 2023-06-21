@@ -22,11 +22,19 @@ public class ControllerUserSearch_6 {
 
     // Public Functions
     public void switchToSearchMusic(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("searchMusic.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("userPlaylist.fxml"));
         root = loader.load();
+<<<<<<< Updated upstream
         ControllerSearchMusic_7 controllerSearchMusic_7 = loader.getController();
         controllerSearchMusic_7.setUser(this.user);
         controllerSearchMusic_7.setUserRequest(this.userRequest);
+=======
+//        ControllerSearchMusic_7 controllerSearchMusic_7 = loader.getController();
+//        controllerSearchMusic_7.setUser(this.user);
+//        controllerSearchMusic_7.setUserRequest(this.userRequest);
+//        controllerSearchMusic_7.setInput(this.input);
+//        controllerSearchMusic_7.setOutput(this.output);
+>>>>>>> Stashed changes
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
