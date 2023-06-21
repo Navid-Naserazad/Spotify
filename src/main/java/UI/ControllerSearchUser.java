@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -31,7 +32,8 @@ public class ControllerSearchUser implements Initializable {
     private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> userColumn;
-
+    @FXML
+    private TextField search;
     ObservableList<User> usersObservableList = FXCollections.observableArrayList();
 
     @Override

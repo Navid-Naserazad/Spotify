@@ -54,14 +54,14 @@ public class ControllerUserMenu_5 {
         stage.show();
     }
     public void switchToUserFollowings(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("userFollowings.fxml"));
+        root = FXMLLoader.load(getClass().getResource("followings.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
     public void switchToUserFollowers(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("userFollowers.fxml"));
+        root = FXMLLoader.load(getClass().getResource("followers.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

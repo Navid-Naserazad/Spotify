@@ -3,37 +3,32 @@ package UI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class ControllerChangePasword {
-    // Attributes
+public class ContorllerChangeEmail {
+    // Atttributes
     Parent root;
     Stage stage;
     Scene scene;
-
     @FXML
-    PasswordField currentPassword;
+    TextField currentEmail;
     @FXML
-    PasswordField newPassword;
-    @FXML
-    PasswordField confirmPassword;
+    TextField newEmail;
     @FXML
     Label message;
 
+
     public void confirm(ActionEvent event) {
-        // changing password in database
-        message.setText("The password has been successfully changed!");
+        // changing Email in database
+        message.setText("The Email has been successfully changed!");
     }
     public void switchToUserEditProfile(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("userEditProfile.fxml"));
