@@ -103,4 +103,20 @@ public class UserResponse {
         jsonObject.put("biography", resultSet.getString("biography"));
         return jsonObject.toString();
     }
+
+    public String numberOfAllUsers() throws SQLException {
+        String sqlCommand = "SELECT count(*) FROM user";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        return resultSet.getString(1);
+    }
+
+    public String getRow_iUser(int n) throws SQLException {
+        String sqlCommand = "SELECT usernam FROM user";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        for (int i = 0; i < n; i++) {
+            resultSet.next();
+        }
+        return resultSet.getString("username");
+    }
 }

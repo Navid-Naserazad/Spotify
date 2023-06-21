@@ -32,6 +32,12 @@ public class User {
         this.emailAddress = emailAddress;
     }
 
+    // Constructor For Observable
+
+    public User(String username) {
+        this.username = username;
+    }
+
     // Getter
 
     public String getiD() {
