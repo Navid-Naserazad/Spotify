@@ -32,12 +32,9 @@ public class ControllerSearchUser_9 implements Initializable {
     private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> userColumn;
-<<<<<<< HEAD:src/main/java/UI/ControllerSearchUser.java
-=======
     private User user;
     private UserRequest userRequest;
 
->>>>>>> 58d7d10ecd9fa20d391152548a0bd4771a01edc3:src/main/java/UI/ControllerSearchUser_9.java
     ObservableList<User> usersObservableList = FXCollections.observableArrayList();
 
     // Constructor
