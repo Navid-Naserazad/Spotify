@@ -1,7 +1,6 @@
 package UI;
 
-import Artist.Artist;
-import Artist.Music;
+import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerSearchUser implements Initializable {
+public class ControllerSearchUser_9 implements Initializable {
+
     // Attributes
     Parent root;
     Stage stage;
@@ -31,8 +31,17 @@ public class ControllerSearchUser implements Initializable {
     private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> userColumn;
+    private User user;
+    private UserRequest userRequest;
 
     ObservableList<User> usersObservableList = FXCollections.observableArrayList();
+
+    // Constructor
+
+    public ControllerSearchUser_9(User user, UserRequest userRequest) {
+        this.user = user;
+        this.userRequest = userRequest;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

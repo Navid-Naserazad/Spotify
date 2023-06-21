@@ -66,6 +66,12 @@ public class ServerServiceForUser implements Runnable{
             case 5:
                 answer = userResponse.getRow_iMusic(jsonObject.getInt("row"));
                 break;
+            case 6:
+                answer = userResponse.numberOfAllArtists();
+                break;
+            case 7:
+                answer = userResponse.getRow_iArtist(jsonObject.getInt("row"));
+                break;
         }
         output.writeUTF(answer);
         output.flush();

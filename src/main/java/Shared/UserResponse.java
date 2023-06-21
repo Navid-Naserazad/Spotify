@@ -84,4 +84,23 @@ public class UserResponse {
         jsonObject.put("duration", resultSet.getTime("duration"));
         return jsonObject.toString();
     }
+
+    public String numberOfAllArtists() throws SQLException {
+        String sqlCommand = "SELECT count(*) FROM artist";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        return resultSet.getString(1);
+    }
+
+    public String getRow_iArtist(int n) throws SQLException {
+        String sqlCommand = "SELECT name, biography FROM artist";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        for (int i = 0; i < n; i++) {
+            resultSet.next();
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", resultSet.getString("name"));
+        jsonObject.put("biography", resultSet.getString("biography"));
+        return jsonObject.toString();
+    }
 }
