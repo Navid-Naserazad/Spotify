@@ -79,7 +79,7 @@ public class UserResponse {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("title", resultSet.getString("title"));
         jsonObject.put("genre", resultSet.getString("genre"));
-        jsonObject.put("play_list", resultSet.getString("play_list"));
+        jsonObject.put("album", resultSet.getString("album"));
         jsonObject.put("artist", resultSet.getString("artist"));
         jsonObject.put("duration", resultSet.getTime("duration"));
         return jsonObject.toString();

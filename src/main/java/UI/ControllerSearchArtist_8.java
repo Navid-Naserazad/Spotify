@@ -72,7 +72,6 @@ public class ControllerSearchArtist_8 implements Initializable {
             }
             String name = jsonObject.getString("name");
             String biography = jsonObject.getString("biography");
-            System.out.println(name +  " " + biography);
             artistsObservableList.add(new Artist(name, biography));
         }
         tableView.setItems(artistsObservableList);

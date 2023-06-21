@@ -81,7 +81,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
 
             String title = jsonObject.getString("title");
             String genre = jsonObject.getString("genre");
-            String album = jsonObject.getString("play_list");
+            String album = jsonObject.getString("album");
             String artists = jsonObject.getString("artist");
             String duration = jsonObject.getString("duration");
             musicObservableList.add(new Music(title, genre, album, artists, duration));
@@ -142,6 +142,9 @@ public class ControllerSearchMusic_7 implements Initializable  {
     public void switchToUserSearch(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userSearch.fxml"));
         root = loader.load();
+        ControllerUserSearch_6 controllerUserSearch_6 = loader.getController();
+        controllerUserSearch_6.setUser(this.user);
+        controllerUserSearch_6.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
