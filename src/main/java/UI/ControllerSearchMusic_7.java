@@ -31,7 +31,8 @@ public class ControllerSearchMusic_7 implements Initializable  {
     Parent root;
     Stage stage;
     Scene scene;
-
+    private User user;
+    private UserRequest userRequest;
     @FXML
     private TableView<Music> tableView;
     @FXML
@@ -46,8 +47,6 @@ public class ControllerSearchMusic_7 implements Initializable  {
     private TableColumn<Music, String> durationColumn;
     @FXML
     private TextField search;
-    private User user;
-    private UserRequest userRequest;
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
 
     // Constructor
@@ -65,10 +64,11 @@ public class ControllerSearchMusic_7 implements Initializable  {
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
-            int allMusicsNumber = 0;
+        int allMusicsNumber = 0;
         try {
-            allMusicsNumber = userRequest.numberOFAllMusics();
-        } catch (IOException e) {
+            allMusicsNumber = userRequest.numberOfAllMusics();
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= allMusicsNumber; i++) {

@@ -29,14 +29,17 @@ public class Artist {
     // Constructor For Signup
 
     public Artist(String name, String password, String emailAddress, String biography) {
-        this.iD = UUID.randomUUID().toString();
         this.name = name;
         this.password = password;
         this.emailAddress = emailAddress;
         this.biography = biography;
     }
 
-
+    // Constructor For Observable
+    public Artist(String name, String biography){
+        this.name = name;
+        this.biography = biography;
+    }
     // Getter
 
 

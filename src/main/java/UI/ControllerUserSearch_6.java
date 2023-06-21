@@ -42,14 +42,40 @@ public class ControllerUserSearch_6 {
         stage.show();
     }
     public void switchToSearchArtist(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("searchArtist.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("searchArtist.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerSearchArtist_8.class) {
+                return new ControllerSearchArtist_8(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
     public void switchToSearchUser(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("searchUser.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("searchUser.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerSearchUser_9.class) {
+                return new ControllerSearchUser_9(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -61,10 +87,6 @@ public class ControllerUserSearch_6 {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-    // Getter
-    public UserRequest getUserRequest() {
-        return userRequest;
     }
 
     // Setter

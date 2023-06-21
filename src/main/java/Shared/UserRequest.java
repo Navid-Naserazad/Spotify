@@ -4,7 +4,6 @@ import User.User;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.util.Scanner;
 
 public class UserRequest {
 
@@ -74,7 +73,7 @@ public class UserRequest {
         input.readUTF();
     }
 
-    public int numberOFAllMusics() throws IOException {
+    public int numberOfAllMusics() throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "4");
         String jsonCommand = jsonObject.toString();
@@ -93,14 +92,22 @@ public class UserRequest {
         return new JSONObject(this.input.readUTF());
     }
 
-    // To String
+    public int numberOfAllArtist() throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "6");
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return Integer.parseInt(this.input.readUTF());
+    }
 
-
-    @Override
-    public String toString() {
-        return "UserRequest{" +
-                "input=" + input +
-                ", output=" + output +
-                '}';
+    public JSONObject getRow_iArtist(int i) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "7");
+        jsonObject.put("row", i);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return new JSONObject(this.input.readUTF());
     }
 }
