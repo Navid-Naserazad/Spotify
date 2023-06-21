@@ -110,4 +110,23 @@ public class UserRequest {
         this.output.flush();
         return new JSONObject(this.input.readUTF());
     }
+
+    public int numberOfAllUsers() throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "8");
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return Integer.parseInt(this.input.readUTF());
+    }
+
+    public String getRow_iUser(int i) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "9");
+        jsonObject.put("row", i);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
+    }
 }
