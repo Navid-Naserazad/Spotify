@@ -29,6 +29,7 @@ public class ServerServiceForUser implements Runnable{
     @Override
     public void run() {
         try {
+            userResponse.setOutput(output);
             doService();
             client.close();
         }
@@ -48,38 +49,37 @@ public class ServerServiceForUser implements Runnable{
     }
 
     public void executeCommand(int number, JSONObject jsonObject) throws SQLException, IOException {
-        String answer = null;
+
         switch (number) {
             case 1:
-                answer = userResponse.checkUsernameExist(jsonObject.getString("username"));
+                userResponse.checkUsernameExist(jsonObject.getString("username"));
                 break;
             case 2:
-                answer = userResponse.checkPasswordForLoginOperation(jsonObject.getString("username"),
+                userResponse.checkPasswordForLoginOperation(jsonObject.getString("username"),
                         jsonObject.getString("password"));
                 break;
             case 3:
-                answer = userResponse.addUserToDB(jsonObject.getJSONObject("client"));
+                userResponse.addUserToDB(jsonObject.getJSONObject("client"));
                 break;
             case 4:
-                answer = userResponse.numberOfAllMusics();
+                userResponse.numberOfAllMusics();
                 break;
             case 5:
-                answer = userResponse.getRow_iMusic(jsonObject.getInt("row"));
+                userResponse.getRow_iMusic(jsonObject.getInt("row"));
                 break;
             case 6:
-                answer = userResponse.numberOfAllArtists();
+                userResponse.numberOfAllArtists();
                 break;
             case 7:
-                answer = userResponse.getRow_iArtist(jsonObject.getInt("row"));
+                userResponse.getRow_iArtist(jsonObject.getInt("row"));
                 break;
             case 8:
-                answer = userResponse.numberOfAllUsers();
+                userResponse.numberOfAllUsers();
                 break;
             case 9:
-                answer = userResponse.getRow_iUser(jsonObject.getInt("row"));
+                userResponse.getRow_iUser(jsonObject.getInt("row"));
                 break;
         }
-        output.writeUTF(answer);
-        output.flush();
+
     }
 }

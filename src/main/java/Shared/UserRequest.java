@@ -129,4 +129,23 @@ public class UserRequest {
         this.output.flush();
         ;return this.input.readUTF();
     }
+
+    public void addMusicToFolder(String file_path, String username) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "12");
+        jsonObject.put("file_path", file_path);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        int fileNameLen = this.input.readInt();
+        byte[] fileNameBytes = new byte[fileNameLen];
+        int file_content_len = this.input.readInt();
+        byte[] file_content = new byte[file_content_len];
+        this.input.readFully(file_content, 0, file_content_len);
+        File file = new File("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\UserDownloads\\" + username);
+        if (!file.exists()) {
+            boolean creat = file.mkdir();
+        }
+
+    }
 }
