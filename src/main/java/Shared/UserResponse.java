@@ -119,13 +119,8 @@ public class UserResponse {
         output.flush();
     }
 
-<<<<<<< Updated upstream
-    public String getRow_iUser(int n) throws SQLException {
-        String sqlCommand = "SELECT username FROM user";
-=======
     public void getRow_iUser(int n) throws SQLException, IOException {
-        String sqlCommand = "SELECT usernam FROM user";
->>>>>>> Stashed changes
+        String sqlCommand = "SELECT username FROM user";
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         for (int i = 0; i < n; i++) {
             resultSet.next();
