@@ -63,7 +63,10 @@ public class ControllerUserSignUp_4 {
 
     }
     public void switchToSceneUser(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("sceneUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sceneUser.fxml"));
+        root = loader.load();
+        ControllerSceneUser_2 controllerSceneUser = loader.getController();
+        controllerSceneUser.setUserRequest(userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
