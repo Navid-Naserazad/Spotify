@@ -32,8 +32,14 @@ public class ControllerChangePasword {
     Label message;
 
     public void confirm(ActionEvent event) {
-        // changing password in database
-        message.setText("The password has been successfully changed!");
+
+        if (!confirmPassword.getText().isBlank() && !newPassword.getText().isBlank() && !confirmPassword.getText().isBlank()) {
+            // changing password in database
+            message.setText("The password has been successfully changed!");
+        }
+        else {
+            message.setText("Please fill in the blanks!");
+        }
     }
     public void switchToUserEditProfile(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("userEditProfile.fxml"));

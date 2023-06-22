@@ -27,8 +27,13 @@ public class ContorllerChangeEmail {
 
 
     public void confirm(ActionEvent event) {
-        // changing Email in database
-        message.setText("The Email has been successfully changed!");
+        if (!currentEmail.getText().isBlank() && !newEmail.getText().isBlank()) {
+            // changing Email in database
+            message.setText("The Email has been successfully changed!");
+        }
+        else {
+            message.setText("Please fill in the blanks!");
+        }
     }
     public void switchToUserEditProfile(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("userEditProfile.fxml"));
