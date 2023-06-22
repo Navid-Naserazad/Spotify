@@ -124,11 +124,29 @@ public class ControllerSearchMusic_7 implements Initializable  {
     public void playButton(ActionEvent event) throws IOException {
         ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
         Music music = musics.get(0);
+//        Stage stage = new Stage();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("musicPlayer.fxml"));
+//        Parent root = loader.load();
+//        ControllerMusicPlayer controllerMusicPlayer = loader.getController();
+//        controllerMusicPlayer.setMusic(music);
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.showAndWait();
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("musicPlayer.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("musicPlayer.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerMusicPlayer.class) {
+                return new ControllerMusicPlayer(music);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         Parent root = loader.load();
-        ControllerMusicPlayer controllerMusicPlayer = loader.getController();
-        controllerMusicPlayer.setMusic(music);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.showAndWait();

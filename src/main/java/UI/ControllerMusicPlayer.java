@@ -1,19 +1,65 @@
 package UI;
 
 import Artist.Music;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+//import javafx.scene.media.Media;
+//import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class ControllerMusicPlayer {
+public class ControllerMusicPlayer implements Initializable {
     // Attributes
     Parent root;
     Stage stage;
     Scene scene;
     private Music music;
+    @FXML
+    private Pane pane;
+    @FXML
+    private Label songName;
+    @FXML
+    private Button playButton, pauseButton, previousButton, nextButton, resetButton;
+    @FXML
+    private Slider volumeController;
+    @FXML
+    private ProgressBar songProgressBar;
+
+    private File directory;
+    private File[] files;
+
+    private ArrayList<File> songs;
+    private int songID;
+    private Timer timer;
+    private TimerTask task;
+    private boolean running;
+
+//    private Media media;
+//    private MediaPlayer mediaPlayer;
 
 
-    public void setMusic(Music music) {
+    public ControllerMusicPlayer(Music music) {
         this.music = music;
+    }
+
+    public Music getMusic() {
+        return music;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        songName.setText(getMusic().getTitle());
     }
 }
