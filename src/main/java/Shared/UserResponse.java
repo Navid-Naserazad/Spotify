@@ -145,6 +145,7 @@ public class UserResponse {
         output.writeInt(file_content.length);
         output.write(file_content);
         output.flush();
+        fileInputStream.close();
     }
 
 

@@ -139,6 +139,8 @@ public class UserRequest {
         this.output.flush();
         int fileNameLen = this.input.readInt();
         byte[] fileNameBytes = new byte[fileNameLen];
+        this.input.readFully(fileNameBytes);
+        String fileName = new String(fileNameBytes);
         int file_content_len = this.input.readInt();
         byte[] file_content = new byte[file_content_len];
         this.input.readFully(file_content, 0, file_content_len);
@@ -146,6 +148,10 @@ public class UserRequest {
         if (!file.exists()) {
             boolean creat = file.mkdir();
         }
-
+        String okFilePath = "D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\UserDownloads\\" + username + "\\" + fileName ;
+        File okFile = new File(okFilePath);
+        FileOutputStream fileOutputStream = new FileOutputStream(okFile);
+        fileOutputStream.write(file_content);
+        fileOutputStream.close();
     }
 }
