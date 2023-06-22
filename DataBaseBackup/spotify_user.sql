@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `user_id` text,
-  `username` text,
-  `password` text,
-  `email_address` text
+  `user_id` text NOT NULL,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `email_address` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -36,6 +36,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('918a0df8-4a35-4128-9d2a-00a484b3dabd','ooooo','00000','hhh'),('b5b887e0-5fc3-43d7-8b54-bc43b6aa4839','kekek','jejj','kekek'),('e324e2cb-7385-41fc-9074-61f472608de8','slsll','s;;s;',';ss;'),('054e3938-9710-41bb-9198-cc0e2555adaa','jddj','jdjdj','jjdjd'),('0810aa59-f854-4b60-bef4-ee7a0a4193c4','slls','ksks','ksks'),('986bd345-9c65-490d-b806-1a5670ad23d2','lslslls','lsls',';s;;s'),('db8bd9f9-238b-4abe-a244-9d1fa8dad5d6','KDLD','DLLD','DLLD'),('6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','bardia','akbari','djdjdj');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-13 20:21:12
+-- Dump completed on 2023-06-22 15:25:47

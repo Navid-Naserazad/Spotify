@@ -23,14 +23,15 @@ DROP TABLE IF EXISTS `music`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `music` (
-  `track_id` text,
-  `title` text,
-  `artist_id` text,
-  `play_list_id` text,
-  `genre_id` text,
-  `duration` time DEFAULT NULL,
-  `release_date` date DEFAULT NULL,
-  `score` double DEFAULT NULL
+  `track_id` text NOT NULL,
+  `title` text NOT NULL,
+  `artist` text NOT NULL,
+  `album` text,
+  `genre` text NOT NULL,
+  `duration` time NOT NULL,
+  `release_date` date NOT NULL,
+  `score` double DEFAULT NULL,
+  `file_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,6 +41,7 @@ CREATE TABLE `music` (
 
 LOCK TABLES `music` WRITE;
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
+INSERT INTO `music` VALUES ('','2','3','4','5','02:30:00','1999-04-05',2.5,''),('','20','40','50','60','02:10:00','1990-03-02',20,'');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-13 20:21:12
+-- Dump completed on 2023-06-22 15:25:47
