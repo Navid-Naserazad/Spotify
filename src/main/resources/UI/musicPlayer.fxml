@@ -15,27 +15,22 @@
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="pauseButton" layoutX="144.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="124.0" style="-fx-background-color: #1ed760;" text="Pause" textFill="#191414">
+      <Button fx:id="pauseButton" layoutX="166.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="124.0" style="-fx-background-color: #1ed760;" text="Pause" textFill="#191414">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="resetButton" layoutX="268.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="114.0" style="-fx-background-color: #1ed760;" text="Reset" textFill="#191414">
+      <Button fx:id="resetButton" layoutX="320.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="114.0" style="-fx-background-color: #1ed760;" text="Reset" textFill="#191414">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="previousButton" layoutX="382.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="previous" textFill="#191414">
+      <Button fx:id="lyricsButton" layoutX="463.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="Lyrics" textFill="#191414">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="nextButton" layoutX="535.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="108.0" style="-fx-background-color: #1ed760;" text="Next" textFill="#191414">
-         <font>
-            <Font name="System Bold Italic" size="28.0" />
-         </font>
-      </Button>
-      <Slider fx:id="volumeController" layoutX="658.0" layoutY="207.0" max="200.0" prefHeight="18.0" prefWidth="167.0" value="100.0" />
+      <Slider fx:id="volumeController" layoutX="661.0" layoutY="208.0" max="200.0" prefHeight="18.0" prefWidth="167.0" value="100.0" />
       <Label fx:id="songName" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="29.0" prefHeight="88.0" prefWidth="671.0" style="-fx-background-color: #191414;" text="Label" textFill="#1ed760">
          <font>
             <Font size="50.0" />

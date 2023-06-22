@@ -115,7 +115,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
                 }
             });
         });
-
+        System.out.println("filtered : " + filteredList);
         SortedList<Music> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableView.comparatorProperty());
         tableView.setItems(sortedList);
@@ -124,14 +124,6 @@ public class ControllerSearchMusic_7 implements Initializable  {
     public void playButton(ActionEvent event) throws IOException {
         ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
         Music music = musics.get(0);
-//        Stage stage = new Stage();
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("musicPlayer.fxml"));
-//        Parent root = loader.load();
-//        ControllerMusicPlayer controllerMusicPlayer = loader.getController();
-//        controllerMusicPlayer.setMusic(music);
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.showAndWait();
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("musicPlayer.fxml"));
@@ -168,12 +160,12 @@ public class ControllerSearchMusic_7 implements Initializable  {
         stage.setScene(scene);
         stage.show();
     }
-    // Setter
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public void setUserRequest(UserRequest userRequest){
-        this.userRequest = userRequest;
-    }
+    // Setter
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+//    public void setUserRequest(UserRequest userRequest){
+//        this.userRequest = userRequest;
+//    }
 }

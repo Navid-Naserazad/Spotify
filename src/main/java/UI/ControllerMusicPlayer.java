@@ -31,20 +31,20 @@ public class ControllerMusicPlayer implements Initializable {
     @FXML
     private Label songName;
     @FXML
-    private Button playButton, pauseButton, previousButton, nextButton, resetButton;
+    private Button playButton, pauseButton, lyricsButton, resetButton;
     @FXML
     private Slider volumeController;
     @FXML
     private ProgressBar songProgressBar;
 
-    private File directory;
-    private File[] files;
-
-    private ArrayList<File> songs;
-    private int songID;
-    private Timer timer;
-    private TimerTask task;
-    private boolean running;
+//    private File directory;
+//    private File[] files;
+//
+//    private ArrayList<File> songs;
+//    private int songID;
+//    private Timer timer;
+//    private TimerTask task;
+//    private boolean running;
 
 //    private Media media;
 //    private MediaPlayer mediaPlayer;

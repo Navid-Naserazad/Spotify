@@ -54,4 +54,14 @@ public class Music {
     public void setDuration(String duration) {
         this.duration = duration;
     }
+    @Override
+    public String toString() {
+        return "Music{" +
+                "title='" + title + '\'' +
+                ", genre='" + genre + '\'' +
+                ", album='" + album + '\'' +
+                ", artists='" + artists + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
+    }
 }

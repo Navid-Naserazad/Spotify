@@ -1,5 +1,6 @@
 package UI;
 
+import Shared.UserRequest;
 import User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +15,33 @@ public class ControllerUserPlaylist {
     Parent root;
     Stage stage;
     Scene scene;
+    private User user;
+    private UserRequest userRequest;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setUserRequest(UserRequest userRequest) {
+        this.userRequest = userRequest;
+    }
 
     public void switchToMyPlaylists(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("myPlaylists.fxml"));
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("myPlaylists.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerMyPlaylists.class) {
+                return new ControllerMyPlaylists(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
