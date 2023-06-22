@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
@@ -125,6 +126,8 @@ public class ControllerSearchMusic_7 implements Initializable  {
         ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
         Music music = musics.get(0);
         Stage stage = new Stage();
+        stage.setTitle("Spotify");
+        stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("musicPlayer.fxml"));
         loader.setControllerFactory(type -> {

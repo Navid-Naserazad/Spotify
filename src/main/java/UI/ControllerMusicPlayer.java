@@ -1,6 +1,7 @@
 package UI;
 
 import Artist.Music;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 //import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.net.URL;
+import java.nio.file.attribute.AclEntryType;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -61,5 +63,9 @@ public class ControllerMusicPlayer implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songName.setText(getMusic().getTitle());
+    }
+
+    public void showLyrics(ActionEvent event) {
+
     }
 }
