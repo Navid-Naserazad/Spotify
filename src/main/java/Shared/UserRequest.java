@@ -127,6 +127,6 @@ public class UserRequest {
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
-        return this.input.readUTF();
+        ;return this.input.readUTF();
     }
 }

@@ -112,7 +112,7 @@ public class UserResponse {
     }
 
     public String getRow_iUser(int n) throws SQLException {
-        String sqlCommand = "SELECT usernam FROM user";
+        String sqlCommand = "SELECT username FROM user";
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         for (int i = 0; i < n; i++) {
             resultSet.next();

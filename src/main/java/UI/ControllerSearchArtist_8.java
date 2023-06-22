@@ -122,6 +122,9 @@ public class ControllerSearchArtist_8 implements Initializable {
     public void switchToUserSearch(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userSearch.fxml"));
         root = loader.load();
+        ControllerUserSearch_6 controllerUserSearch_6 = loader.getController();
+        controllerUserSearch_6.setUser(this.user);
+        controllerUserSearch_6.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

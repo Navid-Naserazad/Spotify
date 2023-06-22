@@ -10,4 +10,6 @@ module UI {
     exports UI;
     opens Artist to javafx.fxml;
     exports Artist;
+    opens User to javafx.fxml;
+    exports User;
 }
