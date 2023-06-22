@@ -4,6 +4,7 @@ import User.User;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.util.jar.JarOutputStream;
 
 public class UserRequest {
 
@@ -127,8 +128,60 @@ public class UserRequest {
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
-        ;return this.input.readUTF();
+        return this.input.readUTF();
     }
+
+    public Boolean checkCurrentPassword(String user_id, String password) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "10");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("password", password);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readBoolean();
+    }
+
+    public void changePassword(String user_id, String password) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "11");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("password", password);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public boolean checkIfUserDownloadsSpecificMusic(String user_id, String track_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "13");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readBoolean();
+    }
+
+
+
+
+
+
+
+
 
     public void addMusicToFolder(String file_path, String username) throws IOException {
         JSONObject jsonObject = new JSONObject();

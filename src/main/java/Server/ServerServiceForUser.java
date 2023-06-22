@@ -52,32 +52,40 @@ public class ServerServiceForUser implements Runnable{
 
         switch (number) {
             case 1:
-                userResponse.checkUsernameExist(jsonObject.getString("username"));
+                this.userResponse.checkUsernameExist(jsonObject.getString("username"));
                 break;
             case 2:
-                userResponse.checkPasswordForLoginOperation(jsonObject.getString("username"),
+                this.userResponse.checkPasswordForLoginOperation(jsonObject.getString("username"),
                         jsonObject.getString("password"));
                 break;
             case 3:
-                userResponse.addUserToDB(jsonObject.getJSONObject("client"));
+                this.userResponse.addUserToDB(jsonObject.getJSONObject("client"));
                 break;
             case 4:
-                userResponse.numberOfAllMusics();
+                this.userResponse.numberOfAllMusics();
                 break;
             case 5:
-                userResponse.getRow_iMusic(jsonObject.getInt("row"));
+                this.userResponse.getRow_iMusic(jsonObject.getInt("row"));
                 break;
             case 6:
-                userResponse.numberOfAllArtists();
+                this.userResponse.numberOfAllArtists();
                 break;
             case 7:
-                userResponse.getRow_iArtist(jsonObject.getInt("row"));
+                this.userResponse.getRow_iArtist(jsonObject.getInt("row"));
                 break;
             case 8:
-                userResponse.numberOfAllUsers();
+                this.userResponse.numberOfAllUsers();
                 break;
             case 9:
-                userResponse.getRow_iUser(jsonObject.getInt("row"));
+                this.userResponse.getRow_iUser(jsonObject.getInt("row"));
+                break;
+            case 10:
+                this.userResponse.checkCurrentPassword(jsonObject.getString("user_id"),
+                        jsonObject.getString("password"));
+                break;
+            case 11:
+                this.userResponse.changePassword(jsonObject.getString("user_id"),
+                        jsonObject.getString("password"));
                 break;
         }
 

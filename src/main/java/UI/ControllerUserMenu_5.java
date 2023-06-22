@@ -40,7 +40,11 @@ public class ControllerUserMenu_5 {
         stage.show();
     }
     public void switchToUserEditProfile(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("userEditProfile.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("userEditProfile.fxml"));
+        root = loader.load();
+        ControllerUserEditProfile_10 controllerUserEditProfile_10 = loader.getController();
+        controllerUserEditProfile_10.setUser(user);
+        controllerUserEditProfile_10.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
