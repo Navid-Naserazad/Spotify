@@ -34,6 +34,7 @@ CREATE TABLE `playlist_musics` (
 
 LOCK TABLES `playlist_musics` WRITE;
 /*!40000 ALTER TABLE `playlist_musics` DISABLE KEYS */;
+INSERT INTO `playlist_musics` VALUES ('1','4');
 /*!40000 ALTER TABLE `playlist_musics` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -46,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-23 16:28:38
+-- Dump completed on 2023-06-23 18:33:55

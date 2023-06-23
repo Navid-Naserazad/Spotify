@@ -19,12 +19,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerViewedPlaylist implements Initializable {
+public class ControllerViewedPlaylist_15 implements Initializable {
+
     // Attributes
     Parent root;
     Stage stage;
@@ -51,7 +53,7 @@ public class ControllerViewedPlaylist implements Initializable {
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
 
     // Constructor
-    public ControllerViewedPlaylist(User user, UserRequest userRequest, PlayList playList) {
+    public ControllerViewedPlaylist_15(User user, UserRequest userRequest, PlayList playList) {
         this.user = user;
         this.userRequest = userRequest;
         this.playList = playList;
@@ -69,6 +71,27 @@ public class ControllerViewedPlaylist implements Initializable {
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        int allMusicsNumber = 0;
+        try {
+            allMusicsNumber = this.userRequest.numberOfAllMusicsForSpecificPlayList(this.playList.getPlayListId());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= allMusicsNumber; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = userRequest.getRow_iMusicFromPlayList(i, this.playList.getPlayListId());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            String title = jsonObject.getString("title");
+            String genre = jsonObject.getString("genre");
+            String album = jsonObject.getString("album");
+            String artists = jsonObject.getString("artist");
+            String duration = jsonObject.getString("duration");
+            musicObservableList.add(new Music(title, genre, album, artists, duration));
+        }
 //        int allMusicsNumber = 0;
 //        try {
 //            allMusicsNumber = userRequest.numberOfAllMusics();

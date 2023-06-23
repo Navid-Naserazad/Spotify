@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,8 +55,8 @@ public class ControllerMyPlaylists_14 implements Initializable {
     // Public Functions
     @Override
     public void initialize(URL location, ResourceBundle resources)throws RuntimeException {
-        myPlaylistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("playListId"));
+        myPlaylistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         int numberOfAllPlayListOfUser = 0;
         try {
             numberOfAllPlayListOfUser = this.userRequest.numberOfAllPlayListForSpecificUser(this.user.getiD());
@@ -64,14 +65,14 @@ public class ControllerMyPlaylists_14 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= numberOfAllPlayListOfUser; i++) {
-            String title = null;
+            JSONObject jsonObject;
             try {
-                title = this.userRequest.getRow_iPlayList(i, this.user.getiD());
-            }
-            catch (IOException e) {
+                jsonObject = new JSONObject(this.userRequest.getRow_iPlayList(i, this.user.getiD()));
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            this.myPlaylistsObservableList.add(new PlayList(title));
+            this.myPlaylistsObservableList.add(new PlayList(jsonObject.getString("playlist_id"),
+                    jsonObject.getString("title")));
         }
         tableView.setItems(myPlaylistsObservableList);
 
@@ -103,8 +104,8 @@ public class ControllerMyPlaylists_14 implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("viewedPlaylist.fxml"));
         loader.setControllerFactory(type -> {
-            if (type == ControllerViewedPlaylist.class) {
-                return new ControllerViewedPlaylist(this.user, this.userRequest, playList);
+            if (type == ControllerViewedPlaylist_15.class) {
+                return new ControllerViewedPlaylist_15(this.user, this.userRequest, playList);
             }
             try {
                 return type.getConstructor().newInstance();

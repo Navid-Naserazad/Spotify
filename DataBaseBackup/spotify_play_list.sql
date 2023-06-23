@@ -35,7 +35,7 @@ CREATE TABLE `play_list` (
 
 LOCK TABLES `play_list` WRITE;
 /*!40000 ALTER TABLE `play_list` DISABLE KEYS */;
-INSERT INTO `play_list` VALUES ('1','2','3'),('4','5','6'),('1','2','6c20aa52-b8ca-440d-9e1f-eaa72dc4beab'),('4','5','6c20aa52-b8ca-440d-9e1f-eaa72dc4beab');
+INSERT INTO `play_list` VALUES ('1','6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','3'),('2','6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','5');
 /*!40000 ALTER TABLE `play_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-23 16:28:38
+-- Dump completed on 2023-06-23 18:33:55

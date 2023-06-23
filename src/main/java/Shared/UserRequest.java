@@ -196,6 +196,27 @@ public class UserRequest {
         return this.input.readUTF();
     }
 
+    public int numberOfAllMusicsForSpecificPlayList(String playListId) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "16");
+        jsonObject.put("playListId", playListId);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readInt();
+    }
+
+    public JSONObject getRow_iMusicFromPlayList(int i, String playListId) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "17");
+        jsonObject.put("row", i);
+        jsonObject.put("playListId", playListId);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return new JSONObject(this.input.readUTF());
+    }
+
 
 
 
