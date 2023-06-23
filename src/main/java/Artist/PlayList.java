@@ -1,5 +1,10 @@
 package Artist;
 
 public class PlayList {
-    String title;
+
+    // Attributes
+    private String playListId;
+    private String title;
+    private String ddd;
+
 }

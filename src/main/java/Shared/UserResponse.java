@@ -76,17 +76,41 @@ public class UserResponse {
     }
 
     public void getRow_iMusic(int n) throws SQLException, IOException {
-        String sqlCommand = "SELECT * FROM music";
-        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        String sqlCommand_1 = "SELECT * FROM music ORDER BY music.title ASC";
+        ResultSet resultSet1 = statement.executeQuery(sqlCommand_1);
         for (int i = 0; i < n; i++) {
-            resultSet.next();
+            System.out.println(i);
+            resultSet1.next();
         }
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("title", resultSet.getString("title"));
-        jsonObject.put("genre", resultSet.getString("genre"));
-        jsonObject.put("album", resultSet.getString("album"));
-        jsonObject.put("artist", resultSet.getString("artist"));
-        jsonObject.put("duration", resultSet.getTime("duration"));
+        jsonObject.put("title", resultSet1.getString("title"));
+        jsonObject.put("genre", resultSet1.getString("genre"));
+        jsonObject.put("album", resultSet1.getString("album"));
+        jsonObject.put("duration", resultSet1.getTime("duration"));
+        String track_id = resultSet1.getString(1);
+        String sqlCommand2 = "SELECT count(*) from " + "(SELECT artist.name FROM music_artists ,artist " +
+                "WHERE music_artists.track_id = '" + track_id + "'" +
+                "AND music_artists.artist_id = artist.artist_id) A";
+        ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
+        resultSet2.next();
+        int rows = resultSet2.getInt(1);
+        System.out.println(rows);
+        String sqlCommand3 = "SELECT artist.name FROM music_artists ,artist " +
+                "WHERE music_artists.track_id = '" + track_id + "'" +
+                "AND music_artists.artist_id = artist.artist_id";
+        ResultSet resultSet3 = statement.executeQuery(sqlCommand3);
+        String artists = null;
+        resultSet3.next();
+        for (int i = 0; i < rows; i++) {
+            if (i == rows - 1) {
+                artists = artists + resultSet3.getString(1);
+            }
+            else {
+                artists = artists + resultSet3.getString(1) + '-';
+            }
+            resultSet3.next();
+        }
+        jsonObject.put("artist", artists);
         this.output.writeUTF(jsonObject.toString());
         this.output.flush();
     }
