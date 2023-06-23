@@ -55,9 +55,9 @@ public class ControllerCreatePlaylist {
     public void switchToUserPlaylist(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userPlaylist.fxml"));
         root = loader.load();
-        ControllerUserPlaylist controllerUserPlaylist = loader.getController();
-        controllerUserPlaylist.setUser(this.user);
-        controllerUserPlaylist.setUserRequest(this.userRequest);
+        ControllerUserPlaylist_13 controllerUserPlaylist_13 = loader.getController();
+        controllerUserPlaylist_13.setUser(this.user);
+        controllerUserPlaylist_13.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

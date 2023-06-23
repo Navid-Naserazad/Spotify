@@ -5,6 +5,8 @@ import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,6 +36,8 @@ public class ControllerMyPlaylists_14 implements Initializable {
     @FXML
     private TableColumn<PlayList, String> myPlaylistsColumn;
     @FXML
+    private TableColumn<PlayList, String> idColumn;
+    @FXML
     private TextField search;
     private User user;
     private UserRequest userRequest;
@@ -49,6 +54,8 @@ public class ControllerMyPlaylists_14 implements Initializable {
     // Public Functions
     @Override
     public void initialize(URL location, ResourceBundle resources)throws RuntimeException {
+        myPlaylistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("playListId"));
         int numberOfAllPlayListOfUser = 0;
         try {
             numberOfAllPlayListOfUser = this.userRequest.numberOfAllPlayListForSpecificUser(this.user.getiD());
@@ -66,46 +73,29 @@ public class ControllerMyPlaylists_14 implements Initializable {
             }
             this.myPlaylistsObservableList.add(new PlayList(title));
         }
+        tableView.setItems(myPlaylistsObservableList);
 
-//        myPlaylistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-//        int allPlaylists = 0;
-//        try {
-////            allUsers = userRequest.numberOfAllUsers();
-//        }
-//        catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        for (int i = 1; i <= allPlaylists; i++) {
-//            String title = null;
-//            try {
-////                title = userRequest.getRow_iUser(i);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            myPlaylistsObservableList.add(new PlayList(title));
-//        }
-//        tableView.setItems(myPlaylistsObservableList);
-//        FilteredList<PlayList> filteredList = new FilteredList<>(myPlaylistsObservableList, b-> true);
-//
-//        search.textProperty().addListener((observable, oldValue, newValue) -> {
-//            filteredList.setPredicate(user -> {
-//
-//                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
-//                    return  true;
-//                }
-//                String searchKeyword = newValue.toLowerCase();
-////                if (user.getUsername().toLowerCase().indexOf(searchKeyword ) > -1){
-////                    return true;
-////                }
-//                else {
-//                    return false;
-//                }
-//            });
-//        });
-//
-//        SortedList<PlayList> sortedList = new SortedList<>(filteredList);
-//        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
-//        tableView.setItems(sortedList);
+        FilteredList<PlayList> filteredList = new FilteredList<>(myPlaylistsObservableList, b-> true);
+
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(playList -> {
+
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return  true;
+                }
+                String searchKeyword = newValue.toLowerCase();
+                if (playList.getTitle().toLowerCase().indexOf(searchKeyword ) > -1){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<PlayList> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
     }
     public void view(ActionEvent event) throws IOException {
         ObservableList<PlayList> playLists = tableView.getSelectionModel().getSelectedItems();

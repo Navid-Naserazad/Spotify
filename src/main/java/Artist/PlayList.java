@@ -11,4 +11,11 @@ public class PlayList {
     public PlayList(String title) {
         this.title = title;
     }
+
+    public String getTitle() {
+        return title;
+    }
+    public String getPlayListId() {
+        return  playListId;
+    }
 }
