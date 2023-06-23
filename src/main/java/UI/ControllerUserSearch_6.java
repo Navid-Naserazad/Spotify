@@ -2,12 +2,15 @@ package UI;
 
 import Shared.UserRequest;
 import User.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -40,6 +43,7 @@ public class ControllerUserSearch_6 {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
     public void switchToSearchArtist(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
