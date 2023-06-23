@@ -1,0 +1,163 @@
+package UI;
+
+import Artist.Music;
+import Shared.UserRequest;
+import User.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ControllerAddMusicCreatedPlaylist implements Initializable {
+    Parent root;
+    Stage stage;
+    Scene scene;
+    private User user;
+    private UserRequest userRequest;
+    private String title;
+    @FXML
+    private TableView<Music> tableView;
+    @FXML
+    private TableColumn<Music, String> titleColumn;
+    @FXML
+    private TableColumn<Music, String> genreColumn;
+    @FXML
+    private TableColumn<Music, String> albumColumn;
+    @FXML
+    private TableColumn<Music, String> artistsColumn;
+    @FXML
+    private TableColumn<Music, String> durationColumn;
+    @FXML
+    private TextField search;
+    @FXML
+    private Label playlistTitle;
+    @FXML
+    private Label warning;
+    ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
+    ArrayList<Music> musics;
+
+    // Constructor
+
+    public ControllerAddMusicCreatedPlaylist(User user, UserRequest userRequest, String title) {
+        this.user = user;
+        this.userRequest = userRequest;
+        this.title = title;
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        playlistTitle.setText(title);
+        musics = new ArrayList<>();
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
+        artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        int allMusicsNumber = 0;
+        try {
+            allMusicsNumber = userRequest.numberOfAllMusics();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= allMusicsNumber; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = userRequest.getRow_iMusic(i);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            String title = jsonObject.getString("title");
+            String genre = jsonObject.getString("genre");
+            String album = jsonObject.getString("album");
+            String artists = jsonObject.getString("artist");
+            String duration = jsonObject.getString("duration");
+            musicObservableList.add(new Music(title, genre, album, artists, duration));
+        }
+        tableView.setItems(musicObservableList);
+
+        FilteredList<Music> filteredList = new FilteredList<>(musicObservableList, b-> true);
+
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(music -> {
+
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return  true;
+                }
+
+                String searchKeyword = newValue.toLowerCase();
+                if (music.getTitle().toLowerCase().indexOf(searchKeyword ) > -1){
+                    return true;
+                }
+                else if (music.getGenre().toLowerCase().indexOf(searchKeyword) > -1) {
+                    return true;
+                }
+                else if (music.getAlbum().toLowerCase().indexOf(searchKeyword) > -1) {
+                    return true;
+                }
+                else if (music.getArtists().toLowerCase().indexOf(searchKeyword) > -1) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+        });
+        SortedList<Music> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
+    }
+    public void addButton(ActionEvent event) {
+        ObservableList<Music> selectedItems = tableView.getSelectionModel().getSelectedItems();
+        Music music = selectedItems.get(0);
+        musics.add(music);
+    }
+    public void doneButton(ActionEvent event) throws IOException {
+        // the playlist is created and it must be added to the database
+        if (musics.size() != 0) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("createPlaylist.fxml"));
+            root = loader.load();
+            ControllerCreatePlaylist controllerCreatePlaylist = loader.getController();
+            controllerCreatePlaylist.setUser(this.user);
+            controllerCreatePlaylist.setUserRequest(this.userRequest);
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else {
+            warning.setText("You did not add any music to your new playlist!");
+        }
+    }
+    public void switchToCreatePlaylist(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("createPlaylist.fxml"));
+        root = loader.load();
+        ControllerCreatePlaylist controllerCreatePlaylist = loader.getController();
+        controllerCreatePlaylist.setUser(this.user);
+        controllerCreatePlaylist.setUserRequest(this.userRequest);
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+}
