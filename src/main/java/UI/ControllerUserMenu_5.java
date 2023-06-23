@@ -35,7 +35,7 @@ public class ControllerUserMenu_5 {
     public void switchToUserPlaylist(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userPlaylist.fxml"));
         root = loader.load();
-        ControllerUserPlaylist controllerUserPlaylist = loader.getController();
+        ControllerUserPlaylist_13 controllerUserPlaylist = loader.getController();
         controllerUserPlaylist.setUser(this.user);
         controllerUserPlaylist.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

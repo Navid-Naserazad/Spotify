@@ -4,7 +4,11 @@ public class PlayList {
 
     // Attributes
     private String playListId;
+    private String user_id;
     private String title;
-    private String ddd;
 
+    // Constructor
+    public PlayList(String title) {
+        this.title = title;
+    }
 }

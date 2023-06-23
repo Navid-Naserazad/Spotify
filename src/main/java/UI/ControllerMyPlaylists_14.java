@@ -1,13 +1,10 @@
 package UI;
 
-import Artist.Music;
 import Artist.PlayList;
 import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,14 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerMyPlaylists implements Initializable {
+public class ControllerMyPlaylists_14 implements Initializable {
+
     // Attributes
     Parent root;
     Stage stage;
@@ -40,16 +37,36 @@ public class ControllerMyPlaylists implements Initializable {
     private User user;
     private UserRequest userRequest;
 
-    ObservableList<User> myPlaylistsObservableList = FXCollections.observableArrayList();
+    ObservableList<PlayList> myPlaylistsObservableList = FXCollections.observableArrayList();
 
     // Constructor
 
-    public ControllerMyPlaylists(User user, UserRequest userRequest) {
+    public ControllerMyPlaylists_14(User user, UserRequest userRequest) {
         this.user = user;
         this.userRequest = userRequest;
     }
+
+    // Public Functions
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)throws RuntimeException {
+        int numberOfAllPlayListOfUser = 0;
+        try {
+            numberOfAllPlayListOfUser = this.userRequest.numberOfAllPlayListForSpecificUser(this.user.getiD());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfAllPlayListOfUser; i++) {
+            String title = null;
+            try {
+                title = this.userRequest.getRow_iPlayList(i, this.user.getiD());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            this.myPlaylistsObservableList.add(new PlayList(title));
+        }
+
 //        myPlaylistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 //        int allPlaylists = 0;
 //        try {
@@ -115,7 +132,7 @@ public class ControllerMyPlaylists implements Initializable {
     public void switchToUserPlaylist(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userPlaylist.fxml"));
         root = loader.load();
-        ControllerUserPlaylist controllerUserPlaylist = loader.getController();
+        ControllerUserPlaylist_13 controllerUserPlaylist = loader.getController();
         controllerUserPlaylist.setUser(this.user);
         controllerUserPlaylist.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

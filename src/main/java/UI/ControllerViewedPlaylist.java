@@ -6,8 +6,6 @@ import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -157,8 +153,8 @@ public class ControllerViewedPlaylist implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("myPlaylists.fxml"));
         loader.setControllerFactory(type -> {
-            if (type == ControllerMyPlaylists.class) {
-                return new ControllerMyPlaylists(this.user, this.userRequest);
+            if (type == ControllerMyPlaylists_14.class) {
+                return new ControllerMyPlaylists_14(this.user, this.userRequest);
             }
             try {
                 return type.getConstructor().newInstance();

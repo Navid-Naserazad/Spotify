@@ -175,6 +175,27 @@ public class UserRequest {
         this.input.readUTF();
     }
 
+    public int numberOfAllPlayListForSpecificUser(String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "14");
+        jsonObject.put("user_id", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readInt();
+    }
+
+    public String getRow_iPlayList(int i, String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "15");
+        jsonObject.put("row", i);
+        jsonObject.put("user_id", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
+    }
+
 
 
 

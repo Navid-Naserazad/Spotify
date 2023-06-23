@@ -93,6 +93,12 @@ public class ServerServiceForUser implements Runnable{
             case 13:
                 this.userResponse.changeEmail(jsonObject.getString("user_id"), jsonObject.getString("email"));
                 break;
+            case 14:
+                this.userResponse.numberOfAllPlayListForSpecificUser(jsonObject.getString("user_id"));
+                break;
+            case 15:
+                this.userResponse.getRow_iPlayList(jsonObject.getInt("row"), jsonObject.getString("user_id"));
+                break;
         }
 
     }

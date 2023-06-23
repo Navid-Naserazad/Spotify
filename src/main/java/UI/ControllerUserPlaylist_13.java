@@ -11,28 +11,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ControllerUserPlaylist {
+public class ControllerUserPlaylist_13 {
+
+    // Attributes
     Parent root;
     Stage stage;
     Scene scene;
     private User user;
     private UserRequest userRequest;
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setUserRequest(UserRequest userRequest) {
-        this.userRequest = userRequest;
-    }
+    // Public Functions
 
     public void switchToMyPlaylists(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("myPlaylists.fxml"));
         loader.setControllerFactory(type -> {
-            if (type == ControllerMyPlaylists.class) {
-                return new ControllerMyPlaylists(this.user, this.userRequest);
+            if (type == ControllerMyPlaylists_14.class) {
+                return new ControllerMyPlaylists_14(this.user, this.userRequest);
             }
             try {
                 return type.getConstructor().newInstance();
@@ -69,5 +65,14 @@ public class ControllerUserPlaylist {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    //Setter
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setUserRequest(UserRequest userRequest) {
+        this.userRequest = userRequest;
     }
 }
