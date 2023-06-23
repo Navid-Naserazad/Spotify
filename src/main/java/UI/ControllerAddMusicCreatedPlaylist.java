@@ -137,7 +137,7 @@ public class ControllerAddMusicCreatedPlaylist implements Initializable {
         if (musics.size() != 0) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("createPlaylist.fxml"));
             root = loader.load();
-            ControllerCreatePlaylist controllerCreatePlaylist = loader.getController();
+            ControllerCreatePlaylist_16 controllerCreatePlaylist = loader.getController();
             controllerCreatePlaylist.setUser(this.user);
             controllerCreatePlaylist.setUserRequest(this.userRequest);
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -152,7 +152,7 @@ public class ControllerAddMusicCreatedPlaylist implements Initializable {
     public void switchToCreatePlaylist(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("createPlaylist.fxml"));
         root = loader.load();
-        ControllerCreatePlaylist controllerCreatePlaylist = loader.getController();
+        ControllerCreatePlaylist_16 controllerCreatePlaylist = loader.getController();
         controllerCreatePlaylist.setUser(this.user);
         controllerCreatePlaylist.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ControllerCreatePlaylist {
+public class ControllerCreatePlaylist_16 {
     // Attributes
     Parent root;
     Stage stage;
