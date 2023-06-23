@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -46,18 +47,27 @@ public class ControllerViewedPlaylist implements Initializable {
     private TableColumn<Music, String> durationColumn;
     @FXML
     private TextField search;
+    @FXML
+    private Label playlistTitle;
     private User user;
     private UserRequest userRequest;
+    private PlayList playList;
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
 
     // Constructor
-    public ControllerViewedPlaylist(User user, UserRequest userRequest) {
+    public ControllerViewedPlaylist(User user, UserRequest userRequest, PlayList playList) {
         this.user = user;
         this.userRequest = userRequest;
+        this.playList = playList;
+    }
+
+    public PlayList getPlayList() {
+        return playList;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        playlistTitle.setText(getPlaylist().getTitle());
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
@@ -124,7 +134,7 @@ public class ControllerViewedPlaylist implements Initializable {
 //        stage.setTitle("Spotify");
 //        stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
 //        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("musicPlayer.fxml"));
+//        loader.setLocation(getClass().getResource("playlistPlayer.fxml"));
 //        loader.setControllerFactory(type -> {
 //            if (type == ControllerMusicPlayer.class) {
 //                return new ControllerMusicPlayer(music);
