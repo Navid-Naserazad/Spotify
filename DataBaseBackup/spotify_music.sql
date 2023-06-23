@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `music`;
 CREATE TABLE `music` (
   `track_id` text NOT NULL,
   `title` text NOT NULL,
-  `artist` text NOT NULL,
   `album` text,
   `genre` text NOT NULL,
   `duration` time NOT NULL,
@@ -41,7 +40,7 @@ CREATE TABLE `music` (
 
 LOCK TABLES `music` WRITE;
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
-INSERT INTO `music` VALUES ('','2','3','4','5','02:30:00','1999-04-05',2.5,''),('','20','40','50','60','02:10:00','1990-03-02',20,'');
+INSERT INTO `music` VALUES ('4','5','6','7','02:20:30','1999-02-04',2.2,'22222222222');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-22 15:25:47
+-- Dump completed on 2023-06-23 15:15:22

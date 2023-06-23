@@ -37,7 +37,7 @@ CREATE TABLE `artist` (
 
 LOCK TABLES `artist` WRITE;
 /*!40000 ALTER TABLE `artist` DISABLE KEYS */;
-INSERT INTO `artist` VALUES ('9cac3f6c-9638-48e6-af68-993485ec4fdb','jdjdjdj','akakka','wwww','eeee'),('1','2','3','4','6');
+INSERT INTO `artist` VALUES ('9cac3f6c-9638-48e6-af68-993485ec4fdb','jdjdjdj','akakka','wwww','eeee'),('1','2','3','4','6'),('6','djdjdj','sssss','555555','0000'),('7','ooooooo','wwwwwww','777777','-------'),('8','pppp','++++','1111','2222222');
 /*!40000 ALTER TABLE `artist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-22 15:25:47
+-- Dump completed on 2023-06-23 15:15:22
