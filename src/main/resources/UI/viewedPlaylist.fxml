@@ -20,7 +20,7 @@
                   <Image url="@Spotify_Logo_RGB_Green.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="34.0" layoutY="452.0" text="Search Music" textFill="#1ed760">
+            <Label fx:id="playlistTitle" alignment="CENTER" layoutX="8.0" layoutY="459.0" prefHeight="25.0" prefWidth="161.0" text="Playlist Title" textFill="#1ed760">
                <font>
                   <Font name="Bodoni MT Bold" size="20.0" />
                </font>

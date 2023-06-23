@@ -1,5 +1,6 @@
 package UI;
 
+import Artist.Music;
 import Artist.PlayList;
 import Shared.UserRequest;
 import User.User;
@@ -90,11 +91,13 @@ public class ControllerMyPlaylists implements Initializable {
 //        tableView.setItems(sortedList);
     }
     public void view(ActionEvent event) throws IOException {
+        ObservableList<PlayList> playLists = tableView.getSelectionModel().getSelectedItems();
+        PlayList playList = playLists.get(0);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("viewedPlaylist.fxml"));
         loader.setControllerFactory(type -> {
             if (type == ControllerViewedPlaylist.class) {
-                return new ControllerViewedPlaylist(this.user, this.userRequest);
+                return new ControllerViewedPlaylist(this.user, this.userRequest, playList);
             }
             try {
                 return type.getConstructor().newInstance();
