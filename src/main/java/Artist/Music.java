@@ -1,6 +1,8 @@
 package Artist;
 
 public class Music {
+
+    // Attributes
     private String trackID;
     private String title;
     private String genre;
@@ -8,6 +10,7 @@ public class Music {
     private String artists;
     private String duration;
 
+    // Constructor
     public Music(String trackID, String title, String genre, String album, String artists, String duration) {
         this.trackID = trackID;
         this.title = title;
@@ -17,6 +20,7 @@ public class Music {
         this.duration = duration;
     }
 
+    // Getter
     public String getTrackID() {
         return trackID;
     }
@@ -41,6 +45,7 @@ public class Music {
         return duration;
     }
 
+    // Setter
     public void setTrackID(String trackID) {
         this.trackID = trackID;
     }
@@ -64,6 +69,8 @@ public class Music {
     public void setDuration(String duration) {
         this.duration = duration;
     }
+
+    // To String
     @Override
     public String toString() {
         return "Music{" +

@@ -82,6 +82,7 @@ public class UserResponse {
             resultSet1.next();
         }
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("track_id", resultSet1.getString("track_id"));
         jsonObject.put("title", resultSet1.getString("title"));
         jsonObject.put("genre", resultSet1.getString("genre"));
         jsonObject.put("album", resultSet1.getString("album"));
@@ -265,7 +266,7 @@ public class UserResponse {
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         resultSet.next();
         String file_path = resultSet.getString(1);
-        File file = new File("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\AllMusics\\" + file_path + "\\.mp3");
+        File file = new File("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\AllMusics\\" + file_path + ".mp3");
         FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
         String fileName = file.getName();
         byte[] fileNameBytes = fileName.getBytes();
@@ -277,6 +278,15 @@ public class UserResponse {
         output.write(file_content);
         output.flush();
         fileInputStream.close();
+    }
+
+    public void getMusicAddress(String track_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT file_path FROM music WHERE track_id = '" + track_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        String file_path = resultSet.getString(1);
+        String answer = "D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\AllMusics\\" + file_path + ".mp3";
+        this.output.writeUTF(answer);
     }
 
 

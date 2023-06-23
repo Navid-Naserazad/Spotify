@@ -252,4 +252,14 @@ public class UserRequest {
         fileOutputStream.write(file_content);
         fileOutputStream.close();
     }
+
+    public String musicAddress(String track_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "20");
+        jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
+    }
 }

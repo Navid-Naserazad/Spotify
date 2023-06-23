@@ -111,7 +111,10 @@ public class ServerServiceForUser implements Runnable{
                 break;
             case 19:
                 this.userResponse.downloadTheMusic(jsonObject.getString("track_id"));
+                break;
+            case 20:
+                this.userResponse.getMusicAddress(jsonObject.getString("track_id"));
+                break;
         }
-
     }
 }

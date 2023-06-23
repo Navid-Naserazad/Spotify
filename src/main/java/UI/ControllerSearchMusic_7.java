@@ -62,6 +62,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
     // Public Functions
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
@@ -79,10 +80,11 @@ public class ControllerSearchMusic_7 implements Initializable  {
             JSONObject jsonObject = null;
             try {
                 jsonObject = userRequest.getRow_iMusic(i);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            String trackID = jsonObject.getString("trackID");
+            String trackID = jsonObject.getString("track_id");
             String title = jsonObject.getString("title");
             String genre = jsonObject.getString("genre");
             String album = jsonObject.getString("album");
@@ -100,7 +102,6 @@ public class ControllerSearchMusic_7 implements Initializable  {
                 if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
                     return  true;
                 }
-
                 String searchKeyword = newValue.toLowerCase();
                 if (music.getTitle().toLowerCase().indexOf(searchKeyword ) > -1){
                     return true;
@@ -133,8 +134,8 @@ public class ControllerSearchMusic_7 implements Initializable  {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("musicPlayer.fxml"));
         loader.setControllerFactory(type -> {
-            if (type == ControllerMusicPlayer.class) {
-                return new ControllerMusicPlayer(music);
+            if (type == ControllerMusicPlayer_18.class) {
+                return new ControllerMusicPlayer_18(this.userRequest, music);
             }
             try {
                 return type.getConstructor().newInstance();
@@ -149,10 +150,12 @@ public class ControllerSearchMusic_7 implements Initializable  {
         stage.showAndWait();
         // music player plays the chosen music
     }
-    public void downloadButton(ActionEvent event) {
+    public void downloadButton(ActionEvent event) throws IOException {
         ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
         Music music = musics.get(0);
-        // downloading
+        if (!this.userRequest.checkIfUserDownloadsSpecificMusic(this.user.getiD(), music.getTrackID())) {
+            this.userRequest.addMusicToFolder(music.getTrackID(), this.user.getUsername());
+        }
     }
     public void switchToUserSearch(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userSearch.fxml"));
@@ -165,12 +168,4 @@ public class ControllerSearchMusic_7 implements Initializable  {
         stage.setScene(scene);
         stage.show();
     }
-
-    // Setter
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//    public void setUserRequest(UserRequest userRequest){
-//        this.userRequest = userRequest;
-//    }
 }

@@ -138,8 +138,8 @@ public class ControllerViewedPlaylist_15 implements Initializable {
 //        FXMLLoader loader = new FXMLLoader();
 //        loader.setLocation(getClass().getResource("playlistPlayer.fxml"));
 //        loader.setControllerFactory(type -> {
-//            if (type == ControllerMusicPlayer.class) {
-//                return new ControllerMusicPlayer(music);
+//            if (type == ControllerMusicPlayer_18.class) {
+//                return new ControllerMusicPlayer_18(music);
 //            }
 //            try {
 //                return type.getConstructor().newInstance();
