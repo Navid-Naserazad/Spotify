@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerAddMusicCreatedPlaylist implements Initializable {
+public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
     Parent root;
     Stage stage;
     Scene scene;
@@ -56,7 +56,7 @@ public class ControllerAddMusicCreatedPlaylist implements Initializable {
 
     // Constructor
 
-    public ControllerAddMusicCreatedPlaylist(User user, UserRequest userRequest, String title) {
+    public ControllerAddMusicCreatedPlaylist_17(User user, UserRequest userRequest, String title) {
         this.user = user;
         this.userRequest = userRequest;
         this.title = title;

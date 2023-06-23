@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ControllerCreatePlaylist_16 {
+
     // Attributes
     Parent root;
     Stage stage;
@@ -28,15 +29,16 @@ public class ControllerCreatePlaylist_16 {
     public void setUserRequest(UserRequest userRequest) {
         this.userRequest = userRequest;
     }
+
+    // Public Functions
     public void nextButton(ActionEvent event) throws IOException {
         if (!playlistTitle.getText().isBlank()) {
             String title = playlistTitle.getText();
-            // add the new playlist to the database
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("addMusicToCreatedPlaylist.fxml"));
             loader.setControllerFactory(type -> {
-                if (type == ControllerAddMusicCreatedPlaylist.class) {
-                    return new ControllerAddMusicCreatedPlaylist(this.user, this.userRequest, title);
+                if (type == ControllerAddMusicCreatedPlaylist_17.class) {
+                    return new ControllerAddMusicCreatedPlaylist_17(this.user, this.userRequest, title);
                 }
                 try {
                     return type.getConstructor().newInstance();

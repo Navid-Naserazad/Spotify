@@ -67,7 +67,6 @@ public class ControllerViewedPlaylist_15 implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));

@@ -217,20 +217,9 @@ public class UserRequest {
         return new JSONObject(this.input.readUTF());
     }
 
-
-
-
-
-
-
-
-
-
-
-
     public boolean checkIfUserDownloadsSpecificMusic(String user_id, String track_id) throws IOException {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("number", "13");
+        jsonObject.put("number", "18");
         jsonObject.put("user_id", user_id);
         jsonObject.put("track_id", track_id);
         String jsonCommand = jsonObject.toString();
@@ -239,18 +228,10 @@ public class UserRequest {
         return this.input.readBoolean();
     }
 
-
-
-
-
-
-
-
-
-    public void addMusicToFolder(String file_path, String username) throws IOException {
+    public void addMusicToFolder(String track_id, String username) throws IOException {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("number", "12");
-        jsonObject.put("file_path", file_path);
+        jsonObject.put("number", "19");
+        jsonObject.put("track_id", track_id);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
@@ -265,7 +246,7 @@ public class UserRequest {
         if (!file.exists()) {
             boolean creat = file.mkdir();
         }
-        String okFilePath = "D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\UserDownloads\\" + username + "\\" + fileName ;
+        String okFilePath = "D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\UserDownloads\\" + username + "\\" + fileName;
         File okFile = new File(okFilePath);
         FileOutputStream fileOutputStream = new FileOutputStream(okFile);
         fileOutputStream.write(file_content);

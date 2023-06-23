@@ -87,9 +87,7 @@ public class UserResponse {
         jsonObject.put("album", resultSet1.getString("album"));
         jsonObject.put("duration", resultSet1.getTime("duration"));
         String track_id = resultSet1.getString(1);
-        String sqlCommand_2 = "SELECT count(*) from " + "(SELECT artist.name FROM music_artists ,artist " +
-                "WHERE music_artists.track_id = '" + track_id + "'" +
-                "AND music_artists.artist_id = artist.artist_id) A";
+        String sqlCommand_2 = "SELECT count(*) FROM music_artists WHERE track_id = '" + track_id + "'";
         ResultSet resultSet2 = statement.executeQuery(sqlCommand_2);
         resultSet2.next();
         int rows = resultSet2.getInt(1);
@@ -228,9 +226,7 @@ public class UserResponse {
         jsonObject.put("genre", resultSet2.getString("genre"));
         jsonObject.put("album", resultSet2.getString("album"));
         jsonObject.put("duration", resultSet2.getTime("duration"));
-        String sqlCommand_3 = "SELECT count(*) from " + "(SELECT artist.name FROM music_artists ,artist " +
-                "WHERE music_artists.track_id = '" + track_id + "'" +
-                "AND music_artists.artist_id = artist.artist_id) A";
+        String sqlCommand_3 = "SELECT count(*) FROM music_artists WHERE track_id = '" + track_id + "'";
         ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
         resultSet3.next();
         int rows = resultSet3.getInt(1);
@@ -255,28 +251,6 @@ public class UserResponse {
         this.output.flush();
     }
 
-//    String[] arr = new String[resultSet1.getInt(1)];
-//    String sqlCommand2 = "SELECT playlist_id FROM play_list WHERE user_id = '" + user_id + "'";
-//    ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
-//        resultSet2.next();
-//    JSONObject jsonObject = new JSONObject();
-//        for (int i = 0; i < arr.length; i++) {
-//        arr[i] = resultSet2.getString(1);
-//        resultSet2.next();
-//    }
-//        jsonObject.put("arr", arr);
-//    String jsonCommand = jsonObject.toString();
-//        this.output.writeUTF(jsonCommand);
-//        this.output.flush();
-
-
-
-
-
-
-
-
-
     public void checkIfUserDownloadsSpecificMusic(String user_id, String track_id) throws SQLException, IOException {
         String sqlCommand = "  SELECT count(*) FROM music_downloads WHERE user_id = '" + user_id +
                 "' AND track_id = '" + track_id + "'";
@@ -291,7 +265,7 @@ public class UserResponse {
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         resultSet.next();
         String file_path = resultSet.getString(1);
-        File file = new File("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\AllMusics\\" + file_path + "\\.mp3");
+        File file = new File("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\AllMusics\\" + file_path + "\\.mp3");
         FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
         String fileName = file.getName();
         byte[] fileNameBytes = fileName.getBytes();
