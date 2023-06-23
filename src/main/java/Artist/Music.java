@@ -1,18 +1,24 @@
 package Artist;
 
 public class Music {
-    String title;
-    String genre;
-    String album;
-    String artists;
-    String duration;
+    private String trackID;
+    private String title;
+    private String genre;
+    private String album;
+    private String artists;
+    private String duration;
 
-    public Music(String title, String genre, String album, String artists, String duration) {
+    public Music(String trackID, String title, String genre, String album, String artists, String duration) {
+        this.trackID = trackID;
         this.title = title;
         this.genre = genre;
         this.album = album;
         this.artists = artists;
         this.duration = duration;
+    }
+
+    public String getTrackID() {
+        return trackID;
     }
 
     public String getTitle() {
@@ -33,6 +39,10 @@ public class Music {
 
     public String getDuration() {
         return duration;
+    }
+
+    public void setTrackID(String trackID) {
+        this.trackID = trackID;
     }
 
     public void setTitle(String title) {

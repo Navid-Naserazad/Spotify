@@ -47,6 +47,8 @@ public class ControllerSearchMusic_7 implements Initializable  {
     @FXML
     private TableColumn<Music, String> durationColumn;
     @FXML
+    private TableColumn<Music, String> trackIDColumn;
+    @FXML
     private TextField search;
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
 
@@ -65,6 +67,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        trackIDColumn.setCellValueFactory(new PropertyValueFactory<>("trackID"));
         int allMusicsNumber = 0;
         try {
             allMusicsNumber = userRequest.numberOfAllMusics();
@@ -79,13 +82,13 @@ public class ControllerSearchMusic_7 implements Initializable  {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
+            String trackID = jsonObject.getString("trackID");
             String title = jsonObject.getString("title");
             String genre = jsonObject.getString("genre");
             String album = jsonObject.getString("album");
             String artists = jsonObject.getString("artist");
             String duration = jsonObject.getString("duration");
-            musicObservableList.add(new Music(title, genre, album, artists, duration));
+            musicObservableList.add(new Music(trackID, title, genre, album, artists, duration));
         }
         tableView.setItems(musicObservableList);
 

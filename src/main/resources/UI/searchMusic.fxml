@@ -25,17 +25,27 @@
                   <Font name="Bodoni MT Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="12.0" layoutY="185.0" mnemonicParsing="false" onAction="#playButton" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="Play" textFill="#191414">
+            <Button layoutX="12.0" layoutY="121.0" mnemonicParsing="false" onAction="#playButton" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="Play" textFill="#191414">
                <font>
                   <Font name="System Bold Italic" size="25.0" />
                </font>
             </Button>
-            <Button layoutX="12.0" layoutY="256.0" mnemonicParsing="false" onAction="#downloadButton" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: #1ed760;" text="Downlaod" textFill="#191414">
+            <Button layoutX="12.0" layoutY="183.0" mnemonicParsing="false" onAction="#downloadButton" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: #1ed760;" text="Downlaod" textFill="#191414">
                <font>
                   <Font name="System Bold Italic" size="25.0" />
                </font>
             </Button>
-            <Button layoutX="12.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchToUserSearch" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: #1ed760;" text="Back" textFill="#191414">
+            <Button layoutX="12.0" layoutY="369.0" mnemonicParsing="false" onAction="#switchToUserSearch" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: #1ed760;" text="Back" textFill="#191414">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="12.0" layoutY="244.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="Like" textFill="#191414">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="13.0" layoutY="304.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: #1ed760;" text="Dislike" textFill="#191414">
                <font>
                   <Font name="System Bold Italic" size="25.0" />
                </font>
@@ -50,9 +60,10 @@
               <columns>
                 <TableColumn fx:id="titleColumn" prefWidth="182.0" style="-fx-background-color: #1394ab;" text="Title" />
                   <TableColumn fx:id="genreColumn" prefWidth="88.0" style="-fx-background-color: #1394ab;" text="Genre" />
-                  <TableColumn fx:id="albumColumn" minWidth="0.0" prefWidth="78.0" style="-fx-background-color: #1394ab;" text="Album" />
-                  <TableColumn fx:id="artistsColumn" minWidth="0.0" prefWidth="208.0" style="-fx-background-color: #1394ab;" text="Artists" />
-                  <TableColumn fx:id="durationColumn" prefWidth="88.0" style="-fx-background-color: #1394ab;" text="Duration" />
+                  <TableColumn fx:id="albumColumn" minWidth="0.0" prefWidth="93.0" style="-fx-background-color: #1394ab;" text="Album" />
+                  <TableColumn fx:id="artistsColumn" minWidth="0.0" prefWidth="156.0" style="-fx-background-color: #1394ab;" text="Artists" />
+                  <TableColumn fx:id="durationColumn" prefWidth="125.0" style="-fx-background-color: #1394ab;" text="Duration" />
+                  <TableColumn fx:id="trackIDColumn" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #1394ab;" text="Track_ID" />
               </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="49.0" layoutY="33.0" prefHeight="17.0" prefWidth="78.0" text="Search :">
