@@ -31,10 +31,17 @@ public class ControllerChangeEmail_12 {
 
     // Public Functions
 
-    public void confirm(ActionEvent event) {
+    public void confirm(ActionEvent event) throws IOException {
         if (!currentEmail.getText().isBlank() && !newEmail.getText().isBlank()) {
-            // changing Email in database
-            message.setText("The Email has been successfully changed!");
+            String current = this.currentEmail.getText();
+            if (this.userRequest.checkCurrentEmail(current, this.user.getiD())) {
+                String newE = this.newEmail.getText();
+                this.userRequest.changeEmail(newE, this.user.getiD());
+                message.setText("The Email has been successfully changed!");
+            }
+            else {
+                message.setText("Your current email is wrong. please type it correctly!");
+            }
         }
         else {
             message.setText("Please fill in the blanks!");

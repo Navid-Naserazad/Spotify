@@ -131,7 +131,7 @@ public class UserRequest {
         return this.input.readUTF();
     }
 
-    public Boolean checkCurrentPassword(String user_id, String password) throws IOException {
+    public boolean checkCurrentPassword(String user_id, String password) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "10");
         jsonObject.put("user_id", user_id);
@@ -147,6 +147,28 @@ public class UserRequest {
         jsonObject.put("number", "11");
         jsonObject.put("user_id", user_id);
         jsonObject.put("password", password);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
+
+    public boolean checkCurrentEmail(String user_id, String email) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "12");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("email", email);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readBoolean();
+    }
+
+    public void changeEmail(String user_id, String email) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "13");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("email", email);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();

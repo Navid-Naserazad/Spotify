@@ -42,6 +42,7 @@ public class ControllerChangePassword_11 {
                 String conP = this.confirmPassword.getText();
                 if (newP.equals(conP)) {
                     this.userRequest.changePassword(this.user.getiD(), newP);
+                    this.message.setText("The password has been successfully changed!");
                 }
                 else {
                     this.message.setText("Your confirm password is not math with new password!");
@@ -50,8 +51,8 @@ public class ControllerChangePassword_11 {
             else {
                 this.message.setText("Your current password is wrong!");
             }
-            this.message.setText("The password has been successfully changed!");
         }
+
         else {
             this.message.setText("Please fill in the blanks!");
         }

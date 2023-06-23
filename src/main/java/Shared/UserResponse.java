@@ -145,6 +145,30 @@ public class UserResponse {
         this.output.flush();
     }
 
+    public void checkCurrentEmail(String user_id, String email) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM user WHERE user_id = '" + user_id + "' AND email_address = '" + email + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeBoolean(resultSet.getInt(1) != 0);
+        this.output.flush();
+    }
+
+    public void changeEmail(String user_id, String email) throws SQLException, IOException {
+        String sqlCommand = "UPDATE user SET email_address = '" + email + "' WHERE user_id = '" + user_id + "'";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

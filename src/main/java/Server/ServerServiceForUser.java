@@ -87,6 +87,12 @@ public class ServerServiceForUser implements Runnable{
                 this.userResponse.changePassword(jsonObject.getString("user_id"),
                         jsonObject.getString("password"));
                 break;
+            case 12:
+                this.userResponse.checkCurrentEmail(jsonObject.getString("user_id"), jsonObject.getString("email"));
+                break;
+            case 13:
+                this.userResponse.changeEmail(jsonObject.getString("user_id"), jsonObject.getString("email"));
+                break;
         }
 
     }
