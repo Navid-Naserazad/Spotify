@@ -1,6 +1,7 @@
 module UI {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
     requires java.sql;
     requires org.json;
     requires com.fasterxml.jackson.databind;
