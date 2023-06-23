@@ -116,7 +116,6 @@ public class ControllerSearchMusic_7 implements Initializable  {
                 }
             });
         });
-        System.out.println("filtered : " + filteredList);
         SortedList<Music> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableView.comparatorProperty());
         tableView.setItems(sortedList);

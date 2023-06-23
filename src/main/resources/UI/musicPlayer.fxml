@@ -10,17 +10,17 @@
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="867.0" style="-fx-background-color: #191414;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ControllerMusicPlayer">
    <children>
       <ProgressBar fx:id="songProgressBar" layoutX="39.0" layoutY="128.0" prefHeight="26.0" prefWidth="789.0" progress="0.0" style="-fx-background-color: #1ed760;" />
-      <Button fx:id="playButton" layoutX="36.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="108.0" style="-fx-background-color: #1ed760;" text="Play" textFill="#191414">
+      <Button fx:id="playButton" layoutX="36.0" layoutY="184.0" mnemonicParsing="false" onAction="#PlayButton" prefHeight="65.0" prefWidth="108.0" style="-fx-background-color: #1ed760;" text="Play" textFill="#191414">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="pauseButton" layoutX="166.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="124.0" style="-fx-background-color: #1ed760;" text="Pause" textFill="#191414">
+      <Button fx:id="pauseButton" layoutX="166.0" layoutY="184.0" mnemonicParsing="false" onAction="#PauseButton" prefHeight="65.0" prefWidth="124.0" style="-fx-background-color: #1ed760;" text="Pause" textFill="#191414">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="resetButton" layoutX="320.0" layoutY="184.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="114.0" style="-fx-background-color: #1ed760;" text="Reset" textFill="#191414">
+      <Button fx:id="resetButton" layoutX="320.0" layoutY="184.0" mnemonicParsing="false" onAction="#ResetButton" prefHeight="65.0" prefWidth="114.0" style="-fx-background-color: #1ed760;" text="Reset" textFill="#191414">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>

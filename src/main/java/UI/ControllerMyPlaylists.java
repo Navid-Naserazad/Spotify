@@ -89,8 +89,25 @@ public class ControllerMyPlaylists implements Initializable {
 //        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
 //        tableView.setItems(sortedList);
     }
-    public void view(ActionEvent event) {
-
+    public void view(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("viewedPlaylist.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerViewedPlaylist.class) {
+                return new ControllerViewedPlaylist(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        root = loader.load();
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     public void switchToUserPlaylist(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userPlaylist.fxml"));
