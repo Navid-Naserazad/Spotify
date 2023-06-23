@@ -184,10 +184,37 @@ public class UserResponse {
         this.output.flush();
     }
 
+    public void numberOfAllPlayListForSpecificUser(String user_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM play_list WHERE user_id = '" + user_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeInt(resultSet.getInt(1));
+        this.output.flush();
+    }
 
+    public void getRow_iPlayList(int n, String user_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT * FROM play_list WHERE user_id = '" + user_id + "'" + " ORDER BY title ASC";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        for (int i = 0; i < n; i++) {
+            resultSet.next();
+        }
+        this.output.writeUTF(resultSet.getString("title"));
+        this.output.flush();
+    }
 
-
-
+//    String[] arr = new String[resultSet1.getInt(1)];
+//    String sqlCommand2 = "SELECT playlist_id FROM play_list WHERE user_id = '" + user_id + "'";
+//    ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
+//        resultSet2.next();
+//    JSONObject jsonObject = new JSONObject();
+//        for (int i = 0; i < arr.length; i++) {
+//        arr[i] = resultSet2.getString(1);
+//        resultSet2.next();
+//    }
+//        jsonObject.put("arr", arr);
+//    String jsonCommand = jsonObject.toString();
+//        this.output.writeUTF(jsonCommand);
+//        this.output.flush();
 
 
 
