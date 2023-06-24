@@ -74,7 +74,7 @@
             <TextField fx:id="search" layoutX="153.0" layoutY="35.0" prefHeight="25.0" prefWidth="530.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
             <Label fx:id="warning" alignment="CENTER" layoutX="34.0" layoutY="457.0" prefHeight="17.0" prefWidth="664.0" style="-fx-background-color: #1ed760;" textFill="#f20000">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Italic" size="24.0" />
                </font>
             </Label>
          </children>
