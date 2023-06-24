@@ -23,24 +23,24 @@ public class ControllerChangeEmail_12 {
     private UserRequest userRequest;
     private User user;
     @FXML
-    TextField currentEmail;
+    private TextField currentEmail;
     @FXML
-    TextField newEmail;
+    private TextField newEmail;
     @FXML
-    Label message;
+    private Label message;
 
     // Public Functions
 
     public void confirm(ActionEvent event) throws IOException {
         if (!currentEmail.getText().isBlank() && !newEmail.getText().isBlank()) {
             String current = this.currentEmail.getText();
-            if (this.userRequest.checkCurrentEmail(current, this.user.getiD())) {
+            if (this.userRequest.checkCurrentEmail(this.user.getiD(), current)) {
                 String newE = this.newEmail.getText();
-                this.userRequest.changeEmail(newE, this.user.getiD());
+                this.userRequest.changeEmail(this.user.getiD(), newE);
                 message.setText("The Email has been successfully changed!");
             }
             else {
-                message.setText("Your current email is wrong. please type it correctly!");
+                message.setText("Your current email is wrong!");
             }
         }
         else {

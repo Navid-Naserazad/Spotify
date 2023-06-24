@@ -45,14 +45,13 @@ public class ControllerChangePassword_11 {
                     this.message.setText("The password has been successfully changed!");
                 }
                 else {
-                    this.message.setText("Your confirm password is not math with new password!");
+                    this.message.setText("Your confirm password is not match with new password!");
                 }
             }
             else {
                 this.message.setText("Your current password is wrong!");
             }
         }
-
         else {
             this.message.setText("Please fill in the blanks!");
         }

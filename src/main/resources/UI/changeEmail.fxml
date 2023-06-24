@@ -69,8 +69,8 @@
                   <Font name="System Italic" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="210.0" layoutY="98.0" promptText="Current Email Address" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
-            <TextField fx:id="usernameField1" layoutX="210.0" layoutY="181.0" promptText="New Email Address" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <TextField fx:id="currentEmail" layoutX="210.0" layoutY="98.0" promptText="Current Email Address" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <TextField fx:id="newEmail" layoutX="210.0" layoutY="181.0" promptText="New Email Address" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
          </children>
       </AnchorPane>
    </center>

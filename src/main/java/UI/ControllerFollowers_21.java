@@ -65,11 +65,8 @@ public class ControllerFollowers_21 implements Initializable {
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            usersObservableList.add(new User(username));
         }
-        // database
-
-
-
         tableView.setItems(usersObservableList);
         FilteredList<User> filteredList = new FilteredList<>(usersObservableList, b-> true);
 
