@@ -15,13 +15,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControllerArtistPage_23 implements Initializable {
     private Artist artist;
-    private User user;
     private UserRequest userRequest;
     @FXML
     private Label nameLabel;
@@ -29,8 +30,6 @@ public class ControllerArtistPage_23 implements Initializable {
     private TableView<User> followersTableView;
     @FXML
     private TableColumn<User, String> followersColumn;
-    @FXML
-    private TableColumn<User, String> followersIDColumn;
     @FXML
     private TextField followersSearch;
     ObservableList<User> followersObservableList = FXCollections.observableArrayList();
@@ -42,8 +41,6 @@ public class ControllerArtistPage_23 implements Initializable {
     private TableColumn<Music, String> albumColumn;
     @FXML
     private TableColumn<Music, String> artistsColumn;
-    @FXML
-    private TableColumn<Music, String> trackIDColumn;
     @FXML
     private TextField musicsSearch;
     ObservableList<Music> musicsObservableList = FXCollections.observableArrayList();
@@ -57,13 +54,26 @@ public class ControllerArtistPage_23 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         nameLabel.setText(this.artist.getName());
 
-        // followers
+        // Followers
         followersColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        followersIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
 
-        // database
-
-
+        int numberOfFollowersUserArtist = 0;
+        try {
+            numberOfFollowersUserArtist = this.userRequest.numberOfArtistFollowers(this.artist.getArtist_id());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfFollowersUserArtist; i++) {
+            String username = null;
+            try {
+                username = this.userRequest.getRow_i_ArtistFollower(i, this.artist.getArtist_id());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            followersObservableList.add(new User(username));
+        }
 
         followersTableView.setItems(followersObservableList);
         FilteredList<User> followersFilteredList = new FilteredList<>(followersObservableList, b-> true);
@@ -91,9 +101,28 @@ public class ControllerArtistPage_23 implements Initializable {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
-        trackIDColumn.setCellValueFactory(new PropertyValueFactory<>("trackID"));
 
-        // database
+        int allMusicsNumberForSpecificArtist = 0;
+        try {
+            allMusicsNumberForSpecificArtist = this.userRequest.numberOfMusicForSpecificArtist(
+                    this.artist.getArtist_id());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= allMusicsNumberForSpecificArtist; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = this.userRequest.getRow_i_MusicArtist(i, this.artist.getArtist_id());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String title = jsonObject.getString("title");
+            String album = jsonObject.getString("album");
+            String artists = jsonObject.getString("artist");
+            musicsObservableList.add(new Music(title, album, artists));
+        }
 
         musicsTableView.setItems(musicsObservableList);
         FilteredList<Music> musicsfilteredList = new FilteredList<>(musicsObservableList, b-> true);

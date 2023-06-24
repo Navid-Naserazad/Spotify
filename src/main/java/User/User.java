@@ -39,6 +39,10 @@ public class User {
         this.username = username;
     }
 
+    public User(String username) {
+        this.username = username;
+    }
+
     // Getter
 
     public String getUser_id() {

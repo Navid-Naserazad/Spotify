@@ -403,10 +403,10 @@ public class UserRequest {
         return this.input.readInt();
     }
 
-    public JSONObject getRow_i_usernameOfUserToUserFollowers(int n, String user_id) throws IOException {
+    public JSONObject getRow_i_usernameOfUserToUserFollowers(int i, String user_id) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "34");
-        jsonObject.put("row", n);
+        jsonObject.put("row", i);
         jsonObject.put("user_id", user_id);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
@@ -451,6 +451,48 @@ public class UserRequest {
         jsonObject.put("number", "38");
         jsonObject.put("row", i);
         jsonObject.put("user_id", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return new JSONObject(this.input.readUTF());
+    }
+
+    public int numberOfArtistFollowers(String artist_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "39");
+        jsonObject.put("artist_id", artist_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readInt();
+    }
+
+    public String getRow_i_ArtistFollower(int i, String artist_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "40");
+        jsonObject.put("row", i);
+        jsonObject.put("artist_id", artist_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
+    }
+
+    public int numberOfMusicForSpecificArtist(String artist_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "41");
+        jsonObject.put("artist_id", artist_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readInt();
+    }
+
+    public JSONObject getRow_i_MusicArtist(int i, String artist_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "42");
+        jsonObject.put("row", i);
+        jsonObject.put("artist_id", artist_id);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();

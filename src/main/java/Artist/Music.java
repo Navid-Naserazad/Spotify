@@ -24,6 +24,12 @@ public class Music {
         this.artists = artists;
     }
 
+    public Music(String title, String album, String artists) {
+        this.title = title;
+        this.album = album;
+        this.artists = artists;
+    }
+
     // Getter
     public String getTrackID() {
         return trackID;
