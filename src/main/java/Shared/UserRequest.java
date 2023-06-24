@@ -331,7 +331,7 @@ public class UserRequest {
     public int numberOfFollowings_UserToUser(String user_id) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "27");
-        jsonObject.put("user_id_1", user_id);
+        jsonObject.put("user_id", user_id);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
@@ -342,7 +342,7 @@ public class UserRequest {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "28");
         jsonObject.put("row", n);
-        jsonObject.put("user_id_1", user_id);
+        jsonObject.put("user_id", user_id);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
@@ -369,5 +369,26 @@ public class UserRequest {
         this.output.writeUTF(jsonCommand);
         this.output.flush();
         this.input.readUTF();
+    }
+
+    public int numberOfFollowings_UserToArtist(String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "31");
+        jsonObject.put("user_id", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readInt();
+    }
+
+    public String getRow_i_nameOfUserToArtistFollowings(int n, String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "32");
+        jsonObject.put("row", n);
+        jsonObject.put("user_id", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 
-public class ServerServiceForUser implements Runnable{
+public class ServerServiceForUser implements Runnable {
 
     // Attributes
     private Socket client;
@@ -32,8 +32,7 @@ public class ServerServiceForUser implements Runnable{
             userResponse.setOutput(output);
             doService();
             client.close();
-        }
-        catch (IOException | SQLException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -146,6 +145,14 @@ public class ServerServiceForUser implements Runnable{
             case 30:
                 this.userResponse.addFollowArtist(jsonObject.getString("user_id"), jsonObject.getString("artist_id"));
                 break;
+            case 31:
+                this.userResponse.numberOfFollowings_UserToArtist(jsonObject.getString("user_id"));
+                break;
+            case 32:
+                this.userResponse.getRow_i_nameOfUserToArtistFollowings(jsonObject.getInt("row"),
+                        jsonObject.getString("user_id"));
+                break;
         }
     }
+
 }

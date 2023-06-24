@@ -375,9 +375,29 @@ public class UserResponse {
         this.output.flush();
     }
 
+    public void numberOfFollowings_UserToArtist(String user_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM user_artist_follow WHERE user_id = '" + user_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeInt(resultSet.getInt(1));
+        this.output.flush();
+    }
 
 
-
+    public void getRow_i_nameOfUserToArtistFollowings(int n, String user_id) throws SQLException, IOException {
+        String sqlCommand1 = "SELECT artist_id FROM user_user_follow WHERE user_id = '" + user_id + "'" +
+                "ORDER BY ASC";
+        ResultSet resultSet1 = statement.executeQuery(sqlCommand1);
+        for (int i = 0; i < n; i++) {
+            resultSet1.next();
+        }
+        String artist_id = resultSet1.getString(1);
+        String sqlCommand2 = "SELECT name FROM artist WHERE artist_id = '" + artist_id + "'";
+        ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
+        resultSet2.next();
+        this.output.writeUTF(resultSet2.getString(1));
+        this.output.flush();
+    }
 
 
 

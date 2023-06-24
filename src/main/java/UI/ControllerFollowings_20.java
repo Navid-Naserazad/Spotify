@@ -104,7 +104,22 @@ public class ControllerFollowings_20 implements Initializable {
 
         // Artist table view
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+        int numberOfUserToArtistFollowings = 0;
+        try {
+            numberOfUserToArtistFollowings = this.userRequest.numberOfFollowings_UserToArtist(this.user.getiD());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfUserToArtistFollowings; i++) {
+            String name = null;
+            try {
+                name = this.userRequest.getRow_i_nameOfUserToArtistFollowings(i, this.user.getiD());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         // database
 
 
