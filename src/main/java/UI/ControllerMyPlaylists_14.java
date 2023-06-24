@@ -59,7 +59,7 @@ public class ControllerMyPlaylists_14 implements Initializable {
         myPlaylistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         int numberOfAllPlayListOfUser = 0;
         try {
-            numberOfAllPlayListOfUser = this.userRequest.numberOfAllPlayListForSpecificUser(this.user.getiD());
+            numberOfAllPlayListOfUser = this.userRequest.numberOfAllPlayListForSpecificUser(this.user.getUser_id());
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -67,7 +67,7 @@ public class ControllerMyPlaylists_14 implements Initializable {
         for (int i = 1; i <= numberOfAllPlayListOfUser; i++) {
             JSONObject jsonObject;
             try {
-                jsonObject = new JSONObject(this.userRequest.getRow_iPlayList(i, this.user.getiD()));
+                jsonObject = new JSONObject(this.userRequest.getRow_iPlayList(i, this.user.getUser_id()));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

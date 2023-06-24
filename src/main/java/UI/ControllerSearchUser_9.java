@@ -99,9 +99,9 @@ public class ControllerSearchUser_9 implements Initializable {
             ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
             User secondUser = users.get(0);
             message.setText("");
-            String user_id_2 = secondUser.getiD();
-            if (!this.userRequest.checkFollowUser(this.user.getiD(), user_id_2)) {
-                this.userRequest.addFollowUser(this.user.getiD(), user_id_2);
+            String user_id_2 = secondUser.getUser_id();
+            if (!this.userRequest.checkFollowUser(this.user.getUser_id(), user_id_2)) {
+                this.userRequest.addFollowUser(this.user.getUser_id(), user_id_2);
                 message.setText(secondUser.getUsername() + " is followed now!");
             }
             else {

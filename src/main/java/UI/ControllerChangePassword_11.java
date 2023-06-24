@@ -37,11 +37,11 @@ public class ControllerChangePassword_11 {
         if (!currentPassword.getText().isBlank() && !newPassword.getText().isBlank() && !confirmPassword.getText().isBlank()) {
 
             String current = this.currentPassword.getText();
-            if (this.userRequest.checkCurrentPassword(this.user.getiD(), current)) {
+            if (this.userRequest.checkCurrentPassword(this.user.getUser_id(), current)) {
                 String newP = this.newPassword.getText();
                 String conP = this.confirmPassword.getText();
                 if (newP.equals(conP)) {
-                    this.userRequest.changePassword(this.user.getiD(), newP);
+                    this.userRequest.changePassword(this.user.getUser_id(), newP);
                     this.message.setText("The password has been successfully changed!");
                 }
                 else {

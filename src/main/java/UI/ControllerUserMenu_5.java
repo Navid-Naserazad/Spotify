@@ -53,7 +53,7 @@ public class ControllerUserMenu_5 implements Initializable {
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
         int allLikedMusicsUserNum = 0;
         try {
-            allLikedMusicsUserNum = this.userRequest.numberOfUserLike(this.user.getiD());
+            allLikedMusicsUserNum = this.userRequest.numberOfUserLike(this.user.getUser_id());
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -61,7 +61,7 @@ public class ControllerUserMenu_5 implements Initializable {
         for (int i = 1; i <= allLikedMusicsUserNum; i++) {
             JSONObject jsonObject = null;
             try {
-                jsonObject = this.userRequest.getRow_i_UserLike(i, this.user.getiD());
+                jsonObject = this.userRequest.getRow_i_UserLike(i, this.user.getUser_id());
             }
             catch (IOException e) {
                 throw new RuntimeException(e);

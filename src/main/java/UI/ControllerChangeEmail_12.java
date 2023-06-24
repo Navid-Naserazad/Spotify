@@ -34,9 +34,9 @@ public class ControllerChangeEmail_12 {
     public void confirm(ActionEvent event) throws IOException {
         if (!currentEmail.getText().isBlank() && !newEmail.getText().isBlank()) {
             String current = this.currentEmail.getText();
-            if (this.userRequest.checkCurrentEmail(this.user.getiD(), current)) {
+            if (this.userRequest.checkCurrentEmail(this.user.getUser_id(), current)) {
                 String newE = this.newEmail.getText();
-                this.userRequest.changeEmail(this.user.getiD(), newE);
+                this.userRequest.changeEmail(this.user.getUser_id(), newE);
                 message.setText("The Email has been successfully changed!");
             }
             else {

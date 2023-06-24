@@ -112,8 +112,8 @@ public class ControllerSearchArtist_8 implements Initializable {
             Artist artist = artists.get(0);
             message.setText("");
             String artistID = artist.getArtist_id();
-            if (!this.userRequest.checkFollowArtist(this.user.getiD(), artistID)) {
-                this.userRequest.addFollowArtist(this.user.getiD(), artistID);
+            if (!this.userRequest.checkFollowArtist(this.user.getUser_id(), artistID)) {
+                this.userRequest.addFollowArtist(this.user.getUser_id(), artistID);
                 message.setText(artist.getName() + " is followed now!");
             }
             else {
