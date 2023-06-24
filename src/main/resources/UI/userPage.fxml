@@ -101,7 +101,7 @@
                   <TableColumn fx:id="artistsColumn" prefWidth="132.0" style="-fx-background-color: #1394ab;" text="Artists" />
                </columns>
             </TableView>
-            <TableView fx:id="musicColumn" layoutX="683.0" layoutY="101.0" prefHeight="383.0" prefWidth="231.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+            <TableView fx:id="musicTableView" layoutX="683.0" layoutY="101.0" prefHeight="383.0" prefWidth="231.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
                   <TableColumn fx:id="musicTitleColumn" prefWidth="93.0" style="-fx-background-color: #1394ab;" text="Title" />
                   <TableColumn fx:id="musicArtistColumn" prefWidth="132.0" style="-fx-background-color: #1394ab;" text="Artists" />
