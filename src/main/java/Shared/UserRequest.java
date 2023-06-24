@@ -391,4 +391,25 @@ public class UserRequest {
         this.output.flush();
         return this.input.readUTF();
     }
+
+    public int numberOfFollowers_UserToUser(String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "33");
+        jsonObject.put("user_id", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readInt();
+    }
+
+    public String getRow_i_usernameOfUserToUserFollowers(int n, String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "34");
+        jsonObject.put("row", n);
+        jsonObject.put("user_id", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
+    }
 }
