@@ -35,7 +35,7 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #1ed760;" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="musicTableView" layoutX="282.0" layoutY="101.0" prefHeight="390.0" prefWidth="393.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+            <TableView fx:id="musicsTableView" layoutX="282.0" layoutY="101.0" prefHeight="390.0" prefWidth="393.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
                   <TableColumn fx:id="titleColumn" prefWidth="145.0" style="-fx-background-color: #1394ab;" text="Title" />
                   <TableColumn fx:id="albumColumn" minWidth="0.0" prefWidth="97.0" style="-fx-background-color: #1394ab;" text="Album" />
