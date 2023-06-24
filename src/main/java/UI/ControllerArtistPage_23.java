@@ -19,7 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerArtistPage implements Initializable {
+public class ControllerArtistPage_23 implements Initializable {
     private Artist artist;
     private User user;
     private UserRequest userRequest;
@@ -46,7 +46,7 @@ public class ControllerArtistPage implements Initializable {
     private TextField musicsSearch;
     ObservableList<Music> musicsObservableList = FXCollections.observableArrayList();
 
-    public ControllerArtistPage(UserRequest userRequest, Artist artist) {
+    public ControllerArtistPage_23(UserRequest userRequest, Artist artist) {
         this.userRequest = userRequest;
         this.artist = artist;
     }

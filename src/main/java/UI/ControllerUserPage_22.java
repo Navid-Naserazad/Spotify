@@ -20,7 +20,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerUserPage implements Initializable {
+public class ControllerUserPage_22 implements Initializable {
+
     // Attributes
     private User selectedUser;
     private UserRequest userRequest;
@@ -64,10 +65,13 @@ public class ControllerUserPage implements Initializable {
     private TextField likesSearch;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
 
-    public ControllerUserPage(User selectedUser, UserRequest userRequest) {
+    // Constructor
+    public ControllerUserPage_22(User selectedUser, UserRequest userRequest) {
         this.selectedUser = selectedUser;
         this.userRequest = userRequest;
     }
+
+    // Public Functions
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameLabel.setText(this.selectedUser.getUsername());
