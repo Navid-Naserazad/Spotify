@@ -77,6 +77,7 @@ public class ControllerViewedPlaylist_15 implements Initializable {
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         trackIDColumn.setCellValueFactory(new PropertyValueFactory<>("trackID"));
+
         int allMusicsNumber = 0;
         try {
             allMusicsNumber = this.userRequest.numberOfAllMusicsForSpecificPlayList(this.playList.getPlayListId());

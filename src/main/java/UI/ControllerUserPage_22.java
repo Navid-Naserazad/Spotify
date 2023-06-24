@@ -344,12 +344,29 @@ public class ControllerUserPage_22 implements Initializable {
             ObservableList<PlayList> playLists = playlistsTableView.getSelectionModel().getSelectedItems();
             PlayList playList = playLists.get(0);
 
+            // Musics Of PlayList
             musicTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
             musicArtistColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
 
-            // database
+            int allMusicsNumber = 0;
+            try {
+                allMusicsNumber = this.userRequest.numberOfAllMusicsForSpecificPlayList(playList.getPlayListId());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            for (int i = 1; i <= allMusicsNumber; i++) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = userRequest.getRow_iMusicFromPlayList(i, playList.getPlayListId());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String title = jsonObject.getString("title");
+                String artists = jsonObject.getString("artist");
+                musicsObservableList.add(new Music(title, artists));
+            }
 
-            musicsObservableList.add(new Music(title, artists));
+
 
 
             musicTableView.setItems(musicsObservableList);
