@@ -35,7 +35,7 @@ public class ControllerFollowers_21 implements Initializable {
     @FXML
     private TableView<User> tableView;
     @FXML
-    private TableColumn<User, String> usernameColumn;
+    private TableColumn<User, String> userColumn;
     @FXML
     private TextField search;
     @FXML
@@ -48,7 +48,7 @@ public class ControllerFollowers_21 implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         // database
 

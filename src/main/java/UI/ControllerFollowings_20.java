@@ -75,10 +75,6 @@ public class ControllerFollowings_20 implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-        // database
-
-
-
         userTableView.setItems(usersObservableList);
         FilteredList<User> userFilteredList = new FilteredList<>(usersObservableList, b-> true);
 
