@@ -418,7 +418,6 @@ public class UserRequest {
         jsonObject.put("number", "35");
         jsonObject.put("user_id_1", user_id_1);
         jsonObject.put("user_id_2", user_id_2);
-        System.out.println(user_id_2);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
