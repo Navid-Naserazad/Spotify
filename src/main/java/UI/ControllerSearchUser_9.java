@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +36,8 @@ public class ControllerSearchUser_9 implements Initializable {
     private TableView<User> tableView;
     @FXML
     private TableColumn<User, String> userColumn;
+    @FXML
+    private TableColumn<User, String> IDColumn;
     @FXML
     private TextField search;
     @FXML
@@ -54,6 +57,7 @@ public class ControllerSearchUser_9 implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        IDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
         int allUsers = 0;
         try {
             allUsers = userRequest.numberOfAllUsers();
@@ -62,13 +66,15 @@ public class ControllerSearchUser_9 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= allUsers; i++) {
-            String username = null;
+            JSONObject jsonObject = null;
             try {
-                username = userRequest.getRow_iUser(i);
+//                username = userRequest.getRow_iUser(i);
+                String username;
+                String ID;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-//            usersObservableList.add(new User(username));
+//            usersObservableList.add(new User(ID, username));
         }
         tableView.setItems(usersObservableList);
         FilteredList<User> filteredList = new FilteredList<>(usersObservableList, b-> true);
