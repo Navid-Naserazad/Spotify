@@ -78,7 +78,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
         trackIDColumn.setCellValueFactory(new PropertyValueFactory<>("trackID"));
         int allMusicsNumber = 0;
         try {
-            allMusicsNumber = userRequest.numberOfAllMusics();
+            allMusicsNumber = this.userRequest.numberOfAllMusics();
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -86,7 +86,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
         for (int i = 1; i <= allMusicsNumber; i++) {
             JSONObject jsonObject = null;
             try {
-                jsonObject = userRequest.getRow_iMusic(i);
+                jsonObject = this.userRequest.getRow_iMusic(i);
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
