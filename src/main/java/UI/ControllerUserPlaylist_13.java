@@ -64,11 +64,20 @@ public class ControllerUserPlaylist_13 {
     }
 
     public void switchToUserMenu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("userMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("userMenu.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerUserMenu_5.class) {
+                return new ControllerUserMenu_5(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         root = loader.load();
-        ControllerUserMenu_5 controllerUserMenu_5 = loader.getController();
-        controllerUserMenu_5.setUser(user);
-        controllerUserMenu_5.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

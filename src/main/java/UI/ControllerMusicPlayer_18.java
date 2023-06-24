@@ -53,6 +53,8 @@ public class ControllerMusicPlayer_18 implements Initializable {
     private ProgressBar songProgressBar;
     @FXML
     private Button exit;
+    @FXML
+    private Button minimize;
 
     private File directory;
 //    private File[] files;
@@ -79,9 +81,12 @@ public class ControllerMusicPlayer_18 implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image exitImage;
+        Image minimizeImage;
         try {
             exitImage = new Image(new FileInputStream("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\exit2.png"));
             exit.setGraphic(new ImageView(exitImage));
+            minimizeImage = new Image(new FileInputStream("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\minimize2.png"));
+            minimize.setGraphic(new ImageView(minimizeImage));
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -166,7 +171,13 @@ public class ControllerMusicPlayer_18 implements Initializable {
     }
     public void exitHandler(ActionEvent event) {
         stage = (Stage) (exit.getParent().getScene().getWindow());
-        PauseButton();
+        if (running) {
+            PauseButton();
+        }
         stage.close();
+    }
+    public void minimizeHandler(ActionEvent event) {
+        stage = (Stage) (minimize.getParent().getScene().getWindow());
+        stage.setIconified(true);
     }
 }

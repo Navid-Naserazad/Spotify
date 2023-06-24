@@ -133,51 +133,76 @@ public class ControllerSearchMusic_7 implements Initializable  {
     }
 
     public void playButton(ActionEvent event) throws IOException {
-        ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
-        Music music = musics.get(0);
-        Stage stage = new Stage();
-        stage.setTitle("Spotify");
-        stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("musicPlayer.fxml"));
-        loader.setControllerFactory(type -> {
-            if (type == ControllerMusicPlayer_18.class) {
-                return new ControllerMusicPlayer_18(this.userRequest, music);
-            }
-            try {
-                return type.getConstructor().newInstance();
-            }
-            catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.showAndWait();
+        try {
+            ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
+            Music music = musics.get(0);
+            warning.setText("");
+            Stage stage = new Stage();
+            stage.setTitle("Spotify");
+            stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("musicPlayer.fxml"));
+            loader.setControllerFactory(type -> {
+                if (type == ControllerMusicPlayer_18.class) {
+                    return new ControllerMusicPlayer_18(this.userRequest, music);
+                }
+                try {
+                    return type.getConstructor().newInstance();
+                }
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.showAndWait();
+        }
+        catch (IndexOutOfBoundsException e) {
+            warning.setText("You did not choose any music to play!");
+        }
         // music player plays the chosen music
     }
     public void downloadButton(ActionEvent event) throws IOException {
-        ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
-        Music music = musics.get(0);
-        if (!this.userRequest.checkIfUserDownloadsSpecificMusic(this.user.getiD(), music.getTrackID())) {
-            this.userRequest.addMusicToFolder(music.getTrackID(), this.user.getUsername());
-            warning.setText(music.getTitle() + " is downloaded now!");
+        try {
+            ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
+            Music music = musics.get(0);
+            warning.setText("");
+            if (!this.userRequest.checkIfUserDownloadsSpecificMusic(this.user.getiD(), music.getTrackID())) {
+                this.userRequest.addMusicToFolder(music.getTrackID(), this.user.getUsername());
+                warning.setText(music.getTitle() + " is downloaded now!");
+            }
+            else {
+                warning.setText("You have already downloaded " + music.getTitle());
+            }
         }
-        else {
-            warning.setText("You have already downloaded " + music.getTitle());
+        catch (IndexOutOfBoundsException e) {
+            warning.setText("You did not choose any music to download!");
         }
     }
     public void likeButton(ActionEvent event) throws IOException {
-        ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
-        Music music = musics.get(0);
+        try {
+            ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
+            Music music = musics.get(0);
+            warning.setText("");
 
+        }
+        catch (IndexOutOfBoundsException e) {
+            warning.setText("You did not choose any music to like!!");
+        }
     }
     public void dislikeButton(ActionEvent event) throws IOException {
-        ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
-        Music music = musics.get(0);
-        
+        try {
+            ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
+            Music music = musics.get(0);
+            warning.setText("");
+
+        }
+        catch (IndexOutOfBoundsException e) {
+            warning.setText("You did not choose any music to dislike!");
+        }
+
     }
 
     public void switchToUserSearch(ActionEvent event) throws IOException {

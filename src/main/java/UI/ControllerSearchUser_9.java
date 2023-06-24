@@ -97,10 +97,22 @@ public class ControllerSearchUser_9 implements Initializable {
     }
 
     public void follow (ActionEvent event) throws IOException {
-        ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
-        User user = users.get(0);
-        String username = user.getUsername();
-        message.setText(username + " is followed now!");
+        try {
+            ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
+            User user = users.get(0);
+            message.setText("");
+            String username = user.getUsername();
+            // add to database
+//        if () {
+//            message.setText(username + " is followed now!");
+//        }
+//        else {
+//            message.setText("You have already followed " + username);
+//        }
+        }
+        catch (IndexOutOfBoundsException e) {
+            message.setText("You did not choose any user!");
+        }
     }
     public void visitPage(ActionEvent event) {
 

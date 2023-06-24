@@ -1,17 +1,30 @@
 package UI;
 
+import Artist.Music;
 import Shared.UserRequest;
 import User.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ControllerUserMenu_5 {
+public class ControllerUserMenu_5 implements Initializable {
 
     // Attributes
     Parent root;
@@ -19,6 +32,45 @@ public class ControllerUserMenu_5 {
     Scene scene;
     private User user;
     private UserRequest userRequest;
+    @FXML
+    private TableView<Music> tableView;
+    @FXML
+    private TableColumn<Music, String> likesColumn;
+    ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
+
+    public ControllerUserMenu_5(User user, UserRequest userRequest) {
+        this.user = user;
+        this.userRequest = userRequest;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        likesColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+//        int allMusicsNumber = 0;
+//        try {
+//            allMusicsNumber = userRequest.numberOfAllMusics();
+//        }
+//        catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        for (int i = 1; i <= allMusicsNumber; i++) {
+//            JSONObject jsonObject = null;
+//            try {
+//                jsonObject = userRequest.getRow_iMusic(i);
+//            }
+//            catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            String trackID = jsonObject.getString("track_id");
+//            String title = jsonObject.getString("title");
+//            String genre = jsonObject.getString("genre");
+//            String album = jsonObject.getString("album");
+//            String artists = jsonObject.getString("artist");
+//            String duration = jsonObject.getString("duration");
+//            musicObservableList.add(new Music(trackID, title, genre, album, artists, duration));
+//        }
+        tableView.setItems(likesObservableList);
+    }
 
     // Public Functions
     public void switchToUserSearch(ActionEvent event) throws IOException {
@@ -85,12 +137,5 @@ public class ControllerUserMenu_5 {
     }
 
     // Setter
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setUserRequest(UserRequest userRequest) {
-        this.userRequest = userRequest;
-    }
+    
 }

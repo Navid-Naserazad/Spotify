@@ -15,11 +15,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +48,10 @@ public class ControllerPlaylistPlayer_19 implements Initializable {
     private Slider volumeController;
     @FXML
     private ProgressBar songProgressBar;
+    @FXML
+    private Button exit;
+    @FXML
+    private Button minimize;
 
     private File directory;
     private File[] files;
@@ -79,7 +87,17 @@ public class ControllerPlaylistPlayer_19 implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Image exitImage;
+        Image minimizeImage;
+        try {
+            exitImage = new Image(new FileInputStream("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\exit2.png"));
+            exit.setGraphic(new ImageView(exitImage));
+            minimizeImage = new Image(new FileInputStream("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\minimize2.png"));
+            minimize.setGraphic(new ImageView(minimizeImage));
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void PlayButton() {
@@ -197,5 +215,16 @@ public class ControllerPlaylistPlayer_19 implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.showAndWait();
+    }
+    public void exitHandler(ActionEvent event) {
+        stage = (Stage) (exit.getParent().getScene().getWindow());
+        if (running) {
+            PauseButton();
+        }
+        stage.close();
+    }
+    public void minimizeHandler(ActionEvent event) {
+        stage = (Stage) (minimize.getParent().getScene().getWindow());
+        stage.setIconified(true);
     }
 }

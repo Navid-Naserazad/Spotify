@@ -107,10 +107,22 @@ public class ControllerSearchArtist_8 implements Initializable {
     }
 
     public void follow (ActionEvent event) throws IOException {
-        ObservableList<Artist> artists = tableView.getSelectionModel().getSelectedItems();
-        Artist artist = artists.get(0);
-        String name = artist.getName();
-        message.setText(name + " is followed now!");
+        try {
+            ObservableList<Artist> artists = tableView.getSelectionModel().getSelectedItems();
+            Artist artist = artists.get(0);
+            message.setText("");
+            String name = artist.getName();
+            // add to database
+//        if () {
+//            message.setText(name + " is followed now!");
+//        }
+//        else {
+//            message.setText("You have already followed " + name);
+//        }
+        }
+        catch (IndexOutOfBoundsException e) {
+            message.setText("You did not choose any artist!");
+        }
     }
     public void visitPage(ActionEvent event) {
 
