@@ -120,12 +120,13 @@ public class UserResponse {
     }
 
     public void getRow_iArtist(int n) throws SQLException, IOException {
-        String sqlCommand = "SELECT name, biography FROM artist";
+        String sqlCommand = "SELECT artist_id, name, biography FROM artist";
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         for (int i = 0; i < n; i++) {
             resultSet.next();
         }
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("artist_id", resultSet.getString("artist_id"));
         jsonObject.put("name", resultSet.getString("name"));
         jsonObject.put("biography", resultSet.getString("biography"));
         this.output.writeUTF(jsonObject.toString());
