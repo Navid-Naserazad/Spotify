@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,6 +37,8 @@ public class ControllerUserMenu_5 implements Initializable {
     private TableView<Music> tableView;
     @FXML
     private TableColumn<Music, String> likesColumn;
+    @FXML
+    private Label usernameLabel;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
 
     public ControllerUserMenu_5(User user, UserRequest userRequest) {
@@ -45,6 +48,7 @@ public class ControllerUserMenu_5 implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        usernameLabel.setText(this.user.getUsername());
         likesColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 //        int allMusicsNumber = 0;
 //        try {
@@ -115,7 +119,20 @@ public class ControllerUserMenu_5 implements Initializable {
         stage.show();
     }
     public void switchToUserFollowings(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("followings.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("followings.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerFollowings.class) {
+                return new ControllerFollowings(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -141,14 +158,4 @@ public class ControllerUserMenu_5 implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToUserMyProfile(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("userMyProfile.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    // Setter
-    
 }

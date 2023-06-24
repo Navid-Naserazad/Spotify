@@ -29,21 +29,21 @@
                         <Font name="Bodoni MT Bold" size="20.0" />
                     </font>
                 </Label>
-            <Button layoutX="28.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchToUserFollowings" prefHeight="44.0" prefWidth="128.0" style="-fx-background-color: #1ed760;" text="Followings" textFill="#191414">
+            <Button layoutX="28.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchToUserFollowings" prefHeight="44.0" prefWidth="128.0" style="-fx-background-color: #1ed760;" text="Followings" textFill="#191414">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="28.0" layoutY="222.0" mnemonicParsing="false" onAction="#switchToUserFollowers" prefHeight="44.0" prefWidth="128.0" style="-fx-background-color: #1ed760;" text="Followers" textFill="#191414">
+            <Button layoutX="28.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToUserFollowers" prefHeight="44.0" prefWidth="128.0" style="-fx-background-color: #1ed760;" text="Followers" textFill="#191414">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="28.0" layoutY="272.0" mnemonicParsing="false" onAction="#switchToUserMyProfile" prefHeight="44.0" prefWidth="128.0" style="-fx-background-color: #1ed760;" text="My Profile" textFill="#191414">
+            <Label fx:id="usernameLabel" alignment="CENTER" layoutX="7.0" layoutY="148.0" prefHeight="38.0" prefWidth="169.0" textFill="#1ed760">
                <font>
-                  <Font name="System Bold Italic" size="20.0" />
+                  <Font name="Bodoni MT Bold" size="30.0" />
                </font>
-            </Button>
+            </Label>
             </children>
         </AnchorPane>
     </left>

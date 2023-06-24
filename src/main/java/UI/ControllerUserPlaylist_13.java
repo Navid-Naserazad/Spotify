@@ -55,13 +55,6 @@ public class ControllerUserPlaylist_13 {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToEditPlaylist(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("editPlaylist.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void switchToUserMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
