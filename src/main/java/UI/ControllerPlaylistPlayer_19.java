@@ -4,6 +4,8 @@ import Artist.Music;
 import User.User;
 import Artist.PlayList;
 import Shared.UserRequest;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,24 +68,14 @@ public class ControllerPlaylistPlayer_19 implements Initializable {
     private String arr[];
     private UserRequest userRequest;
     private User user;
-    private PlayList playList;
 
     // Constructor
     public ControllerPlaylistPlayer_19(UserRequest userRequest, User user, String[] arr) {
         this.userRequest = userRequest;
         this.user = user;
-        this.playList = playList;
         this.arr = arr;
     }
 
-    // Public Functions
-    public ControllerPlaylistPlayer_19() throws IOException {
-        int len = this.arr.length;
-        String[] file_path = new String[len];
-        for (int i = 0; i < len; i++) {
-            file_path[i] = this.userRequest.musicAddress(arr[i]);
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,6 +90,32 @@ public class ControllerPlaylistPlayer_19 implements Initializable {
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+//        int len = this.arr.length;
+//        String[] file_path = new String[len];
+//        for (int i = 0; i < len; i++) {
+//            try {
+//                file_path[i] = this.userRequest.musicAddress(arr[i]);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//        if (file_path != null) {
+//            for (File file : file_path) {
+//                songs.add(file);
+//            }
+//        }
+//        media = new Media(songs.get(songID).toURI().toString());
+//        mediaPlayer = new MediaPlayer(media);
+//
+//        songName.setText(songs.get(songID).getName());
+//        volumeController.valueProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                mediaPlayer.setVolume(volumeController.getValue() * 0.01);
+//            }
+//        });
+//        songProgressBar.setStyle("-fx-accent: #18ac18;");
     }
 
     public void PlayButton() {

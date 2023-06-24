@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
@@ -134,27 +135,27 @@ public class ControllerViewedPlaylist_15 implements Initializable {
         tableView.setItems(sortedList);
     }
 
-    public void playButton(ActionEvent event) {
-//        Stage stage = new Stage();
-//        stage.setTitle("Spotify");
-//        stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("playlistPlayer.fxml"));
-//        loader.setControllerFactory(type -> {
-//            if (type == ControllerMusicPlayer_18.class) {
-//                return new ControllerMusicPlayer_18(music);
-//            }
-//            try {
-//                return type.getConstructor().newInstance();
-//            }
-//            catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.showAndWait();
+    public void playButton(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle("Spotify");
+        stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("playlistPlayer.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerPlaylistPlayer_19.class) {
+                return new ControllerPlaylistPlayer_19(userRequest, user, arr);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     public void switchToMyPlaylists(ActionEvent event) throws IOException {
