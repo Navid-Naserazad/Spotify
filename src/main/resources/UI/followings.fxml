@@ -49,6 +49,7 @@
             <TableView fx:id="userTableView" layoutX="37.0" layoutY="63.0" prefHeight="384.0" prefWidth="250.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
                   <TableColumn fx:id="userColumn" prefWidth="244.0" style="-fx-background-color: #1394ab;" text="Users" />
+                  <TableColumn fx:id="IDColumn" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #1394ab;" text="ID" />
                </columns>
             </TableView>
             <TextField fx:id="userSearch" layoutX="72.0" layoutY="28.0" prefHeight="25.0" prefWidth="180.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />

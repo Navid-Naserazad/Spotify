@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +38,8 @@ public class ControllerFollowers_21 implements Initializable {
     @FXML
     private TableColumn<User, String> userColumn;
     @FXML
+    private TableColumn<User, String> userIDColumn;
+    @FXML
     private TextField search;
     @FXML
     private Label message;
@@ -50,6 +53,7 @@ public class ControllerFollowers_21 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userIDColumn.setCellValueFactory(new PropertyValueFactory<>("iD"));
         int numberOfUserToUserFollowers = 0;
         try {
             numberOfUserToUserFollowers = this.userRequest.numberOfFollowers_UserToUser(this.user.getiD());
@@ -58,7 +62,7 @@ public class ControllerFollowers_21 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= numberOfUserToUserFollowers; i++) {
-            String username = null;
+            JSONObject jsonObject = null;
             try {
                 username = this.userRequest.getRow_i_usernameOfUserToUserFollowers(i, this.user.getiD());
             }

@@ -20,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,8 @@ public class ControllerFollowings_20 implements Initializable {
     private TableView<User> userTableView;
     @FXML
     private TableColumn<User, String> userColumn;
+    @FXML
+    private TableColumn<User, String> userIDColumn;
     @FXML
     private TableView<Artist> artistTableView;
     @FXML
@@ -59,6 +62,7 @@ public class ControllerFollowings_20 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // User table view
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userIDColumn.setCellValueFactory(new PropertyValueFactory<>("iD"));
         int numberOfUserToUserFollowings = 0;
         try {
             numberOfUserToUserFollowings = this.userRequest.numberOfFollowings_UserToUser(this.user.getiD());
@@ -67,9 +71,10 @@ public class ControllerFollowings_20 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= numberOfUserToUserFollowings; i++) {
-            String username = null;
+            JSONObject jsonObject = null;
             try {
                 username = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getiD());
+                
             }
             catch (IOException e) {
                 throw new RuntimeException(e);

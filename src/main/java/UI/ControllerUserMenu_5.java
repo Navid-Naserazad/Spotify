@@ -68,6 +68,7 @@ public class ControllerUserMenu_5 implements Initializable {
             }
             String title = jsonObject.getString("title");
             String artists = jsonObject.getString("artist");
+            likesObservableList.add(new Music(title, artists));
         }
         tableView.setItems(likesObservableList);
     }
