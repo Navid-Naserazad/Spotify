@@ -134,6 +134,7 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
         ObservableList<Music> selectedItems = tableView.getSelectionModel().getSelectedItems();
         Music music = selectedItems.get(0);
         musics.add(music);
+        warning.setText(music.getTitle() + " is added to " + playlistTitle.getText());
     }
     public void doneButton(ActionEvent event) throws IOException {
         // the playlist is created and it must be added to the database

@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -54,6 +55,8 @@ public class ControllerSearchMusic_7 implements Initializable  {
     private TableColumn<Music, String> trackIDColumn;
     @FXML
     private TextField search;
+    @FXML
+    private Label warning;
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
 
     // Constructor
@@ -160,8 +163,23 @@ public class ControllerSearchMusic_7 implements Initializable  {
         Music music = musics.get(0);
         if (!this.userRequest.checkIfUserDownloadsSpecificMusic(this.user.getiD(), music.getTrackID())) {
             this.userRequest.addMusicToFolder(music.getTrackID(), this.user.getUsername());
+            warning.setText(music.getTitle() + " is downloaded now!");
+        }
+        else {
+            warning.setText("You have already downloaded " + music.getTitle());
         }
     }
+    public void likeButton(ActionEvent event) throws IOException {
+        ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
+        Music music = musics.get(0);
+
+    }
+    public void dislikeButton(ActionEvent event) throws IOException {
+        ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
+        Music music = musics.get(0);
+        
+    }
+
     public void switchToUserSearch(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userSearch.fxml"));
         root = loader.load();

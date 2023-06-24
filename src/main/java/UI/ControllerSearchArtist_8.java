@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,6 +42,8 @@ public class ControllerSearchArtist_8 implements Initializable {
     private TableColumn<Artist, String> biographyColumn;
     @FXML
     private TextField search;
+    @FXML
+    private Label message;
 
     ObservableList<Artist> artistsObservableList = FXCollections.observableArrayList();
 
@@ -107,14 +110,7 @@ public class ControllerSearchArtist_8 implements Initializable {
         ObservableList<Artist> artists = tableView.getSelectionModel().getSelectedItems();
         Artist artist = artists.get(0);
         String name = artist.getName();
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("followedArtist.fxml"));
-        Parent root = loader.load();
-        ControllerFollowedArtist controllerFollowedArtist = loader.getController();
-        controllerFollowedArtist.setName(name);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.showAndWait();
+        message.setText(name + " is followed now!");
     }
     public void visitPage(ActionEvent event) {
 

@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -38,6 +39,8 @@ public class ControllerSearchUser_9 implements Initializable {
     private TableColumn<User, String> userColumn;
     @FXML
     private TextField search;
+    @FXML
+    private Label message;
     private User user;
     private UserRequest userRequest;
 
@@ -97,14 +100,7 @@ public class ControllerSearchUser_9 implements Initializable {
         ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
         User user = users.get(0);
         String username = user.getUsername();
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("followedUser.fxml"));
-        Parent root = loader.load();
-        ControllerFollowedUser controllerFollowedUser = loader.getController();
-        controllerFollowedUser.setUsername(username);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.showAndWait();
+        message.setText(username + " is followed now!");
     }
     public void visitPage(ActionEvent event) {
 
