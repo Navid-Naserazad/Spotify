@@ -30,6 +30,8 @@ public class ControllerArtistPage_23 implements Initializable {
     @FXML
     private TableColumn<User, String> followersColumn;
     @FXML
+    private TableColumn<User, String> followersIDColumn;
+    @FXML
     private TextField followersSearch;
     ObservableList<User> followersObservableList = FXCollections.observableArrayList();
     @FXML
@@ -57,6 +59,7 @@ public class ControllerArtistPage_23 implements Initializable {
 
         // followers
         followersColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        followersIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
 
         // database
 

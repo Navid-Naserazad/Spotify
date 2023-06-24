@@ -46,7 +46,8 @@
             <TextField fx:id="musicsSearch" layoutX="316.0" layoutY="67.0" prefHeight="25.0" prefWidth="324.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
             <TableView fx:id="followersTableView" layoutX="55.0" layoutY="101.0" prefHeight="390.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
-                  <TableColumn fx:id="followersColumn" prefWidth="140.0" style="-fx-background-color: #1394ab;" text="Users" />
+                  <TableColumn fx:id="followersColumn" prefWidth="62.0" style="-fx-background-color: #1394ab;" text="Users" />
+                  <TableColumn fx:id="followersIDColumn" prefWidth="78.0" style="-fx-background-color: #1394ab;" text="ID" />
                </columns>
             </TableView>
             <TextField fx:id="followersSearch" layoutX="89.0" layoutY="67.0" prefHeight="25.0" prefWidth="78.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
