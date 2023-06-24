@@ -66,6 +66,7 @@ public class ControllerFollowings_20 implements Initializable {
         // User table view
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         userIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
+
         int numberOfUserToUserFollowings = 0;
         try {
             numberOfUserToUserFollowings = this.userRequest.numberOfFollowings_UserToUser(this.user.getUser_id());
@@ -111,6 +112,7 @@ public class ControllerFollowings_20 implements Initializable {
         // Artist table view
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         artistIDColumn.setCellValueFactory(new PropertyValueFactory<>("artist_id"));
+
         int numberOfUserToArtistFollowings = 0;
         try {
             numberOfUserToArtistFollowings = this.userRequest.numberOfFollowings_UserToArtist(this.user.getUser_id());

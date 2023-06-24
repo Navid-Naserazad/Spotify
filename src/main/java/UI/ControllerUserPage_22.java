@@ -16,7 +16,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -70,8 +72,6 @@ public class ControllerUserPage_22 implements Initializable {
     @FXML
     private TableColumn<Music, String> artistsColumn;
     @FXML
-    private TableColumn<Music, String> musicIDColumn;
-    @FXML
     private TextField likesSearch;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
 
@@ -86,13 +86,29 @@ public class ControllerUserPage_22 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         usernameLabel.setText(this.selectedUser.getUsername());
 
-        // followers
+        // Followers
         followersColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         followersIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
 
-        // database
-
-
+        int numberOfUserToUserFollowers = 0;
+        try {
+            numberOfUserToUserFollowers = this.userRequest.numberOfFollowers_UserToUser(this.selectedUser.getUser_id());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfUserToUserFollowers; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = this.userRequest.getRow_i_usernameOfUserToUserFollowers(i, this.selectedUser.getUser_id());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String ID = jsonObject.getString("user_id");
+            String username = jsonObject.getString("username");
+            followersObservableList.add(new User(ID, username));
+        }
 
         followersTableView.setItems(followersObservableList);
         FilteredList<User> followersFilteredList = new FilteredList<>(followersObservableList, b-> true);
@@ -117,13 +133,29 @@ public class ControllerUserPage_22 implements Initializable {
         followersSortedList.comparatorProperty().bind(followersTableView.comparatorProperty());
         followersTableView.setItems(followersSortedList);
 
-        // user followings
+        // User Followings
         userFollowingsColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         userFollowingsIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
 
-        // database
-
-
+        int numberOfUserToUserFollowings = 0;
+        try {
+            numberOfUserToUserFollowings = this.userRequest.numberOfFollowings_UserToUser(this.selectedUser.getUser_id());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfUserToUserFollowings; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.selectedUser.getUser_id());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String ID = jsonObject.getString("user_id");
+            String username = jsonObject.getString("username");
+            userFollowingsObservableList.add(new User(ID, username));
+        }
 
         userFollowingsTableView.setItems(userFollowingsObservableList);
         FilteredList<User> userFollowingsFilteredList = new FilteredList<>(userFollowingsObservableList, b-> true);
@@ -148,13 +180,34 @@ public class ControllerUserPage_22 implements Initializable {
         userFollowingsSortedList.comparatorProperty().bind(userFollowingsTableView.comparatorProperty());
         userFollowingsTableView.setItems(userFollowingsSortedList);
 
-        // artist followings
+        // Artist Followings
         artistFollowingsColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         artistFollowingsIDColumn.setCellValueFactory(new PropertyValueFactory<>("artist_id"));
 
-        // database
-
-
+        int numberOfUserToArtistFollowings = 0;
+        try {
+            numberOfUserToArtistFollowings = this.userRequest.numberOfFollowings_UserToArtist(
+                    this.selectedUser.getUser_id());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfUserToArtistFollowings; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = this.userRequest.getRow_i_nameOfUserToArtistFollowings(i,
+                        this.selectedUser.getUser_id());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String id = jsonObject.getString("artist_id");
+            String name = jsonObject.getString("name");
+            Artist artist = new Artist();
+            artist.setArtist_id(id);
+            artist.setName(name);
+            artistFollowingsObservableList.add(artist);
+        }
 
         artistFollowingsTableView.setItems(artistFollowingsObservableList);
         FilteredList<Artist> artistFollowingsFilteredList = new FilteredList<>(artistFollowingsObservableList, b-> true);
@@ -179,11 +232,27 @@ public class ControllerUserPage_22 implements Initializable {
         artistFollowingsSortedList.comparatorProperty().bind(artistFollowingsTableView.comparatorProperty());
         artistFollowingsTableView.setItems(artistFollowingsSortedList);
 
-        // playlists
+        // PlayLists
         playlistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         playlistsIDColumn.setCellValueFactory(new PropertyValueFactory<>("playListId"));
 
-        // database
+        int numberOfAllPlayListOfUser = 0;
+        try {
+            numberOfAllPlayListOfUser = this.userRequest.numberOfAllPlayListForSpecificUser(this.selectedUser.getUser_id());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfAllPlayListOfUser; i++) {
+            JSONObject jsonObject;
+            try {
+                jsonObject = new JSONObject(this.userRequest.getRow_iPlayList(i, this.selectedUser.getUser_id()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            this.playlistsObservableList.add(new PlayList(jsonObject.getString("playlist_id"),
+                    jsonObject.getString("title")));
+        }
 
 
 
@@ -210,11 +279,29 @@ public class ControllerUserPage_22 implements Initializable {
         playListsSortedList.comparatorProperty().bind(playlistsTableView.comparatorProperty());
         playlistsTableView.setItems(playListsSortedList);
 
-        // likes
+        // Likes
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
-        musicIDColumn.setCellValueFactory(new PropertyValueFactory<>("trackID"));
-        // database
+
+        int allLikedMusicsUserNum = 0;
+        try {
+            allLikedMusicsUserNum = this.userRequest.numberOfUserLike(this.selectedUser.getUser_id());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= allLikedMusicsUserNum; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = this.userRequest.getRow_i_UserLike(i, this.selectedUser.getUser_id());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String title = jsonObject.getString("title");
+            String artists = jsonObject.getString("artist");
+            likesObservableList.add(new Music(title, artists));
+        }
 
 
 

@@ -51,6 +51,7 @@ public class ControllerUserMenu_5 implements Initializable {
         usernameLabel.setText(this.user.getUsername());
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
+
         int allLikedMusicsUserNum = 0;
         try {
             allLikedMusicsUserNum = this.userRequest.numberOfUserLike(this.user.getUser_id());

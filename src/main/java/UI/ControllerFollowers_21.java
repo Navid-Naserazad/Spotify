@@ -54,6 +54,7 @@ public class ControllerFollowers_21 implements Initializable {
 
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         userIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
+
         int numberOfUserToUserFollowers = 0;
         try {
             numberOfUserToUserFollowers = this.userRequest.numberOfFollowers_UserToUser(this.user.getUser_id());
