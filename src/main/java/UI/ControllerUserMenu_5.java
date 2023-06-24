@@ -122,7 +122,20 @@ public class ControllerUserMenu_5 implements Initializable {
         stage.show();
     }
     public void switchToUserFollowers(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("followers.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("followers.fxml"));
+        loader.setControllerFactory(type -> {
+            if (type == ControllerFollowers.class) {
+                return new ControllerFollowers(this.user, this.userRequest);
+            }
+            try {
+                return type.getConstructor().newInstance();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
