@@ -233,7 +233,6 @@ public class UserResponse {
         ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
         resultSet3.next();
         int rows = resultSet3.getInt(1);
-        System.out.println(rows);
         String sqlCommand3 = "SELECT artist.name FROM music_artists ,artist " +
                 "WHERE music_artists.track_id = '" + track_id + "'" +
                 "AND music_artists.artist_id = artist.artist_id";
@@ -474,7 +473,6 @@ public class UserResponse {
         ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
         resultSet3.next();
         int rows = resultSet3.getInt(1);
-        System.out.println(rows);
         String sqlCommand_4 = "SELECT artist.name FROM music_artists ,artist " +
                 "WHERE music_artists.track_id = '" + track_id + "'" +
                 "AND music_artists.artist_id = artist.artist_id";
@@ -542,7 +540,6 @@ public class UserResponse {
         ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
         resultSet3.next();
         int rows = resultSet3.getInt(1);
-        System.out.println(rows);
         String sqlCommand_4 = "SELECT artist.name FROM music_artists ,artist " +
                 "WHERE music_artists.track_id = '" + track_id + "'" +
                 "AND music_artists.artist_id = artist.artist_id";
