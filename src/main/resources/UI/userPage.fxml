@@ -51,19 +51,19 @@
             <TableView fx:id="userFollowingsTableView" layoutX="190.0" layoutY="102.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
                   <TableColumn fx:id="userFollowingsColumn" prefWidth="51.0" style="-fx-background-color: #1394ab;" text="Users" />
-                  <TableColumn fx:id="userFollowingsIDColumn" prefWidth="89.0" style="-fx-background-color: #1394ab;" text="Users" />
+                  <TableColumn fx:id="userFollowingsIDColumn" prefWidth="89.0" style="-fx-background-color: #1394ab;" text="ID" />
                </columns>
             </TableView>
             <TableView fx:id="artistFollowingsTableView" layoutX="361.0" layoutY="102.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
                   <TableColumn fx:id="artistFollowingsColumn" prefWidth="51.0" style="-fx-background-color: #1394ab;" text="Artists" />
-                  <TableColumn fx:id="artistFollowingsIDColumn" prefWidth="89.0" style="-fx-background-color: #1394ab;" text="Artists" />
+                  <TableColumn fx:id="artistFollowingsIDColumn" prefWidth="89.0" style="-fx-background-color: #1394ab;" text="ID" />
                </columns>
             </TableView>
             <TableView fx:id="playlistsTableView" layoutX="532.0" layoutY="100.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
                   <TableColumn fx:id="playlistsColumn" prefWidth="57.0" style="-fx-background-color: #1394ab;" text="Playlists" />
-                  <TableColumn fx:id="playlistsIDColumn" prefWidth="83.0" style="-fx-background-color: #1394ab;" text="Playlists" />
+                  <TableColumn fx:id="playlistsIDColumn" prefWidth="83.0" style="-fx-background-color: #1394ab;" text="ID" />
                </columns>
             </TableView>
             <TextField fx:id="userFollowingsSearch" layoutX="224.0" layoutY="61.0" prefHeight="25.0" prefWidth="78.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
@@ -99,7 +99,7 @@
                <columns>
                   <TableColumn fx:id="titleColumn" prefWidth="96.0" style="-fx-background-color: #1394ab;" text="Title" />
                   <TableColumn fx:id="artistsColumn" prefWidth="49.0" style="-fx-background-color: #1394ab;" text="Artists" />
-                  <TableColumn fx:id="musicIDColumn" style="-fx-background-color: #1394ab;" text="Artists" />
+                  <TableColumn fx:id="musicIDColumn" style="-fx-background-color: #1394ab;" text="ID" />
                </columns>
             </TableView>
          </children>

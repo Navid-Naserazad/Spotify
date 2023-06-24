@@ -32,12 +32,16 @@ public class ControllerUserPage_22 implements Initializable {
     @FXML
     private TableColumn<User, String> followersColumn;
     @FXML
+    private TableColumn<User, String> followersIDColumn;
+    @FXML
     private TextField followersSearch;
     ObservableList<User> followersObservableList = FXCollections.observableArrayList();
     @FXML
     private TableView<User> userFollowingsTableView;
     @FXML
     private TableColumn<User, String> userFollowingsColumn;
+    @FXML
+    private TableColumn<User, String> userFollowingsIDColumn;
     @FXML
     private TextField userFollowingsSearch;
     ObservableList<User> userFollowingsObservableList = FXCollections.observableArrayList();
@@ -46,12 +50,16 @@ public class ControllerUserPage_22 implements Initializable {
     @FXML
     private TableColumn<Artist, String> artistFollowingsColumn;
     @FXML
+    private TableColumn<Artist, String> artistFollowingsIDColumn;
+    @FXML
     private TextField artistFollowingsSearch;
     ObservableList<Artist> artistFollowingsObservableList = FXCollections.observableArrayList();
     @FXML
     private TableView<PlayList> playlistsTableView;
     @FXML
     private TableColumn<PlayList, String> playlistsColumn;
+    @FXML
+    private TableColumn<PlayList, String> playlistsIDColumn;
     @FXML
     private TextField playlistsSearch;
     ObservableList<PlayList> playlistsObservableList = FXCollections.observableArrayList();
@@ -61,6 +69,8 @@ public class ControllerUserPage_22 implements Initializable {
     private TableColumn<Music, String> titleColumn;
     @FXML
     private TableColumn<Music, String> artistsColumn;
+    @FXML
+    private TableColumn<Music, String> musicIDColumn;
     @FXML
     private TextField likesSearch;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
@@ -78,6 +88,7 @@ public class ControllerUserPage_22 implements Initializable {
 
         // followers
         followersColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        followersIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
 
         // database
 
@@ -108,6 +119,7 @@ public class ControllerUserPage_22 implements Initializable {
 
         // user followings
         userFollowingsColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userFollowingsIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
 
         // database
 
@@ -138,6 +150,7 @@ public class ControllerUserPage_22 implements Initializable {
 
         // artist followings
         artistFollowingsColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        artistFollowingsIDColumn.setCellValueFactory(new PropertyValueFactory<>("artist_id"));
 
         // database
 
@@ -168,6 +181,7 @@ public class ControllerUserPage_22 implements Initializable {
 
         // playlists
         playlistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        playlistsIDColumn.setCellValueFactory(new PropertyValueFactory<>("playListId"));
 
         // database
 
@@ -199,7 +213,7 @@ public class ControllerUserPage_22 implements Initializable {
         // likes
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
-
+        musicIDColumn.setCellValueFactory(new PropertyValueFactory<>("trackID"));
         // database
 
 
