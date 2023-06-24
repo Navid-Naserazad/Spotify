@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ControllerUserMenu_5">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ControllerUserMenu_5">
     <left>
         <AnchorPane prefHeight="400.0" prefWidth="183.0" style="-fx-background-color: #191414;" BorderPane.alignment="CENTER">
             <children>
@@ -48,35 +48,41 @@
         </AnchorPane>
     </left>
     <right>
-        <AnchorPane prefHeight="400.0" prefWidth="183.0" style="-fx-background-color: #191414;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="246.0" style="-fx-background-color: #191414;" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableView" layoutX="9.0" layoutY="27.0" prefHeight="347.0" prefWidth="165.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+            <TableView fx:id="tableView" layoutX="8.0" layoutY="53.0" prefHeight="347.0" prefWidth="231.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
-                  <TableColumn fx:id="likesColumn" prefWidth="159.0" style="-fx-background-color: #1394ab;" text="Likes" />
+                  <TableColumn fx:id="titleColumn" prefWidth="96.0" style="-fx-background-color: #1394ab;" text="Title" />
+                  <TableColumn fx:id="artistsColumn" prefWidth="129.0" style="-fx-background-color: #1394ab;" text="Artists" />
                </columns>
             </TableView>
+            <Label layoutX="90.0" layoutY="7.0" text="Likes" textFill="#1ed760">
+               <font>
+                  <Font name="Bodoni MT Bold" size="30.0" />
+               </font>
+            </Label>
          </children>
         </AnchorPane>
     </right>
     <center>
-        <AnchorPane prefHeight="400.0" prefWidth="371.0" style="-fx-background-color: #1ed760;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="335.0" style="-fx-background-color: #1ed760;" BorderPane.alignment="CENTER">
             <children>
-            <Button layoutX="33.0" layoutY="38.0" mnemonicParsing="false" onAction="#switchToUserSearch" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Search" textFill="#1ed760">
+            <Button layoutX="26.0" layoutY="38.0" mnemonicParsing="false" onAction="#switchToUserSearch" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Search" textFill="#1ed760">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="128.0" mnemonicParsing="false" onAction="#switchToUserPlaylist" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Playlist" textFill="#1ed760">
+            <Button layoutX="26.0" layoutY="127.0" mnemonicParsing="false" onAction="#switchToUserPlaylist" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Playlist" textFill="#1ed760">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchToUserEditProfile" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Edit Profile" textFill="#1ed760">
+            <Button layoutX="26.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchToUserEditProfile" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Edit Profile" textFill="#1ed760">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="301.0" mnemonicParsing="false" onAction="#switchToScene1" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Log Out" textFill="#1ed760">
+            <Button layoutX="26.0" layoutY="307.0" mnemonicParsing="false" onAction="#switchToScene1" prefHeight="41.0" prefWidth="269.0" style="-fx-background-color: #191414;" text="Log Out" textFill="#1ed760">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>

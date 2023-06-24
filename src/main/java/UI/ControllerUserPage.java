@@ -55,7 +55,9 @@ public class ControllerUserPage implements Initializable {
     @FXML
     private TableView<Music> likesTableView;
     @FXML
-    private TableColumn<Music, String> likesColumn;
+    private TableColumn<Music, String> titleColumn;
+    @FXML
+    private TableColumn<Music, String> artistsColumn;
     @FXML
     private TextField likesSearch;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
@@ -188,7 +190,8 @@ public class ControllerUserPage implements Initializable {
         playlistsTableView.setItems(playListsSortedList);
 
         // likes
-        likesColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
 
         // database
 

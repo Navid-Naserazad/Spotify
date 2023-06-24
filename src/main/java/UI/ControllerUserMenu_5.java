@@ -31,11 +31,13 @@ public class ControllerUserMenu_5 implements Initializable {
     private User user;
     private UserRequest userRequest;
     @FXML
+    private Label usernameLabel;
+    @FXML
     private TableView<Music> tableView;
     @FXML
-    private TableColumn<Music, String> likesColumn;
+    private TableColumn<Music, String> titleColumn;
     @FXML
-    private Label usernameLabel;
+    private TableColumn<Music, String> artistsColumn;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
 
     public ControllerUserMenu_5(User user, UserRequest userRequest) {
@@ -46,7 +48,8 @@ public class ControllerUserMenu_5 implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameLabel.setText(this.user.getUsername());
-        likesColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
 //        int allMusicsNumber = 0;
 //        try {
 //            allMusicsNumber = userRequest.numberOfAllMusics();
@@ -62,13 +65,9 @@ public class ControllerUserMenu_5 implements Initializable {
 //            catch (IOException e) {
 //                throw new RuntimeException(e);
 //            }
-//            String trackID = jsonObject.getString("track_id");
 //            String title = jsonObject.getString("title");
-//            String genre = jsonObject.getString("genre");
-//            String album = jsonObject.getString("album");
 //            String artists = jsonObject.getString("artist");
-//            String duration = jsonObject.getString("duration");
-//            musicObservableList.add(new Music(trackID, title, genre, album, artists, duration));
+//            musicObservableList.add(new Music(title, artists));
 //        }
         tableView.setItems(likesObservableList);
     }

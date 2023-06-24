@@ -19,6 +19,10 @@ public class Music {
         this.artists = artists;
         this.duration = duration;
     }
+    public Music(String title, String artists) {
+        this.title = title;
+        this.artists = artists;
+    }
 
     // Getter
     public String getTrackID() {
