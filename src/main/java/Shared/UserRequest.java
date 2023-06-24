@@ -120,14 +120,14 @@ public class UserRequest {
         return Integer.parseInt(this.input.readUTF());
     }
 
-    public String getRow_iUser(int i) throws IOException {
+    public JSONObject getRow_iUser(int i) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "9");
         jsonObject.put("row", i);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
-        return this.input.readUTF();
+        return new JSONObject(this.input.readUTF());
     }
 
     public boolean checkCurrentPassword(String user_id, String password) throws IOException {

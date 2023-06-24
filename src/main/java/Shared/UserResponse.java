@@ -142,12 +142,16 @@ public class UserResponse {
     }
 
     public void getRow_iUser(int n) throws SQLException, IOException {
-        String sqlCommand = "SELECT username FROM user";
+        String sqlCommand = "SELECT user_id, username FROM user";
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         for (int i = 0; i < n; i++) {
             resultSet.next();
         }
-        this.output.writeUTF(resultSet.getString("username"));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("user_id", resultSet.getString("user_id"));
+        jsonObject.put("username", resultSet.getString("username"));
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
         this.output.flush();
     }
 

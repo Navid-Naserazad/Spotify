@@ -67,14 +67,16 @@ public class ControllerSearchUser_9 implements Initializable {
         }
         for (int i = 1; i <= allUsers; i++) {
             JSONObject jsonObject = null;
-//            try {
-//                username = userRequest.getRow_iUser(i);
-                String username;
-                String ID;
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            usersObservableList.add(new User(ID, username));
+            try {
+                jsonObject = userRequest.getRow_iUser(i);
+
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String ID = jsonObject.getString("user_id");
+            String username = jsonObject.getString("username");
+            usersObservableList.add(new User(ID, username));
         }
         tableView.setItems(usersObservableList);
         FilteredList<User> filteredList = new FilteredList<>(usersObservableList, b-> true);
