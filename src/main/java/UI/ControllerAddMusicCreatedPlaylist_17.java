@@ -131,10 +131,28 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
         tableView.setItems(sortedList);
     }
     public void addButton(ActionEvent event) {
-        ObservableList<Music> selectedItems = tableView.getSelectionModel().getSelectedItems();
-        Music music = selectedItems.get(0);
-        musics.add(music);
-        warning.setText(music.getTitle() + " is added to " + playlistTitle.getText());
+        try {
+            ObservableList<Music> selectedItems = tableView.getSelectionModel().getSelectedItems();
+            Music music = selectedItems.get(0);
+            if (musics.size() == 0) {
+                musics.add(music);
+                warning.setText(music.getTitle() + " is added to " + playlistTitle.getText());
+            }
+            else {
+                for (int i=0; i<musics.size(); i++) {
+                    if (musics.get(i).getTrackID().equals(music.getTrackID())) {
+                        warning.setText("You have already added " + music.getTitle() + " to your playlist");
+                    }
+                    if (!musics.get(i).getTrackID().equals(music.getTrackID()) && i == musics.size()-1) {
+                        musics.add(music);
+                        warning.setText(music.getTitle() + " is added to " + playlistTitle.getText());
+                    }
+                }
+            }
+        }
+        catch (IndexOutOfBoundsException e) {
+            warning.setText("You did not choose any music to add");
+        }
     }
     public void doneButton(ActionEvent event) throws IOException {
         // the playlist is created and it must be added to the database
