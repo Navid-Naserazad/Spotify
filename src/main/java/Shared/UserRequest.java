@@ -4,8 +4,6 @@ import User.User;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.security.PublicKey;
-import java.util.jar.JarOutputStream;
 
 public class UserRequest {
 
@@ -308,7 +306,7 @@ public class UserRequest {
         this.input.readUTF();
     }
 
-    public boolean checkFollow(String user_id_1, String user_id_2) throws IOException {
+    public boolean checkFollowUser(String user_id_1, String user_id_2) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "25");
         jsonObject.put("user_id_1", user_id_1);
@@ -319,7 +317,7 @@ public class UserRequest {
         return this.input.readBoolean();
     }
 
-    public void addFollow(String user_id_1, String user_id_2) throws IOException {
+    public void addFollowUser(String user_id_1, String user_id_2) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "26");
         jsonObject.put("user_id_1", user_id_1);
@@ -328,5 +326,26 @@ public class UserRequest {
         this.output.writeUTF(jsonCommand);
         this.output.flush();
         this.input.readUTF();
+    }
+
+    public int numberOfFollowings_UserToUser(String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "27");
+        jsonObject.put("user_id_1", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readInt();
+    }
+
+    public String getRow_i_UsernameOfUserToUserFollowings(int n, String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "28");
+        jsonObject.put("row", n);
+        jsonObject.put("user_id_1", user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
     }
 }

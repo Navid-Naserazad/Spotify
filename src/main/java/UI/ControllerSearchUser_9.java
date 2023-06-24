@@ -100,8 +100,8 @@ public class ControllerSearchUser_9 implements Initializable {
             User secondUser = users.get(0);
             message.setText("");
             String user_id_2 = secondUser.getiD();
-            if (!this.userRequest.checkFollow(this.user.getiD(), user_id_2)) {
-                this.userRequest.addFollow(this.user.getiD(), user_id_2);
+            if (!this.userRequest.checkFollowUser(this.user.getiD(), user_id_2)) {
+                this.userRequest.addFollowUser(this.user.getiD(), user_id_2);
                 message.setText(secondUser.getUsername() + " is followed now!");
             }
             else {

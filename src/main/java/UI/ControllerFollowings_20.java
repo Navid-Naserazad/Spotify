@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerFollowings implements Initializable {
+public class ControllerFollowings_20 implements Initializable {
 
     // Atributtes
     Parent root;
@@ -51,7 +51,7 @@ public class ControllerFollowings implements Initializable {
     ObservableList<User> usersObservableList = FXCollections.observableArrayList();
     ObservableList<Artist> artistsObservableList = FXCollections.observableArrayList();
 
-    public ControllerFollowings(User user, UserRequest userRequest) {
+    public ControllerFollowings_20(User user, UserRequest userRequest) {
         this.user = user;
         this.userRequest = userRequest;
     }
@@ -59,7 +59,22 @@ public class ControllerFollowings implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // User table view
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-
+        int numberOfUserToUserFollowings = 0;
+        try {
+            numberOfUserToUserFollowings = this.userRequest.numberOfFollowings_UserToUser(this.user.getiD());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= numberOfUserToUserFollowings; i++) {
+            String username = null;
+            try {
+                username = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getiD());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         // database
 
 

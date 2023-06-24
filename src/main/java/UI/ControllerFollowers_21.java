@@ -1,6 +1,5 @@
 package UI;
 
-import Artist.Music;
 import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
@@ -24,9 +23,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
-public class ControllerFollowers implements Initializable {
+public class ControllerFollowers_21 implements Initializable {
     // Atributtes
     Parent root;
     Stage stage;
@@ -44,7 +42,7 @@ public class ControllerFollowers implements Initializable {
     private Label message;
     ObservableList<User> usersObservableList = FXCollections.observableArrayList();
 
-    public ControllerFollowers(User user, UserRequest userRequest) {
+    public ControllerFollowers_21(User user, UserRequest userRequest) {
         this.user = user;
         this.userRequest = userRequest;
     }
