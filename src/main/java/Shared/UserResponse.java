@@ -330,7 +330,7 @@ public class UserResponse {
     }
 
     public void addFollowUser(String user_id_1, String user_id_2) throws SQLException, IOException {
-        String sqlCommand = "INSERT INTO user_user_follow VALUES (" + user_id_1 + ',' + user_id_2 + ')';
+        String sqlCommand = "INSERT INTO user_user_follow VALUES ('" + user_id_1 + "','" + user_id_2 + "')";
         int result = statement.executeUpdate(sqlCommand);
         this.output.writeUTF("");
         this.output.flush();
@@ -359,7 +359,21 @@ public class UserResponse {
         this.output.flush();
     }
 
+    public void checkFollowArtist(String user_id, String artist_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM user_artist_follow WHERE user_id = '" + user_id + "' AND artist_id = '" +
+                artist_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeBoolean(resultSet.getInt(1) != 0);
+        this.output.flush();
+    }
 
+    public void addFollowArtist(String user_id, String artist_id) throws SQLException, IOException {
+        String sqlCommand = "INSERT INTO user_artist_follow VALUES ('" + user_id + "','" + artist_id + "')";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
 
 
 

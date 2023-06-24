@@ -348,4 +348,26 @@ public class UserRequest {
         this.output.flush();
         return this.input.readUTF();
     }
+
+    public boolean checkFollowArtist(String user_id, String artist_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "29");
+        jsonObject.put("user_id_", user_id);
+        jsonObject.put("artist_id", artist_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readBoolean();
+    }
+
+    public void addFollowArtist(String user_id, String artist_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "30");
+        jsonObject.put("user_id_", user_id);
+        jsonObject.put("artist_id", artist_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
 }

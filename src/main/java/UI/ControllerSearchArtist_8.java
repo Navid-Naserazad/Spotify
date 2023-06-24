@@ -111,14 +111,14 @@ public class ControllerSearchArtist_8 implements Initializable {
             ObservableList<Artist> artists = tableView.getSelectionModel().getSelectedItems();
             Artist artist = artists.get(0);
             message.setText("");
-            String name = artist.getName();
-            // add to database
-//        if () {
-//            message.setText(name + " is followed now!");
-//        }
-//        else {
-//            message.setText("You have already followed " + name);
-//        }
+            String artistID = artist.getiD();
+            if (!this.userRequest.checkFollowArtist(this.user.getiD(), artistID)) {
+                this.userRequest.addFollowArtist(this.user.getiD(), artistID);
+                message.setText(artist.getName() + " is followed now!");
+            }
+            else {
+                message.setText("You have already followed " + artist.getName());
+            }
         }
         catch (IndexOutOfBoundsException e) {
             message.setText("You did not choose any artist!");
