@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: spotify
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -60,6 +60,7 @@ CREATE TABLE `liked` (
 
 LOCK TABLES `liked` WRITE;
 /*!40000 ALTER TABLE `liked` DISABLE KEYS */;
+INSERT INTO `liked` VALUES ('6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','4');
 /*!40000 ALTER TABLE `liked` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +206,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('918a0df8-4a35-4128-9d2a-00a484b3dabd','ooooo','00000','hhh'),('b5b887e0-5fc3-43d7-8b54-bc43b6aa4839','kekek','jejj','kekek'),('e324e2cb-7385-41fc-9074-61f472608de8','slsll','s;;s;',';ss;'),('054e3938-9710-41bb-9198-cc0e2555adaa','jddj','jdjdj','jjdjd'),('0810aa59-f854-4b60-bef4-ee7a0a4193c4','slls','ksks','ksks'),('986bd345-9c65-490d-b806-1a5670ad23d2','lslslls','lsls',';s;;s'),('db8bd9f9-238b-4abe-a244-9d1fa8dad5d6','KDLD','DLLD','DLLD'),('6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','bardia','akbari','djdjdj'),('8c0be978-7066-4b91-b73f-331311923994','kdkd','ososos','ppapapa'),('7d718b6b-0883-41a2-bb12-d60c714826ce','nariman','1234','g');
+INSERT INTO `user` VALUES ('918a0df8-4a35-4128-9d2a-00a484b3dabd','ooooo','00000','hhh'),('b5b887e0-5fc3-43d7-8b54-bc43b6aa4839','kekek','jejj','kekek'),('e324e2cb-7385-41fc-9074-61f472608de8','slsll','s;;s;',';ss;'),('054e3938-9710-41bb-9198-cc0e2555adaa','jddj','jdjdj','jjdjd'),('0810aa59-f854-4b60-bef4-ee7a0a4193c4','slls','ksks','ksks'),('986bd345-9c65-490d-b806-1a5670ad23d2','lslslls','lsls',';s;;s'),('db8bd9f9-238b-4abe-a244-9d1fa8dad5d6','KDLD','DLLD','DLLD'),('6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','bardia','0000','bardia@yahoo.com'),('8c0be978-7066-4b91-b73f-331311923994','kdkd','ososos','ppapapa'),('7d718b6b-0883-41a2-bb12-d60c714826ce','nariman','1234','g');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,6 +229,7 @@ CREATE TABLE `user_artist_follow` (
 
 LOCK TABLES `user_artist_follow` WRITE;
 /*!40000 ALTER TABLE `user_artist_follow` DISABLE KEYS */;
+INSERT INTO `user_artist_follow` VALUES ('6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','6'),('6c20aa52-b8ca-440d-9e1f-eaa72dc4beab','8');
 /*!40000 ALTER TABLE `user_artist_follow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,6 +252,7 @@ CREATE TABLE `user_user_follow` (
 
 LOCK TABLES `user_user_follow` WRITE;
 /*!40000 ALTER TABLE `user_user_follow` DISABLE KEYS */;
+INSERT INTO `user_user_follow` VALUES ('7d718b6b-0883-41a2-bb12-d60c714826ce','6c20aa52-b8ca-440d-9e1f-eaa72dc4beab'),('986bd345-9c65-490d-b806-1a5670ad23d2','6c20aa52-b8ca-440d-9e1f-eaa72dc4beab');
 /*!40000 ALTER TABLE `user_user_follow` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -262,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-24 20:18:00
+-- Dump completed on 2023-06-25  1:09:00
