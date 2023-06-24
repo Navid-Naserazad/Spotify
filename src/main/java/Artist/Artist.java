@@ -36,6 +36,11 @@ public class Artist {
     }
 
     // Constructor For Observable
+    public Artist(String artist_id, String name, String biography) {
+        this.artist_id = artist_id;
+        this.name = name;
+        this.biography = biography;
+    }
     public Artist(String name, String biography){
         this.name = name;
         this.biography = biography;

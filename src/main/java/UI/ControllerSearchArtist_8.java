@@ -41,6 +41,8 @@ public class ControllerSearchArtist_8 implements Initializable {
     @FXML
     private TableColumn<Artist, String> biographyColumn;
     @FXML
+    private TableColumn<Artist, String> IDColumn;
+    @FXML
     private TextField search;
     @FXML
     private Label message;
@@ -59,6 +61,7 @@ public class ControllerSearchArtist_8 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         biographyColumn.setCellValueFactory(new PropertyValueFactory<>("biography"));
+        IDColumn.setCellValueFactory(new PropertyValueFactory<>("artist_id"));
         int allArtists = 0;
         try {
             allArtists = userRequest.numberOfAllArtist();
@@ -75,6 +78,7 @@ public class ControllerSearchArtist_8 implements Initializable {
             }
             String name = jsonObject.getString("name");
             String biography = jsonObject.getString("biography");
+            String ID = jsonObject.getString();
             artistsObservableList.add(new Artist(name, biography));
         }
         tableView.setItems(artistsObservableList);
