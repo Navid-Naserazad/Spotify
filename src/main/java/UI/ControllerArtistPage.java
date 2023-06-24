@@ -2,6 +2,7 @@ package UI;
 
 import Artist.Artist;
 import Artist.Music;
+import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class ControllerArtistPage implements Initializable {
     private Artist artist;
+    private User user;
+    private UserRequest userRequest;
     @FXML
     private Label nameLabel;
     @FXML
@@ -42,6 +45,12 @@ public class ControllerArtistPage implements Initializable {
     @FXML
     private TextField musicsSearch;
     ObservableList<Music> musicsObservableList = FXCollections.observableArrayList();
+
+    public ControllerArtistPage(UserRequest userRequest, Artist artist) {
+        this.userRequest = userRequest;
+        this.artist = artist;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameLabel.setText(this.artist.getName());

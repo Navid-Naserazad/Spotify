@@ -3,6 +3,7 @@ package UI;
 import Artist.Artist;
 import Artist.PlayList;
 import Artist.Music;
+import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +22,8 @@ import java.util.ResourceBundle;
 
 public class ControllerUserPage implements Initializable {
     // Attributes
-    private User user;
+    private User selectedUser;
+    private UserRequest userRequest;
     @FXML
     private Label usernameLabel;
     @FXML
@@ -62,12 +64,13 @@ public class ControllerUserPage implements Initializable {
     private TextField likesSearch;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
 
-    public ControllerUserPage(User user) {
-        this.user = user;
+    public ControllerUserPage(User selectedUser, UserRequest userRequest) {
+        this.selectedUser = selectedUser;
+        this.userRequest = userRequest;
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usernameLabel.setText(this.user.getUsername());
+        usernameLabel.setText(this.selectedUser.getUsername());
 
         // followers
         followersColumn.setCellValueFactory(new PropertyValueFactory<>("username"));

@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
@@ -120,8 +121,35 @@ public class ControllerSearchUser_9 implements Initializable {
             message.setText("You did not choose any user!");
         }
     }
-    public void visitPage(ActionEvent event) {
-
+    public void visitPage(ActionEvent event) throws IOException {
+        try {
+            ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
+            User user = users.get(0);
+            message.setText("");
+            Stage stage = new Stage();
+            stage.setTitle("Spotify");
+            stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("userPage.fxml"));
+            loader.setControllerFactory(type -> {
+                if (type == ControllerUserPage.class) {
+                    return new ControllerUserPage(user, userRequest);
+                }
+                try {
+                    return type.getConstructor().newInstance();
+                }
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
+        catch (IndexOutOfBoundsException e) {
+            message.setText("You did not choose any user!");
+        }
     }
     public void switchToUserSearch(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userSearch.fxml"));

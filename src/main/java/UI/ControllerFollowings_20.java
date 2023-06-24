@@ -19,7 +19,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -64,7 +66,7 @@ public class ControllerFollowings_20 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // User table view
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        userIDColumn.setCellValueFactory(new PropertyValueFactory<>("iD"));
+        userIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
         int numberOfUserToUserFollowings = 0;
         try {
             numberOfUserToUserFollowings = this.userRequest.numberOfFollowings_UserToUser(this.user.getUser_id());
@@ -132,9 +134,6 @@ public class ControllerFollowings_20 implements Initializable {
             artist.setName(name);
             artistsObservableList.add(artist);
         }
-        // database
-
-
 
         artistTableView.setItems(artistsObservableList);
         FilteredList<Artist> artistFilteredList = new FilteredList<>(artistsObservableList, b-> true);
@@ -183,8 +182,65 @@ public class ControllerFollowings_20 implements Initializable {
             message.setText("You did not choose any account!");
         }
     }
-    public void visitPage(ActionEvent event) {
-
+    public void visitUserPage(ActionEvent event) throws IOException {
+        try {
+            ObservableList<User> users = userTableView.getSelectionModel().getSelectedItems();
+            User user = users.get(0);
+            message.setText("");
+            Stage stage = new Stage();
+            stage.setTitle("Spotify");
+            stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("userPage.fxml"));
+            loader.setControllerFactory(type -> {
+                if (type == ControllerUserPage.class) {
+                    return new ControllerUserPage(user, userRequest);
+                }
+                try {
+                    return type.getConstructor().newInstance();
+                }
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
+        catch (IndexOutOfBoundsException e) {
+            message.setText("You did not choose any user!");
+        }
+    }
+    public void visitArtistPage(ActionEvent event) throws IOException {
+        try {
+            ObservableList<Artist> artists = artistTableView.getSelectionModel().getSelectedItems();
+            Artist artist = artists.get(0);
+            message.setText("");
+            Stage stage = new Stage();
+            stage.setTitle("Spotify");
+            stage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("artistPage.fxml"));
+            loader.setControllerFactory(type -> {
+                if (type == ControllerArtistPage.class) {
+                    return new ControllerArtistPage(this.userRequest, artist);
+                }
+                try {
+                    return type.getConstructor().newInstance();
+                }
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
+        catch (IndexOutOfBoundsException e) {
+            message.setText("You did not choose any artist!");
+        }
     }
     public void switchToUserMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
