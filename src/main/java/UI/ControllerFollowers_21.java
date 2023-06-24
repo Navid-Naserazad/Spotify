@@ -19,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -93,19 +92,16 @@ public class ControllerFollowers_21 implements Initializable {
     public void remove(ActionEvent event) {
         try {
             ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
-            User user = users.get(0);
+            User Anotheruser = users.get(0);
             message.setText("");
-            String username = user.getUsername();
-            // add to database
-//        if () {
-//            message.setText(username + " is removed from your followers!");
-//        }
-//        else {
-//            message.setText("You have already removed " + username + from your followers!);
-//        }
+            String username = Anotheruser.getUsername();
+            this.userRequest.unfollow_UserToUser(Anotheruser.getiD(), this.user.getiD());
+            message.setText(username + " is removed from your followers!");
         }
         catch (IndexOutOfBoundsException e) {
             message.setText("You did not choose any user!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
     public void visitPage(ActionEvent event) {
