@@ -118,14 +118,16 @@ public class ControllerFollowings_20 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= numberOfUserToArtistFollowings; i++) {
-            String name = null;
+            JSONObject jsonObject = null;
             try {
-                name = this.userRequest.getRow_i_nameOfUserToArtistFollowings(i, this.user.getiD());
+                jsonObject = this.userRequest.getRow_i_nameOfUserToArtistFollowings(i, this.user.getiD());
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            artistsObservableList.add(new Artist(name));
+            String id = jsonObject.getString("artist_id");
+            String name = jsonObject.getString("name");
+            artistsObservableList.add(new Artist(id, name));
         }
         // database
 

@@ -391,11 +391,15 @@ public class UserResponse {
         for (int i = 0; i < n; i++) {
             resultSet1.next();
         }
+        JSONObject jsonObject = new JSONObject();
         String artist_id = resultSet1.getString(1);
+        jsonObject.put("artist_id", artist_id);
         String sqlCommand2 = "SELECT name FROM artist WHERE artist_id = '" + artist_id + "'";
         ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
         resultSet2.next();
-        this.output.writeUTF(resultSet2.getString(1));
+        jsonObject.put("name", resultSet2.getString(1));
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
         this.output.flush();
     }
 
