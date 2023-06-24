@@ -345,8 +345,7 @@ public class UserResponse {
     }
 
     public void getRow_i_UsernameOfUserToUserFollowings(int n, String user_id) throws SQLException, IOException {
-        String sqlCommand1 = "SELECT user_id_2 FROM user_user_follow WHERE user_id_1 = '" + user_id + "'" +
-                "ORDER BY ASC";
+        String sqlCommand1 = "SELECT user_id_2 FROM user_user_follow WHERE user_id_1 = '" + user_id + "'";
         ResultSet resultSet1 = statement.executeQuery(sqlCommand1);
         for (int i = 0; i < n; i++) {
             resultSet1.next();
@@ -385,8 +384,7 @@ public class UserResponse {
 
 
     public void getRow_i_nameOfUserToArtistFollowings(int n, String user_id) throws SQLException, IOException {
-        String sqlCommand1 = "SELECT artist_id FROM user_user_follow WHERE user_id = '" + user_id + "'" +
-                "ORDER BY ASC";
+        String sqlCommand1 = "SELECT artist_id FROM user_artist_follow WHERE user_id = '" + user_id + "'";
         ResultSet resultSet1 = statement.executeQuery(sqlCommand1);
         for (int i = 0; i < n; i++) {
             resultSet1.next();
@@ -409,8 +407,7 @@ public class UserResponse {
     }
 
     public void getRow_i_usernameOfUserToUserFollowers(int n, String user_id) throws SQLException, IOException {
-        String sqlCommand1 = "SELECT user_id_1 FROM user_user_follow WHERE user_id_2 = '" + user_id + "'" +
-                "ORDER BY ASC";
+        String sqlCommand1 = "SELECT user_id_1 FROM user_user_follow WHERE user_id_2 = '" + user_id + "'";
         ResultSet resultSet1 = statement.executeQuery(sqlCommand1);
         for (int i = 0; i < n; i++) {
             resultSet1.next();

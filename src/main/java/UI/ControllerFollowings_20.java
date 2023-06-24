@@ -74,6 +74,7 @@ public class ControllerFollowings_20 implements Initializable {
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            usersObservableList.add(new User(username));
         }
         userTableView.setItems(usersObservableList);
         FilteredList<User> userFilteredList = new FilteredList<>(usersObservableList, b-> true);
@@ -115,6 +116,7 @@ public class ControllerFollowings_20 implements Initializable {
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            artistsObservableList.add(new Artist(name));
         }
         // database
 
@@ -151,19 +153,19 @@ public class ControllerFollowings_20 implements Initializable {
             Artist artist = artists.get(0);
             unfollowUser(user);
             unfollowArtist(artist);
-            message.setText("User : " + user.getUsername() +  " & Artist : " + artist.getName() + " are unfolloed!");
+            message.setText("User : " + user.getUsername() +  " & Artist : " + artist.getName() + " are unfollowed!");
         }
-        if (artists.size() == 0) {
+        else if (users.size() != 0 && artists.size() == 0) {
             User user = users.get(0);
             unfollowUser(user);
-            message.setText("User : " + user.getUsername() + " is unfolloed!");
+            message.setText("User : " + user.getUsername() + " is unfollowed!");
         }
-        if (users.size() == 0) {
+        else if (artists.size() != 0 && users.size() == 0) {
             Artist artist = artists.get(0);
             unfollowArtist(artist);
-            message.setText("Artist : " + artist.getName() + " is unfolloed!");
+            message.setText("Artist : " + artist.getName() + " is unfollowed!");
         }
-        if (users.size() == 0 && artists.size() == 0) {
+        else if (users.size() == 0 && artists.size() == 0) {
             message.setText("You did not choose any account!");
         }
     }
@@ -192,9 +194,11 @@ public class ControllerFollowings_20 implements Initializable {
     }
     public void unfollowUser(User user) {
         // database
+
     }
     public void unfollowArtist(Artist artist) {
         // database
+
     }
 
 }

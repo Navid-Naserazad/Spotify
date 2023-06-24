@@ -33,7 +33,6 @@ public class User {
     }
 
     // Constructor For Observable
-
     public User(String username) {
         this.username = username;
     }

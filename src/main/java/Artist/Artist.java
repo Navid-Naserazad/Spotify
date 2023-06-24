@@ -40,6 +40,9 @@ public class Artist {
         this.name = name;
         this.biography = biography;
     }
+    public Artist(String name) {
+        this.name = name;
+    }
     // Getter
 
 
