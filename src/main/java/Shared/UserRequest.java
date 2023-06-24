@@ -262,4 +262,37 @@ public class UserRequest {
         this.output.flush();
         return this.input.readUTF();
     }
+
+    public boolean checkUserLike(String user_id, String track_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "21");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readBoolean();
+    }
+
+    public void addLike(String user_id, String track_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "22");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
+
+    public void addDisLike(String user_id, String track_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "23");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
 }

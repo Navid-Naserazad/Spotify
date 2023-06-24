@@ -115,6 +115,15 @@ public class ServerServiceForUser implements Runnable{
             case 20:
                 this.userResponse.getMusicAddress(jsonObject.getString("track_id"));
                 break;
+            case 21:
+                this.userResponse.checkUserLike(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                break;
+            case 22:
+                this.userResponse.addLike(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                break;
+            case 23:
+                this.userResponse.addDisLike(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                break;
         }
     }
 }

@@ -185,8 +185,10 @@ public class ControllerSearchMusic_7 implements Initializable  {
         try {
             ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
             Music music = musics.get(0);
+            if (!this.userRequest.checkUserLike(this.user.getiD(), music.getTrackID())) {
+                this.userRequest.addLike(this.user.getiD(), music.getTrackID());
+            }
             warning.setText("");
-
         }
         catch (IndexOutOfBoundsException e) {
             warning.setText("You did not choose any music to like!!");
@@ -196,8 +198,10 @@ public class ControllerSearchMusic_7 implements Initializable  {
         try {
             ObservableList<Music> musics = tableView.getSelectionModel().getSelectedItems();
             Music music = musics.get(0);
+            if (this.userRequest.checkUserLike(this.user.getiD(), music.getTrackID())) {
+                this.userRequest.addDisLike(this.user.getiD(), music.getTrackID());
+            }
             warning.setText("");
-
         }
         catch (IndexOutOfBoundsException e) {
             warning.setText("You did not choose any music to dislike!");

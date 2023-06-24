@@ -289,7 +289,29 @@ public class UserResponse {
         this.output.writeUTF(answer);
     }
 
+    public void checkUserLike(String user_id, String track_id) throws IOException, SQLException {
+        String sqlCommand = "SELECT count(*) from liked WHERE user_id = '" + user_id + "' AND track_id = '" +
+                track_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeBoolean(resultSet.getInt(1) != 0);
+        this.output.flush();
+    }
 
+    public void addLike(String user_id, String track_id) throws SQLException, IOException {
+        String sqlCommand = "INSERT INTO liked VALUES (" + user_id + ',' + track_id + ')';
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
+
+    public void addDisLike(String user_id, String track_id) throws SQLException, IOException {
+        String sqlCommand = "DELETE FROM liked WHERE user_id = '" + user_id + "' AND track_id = '" +
+                track_id + "'";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
 
 
 

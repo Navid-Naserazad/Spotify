@@ -54,6 +54,7 @@ public class ControllerViewedPlaylist_15 implements Initializable {
     private User user;
     private UserRequest userRequest;
     private PlayList playList;
+    private String arr[];
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
 
     // Constructor
@@ -78,6 +79,7 @@ public class ControllerViewedPlaylist_15 implements Initializable {
         int allMusicsNumber = 0;
         try {
             allMusicsNumber = this.userRequest.numberOfAllMusicsForSpecificPlayList(this.playList.getPlayListId());
+            this.arr = new String[allMusicsNumber];
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -94,6 +96,7 @@ public class ControllerViewedPlaylist_15 implements Initializable {
             String album = jsonObject.getString("album");
             String artists = jsonObject.getString("artist");
             String duration = jsonObject.getString("duration");
+            this.arr[i - 1] = trackID;
             musicObservableList.add(new Music(trackID, title, genre, album, artists, duration));
         }
 

@@ -63,26 +63,26 @@ public class ControllerPlaylistPlayer_19 implements Initializable {
     private boolean running;
     private Media media;
     private MediaPlayer mediaPlayer;
-
+    private String arr[];
     private UserRequest userRequest;
     private User user;
     private PlayList playList;
 
     // Constructor
-    public ControllerPlaylistPlayer_19(UserRequest userRequest, User user, PlayList playList) {
+    public ControllerPlaylistPlayer_19(UserRequest userRequest, User user, String[] arr) {
         this.userRequest = userRequest;
         this.user = user;
         this.playList = playList;
+        this.arr = arr;
     }
 
     // Public Functions
     public ControllerPlaylistPlayer_19() throws IOException {
-        // proprly code
-        /*int numberOfMusicInPlayList = this.userRequest.numberOfAllMusicsForSpecificPlayList(this.playList.getPlayListId());
-        String[] file_path = new String[numberOfMusicInPlayList];
-        for (int i = 0; i < numberOfMusicInPlayList; i++) {
-            file_path[i] = this.userRequest.musicAddress(this.music.getTrackID());
-        }*/
+        int len = this.arr.length;
+        String[] file_path = new String[len];
+        for (int i = 0; i < len; i++) {
+            file_path[i] = this.userRequest.musicAddress(arr[i]);
+        }
     }
 
     @Override
