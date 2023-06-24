@@ -76,10 +76,10 @@ public class ControllerSearchArtist_8 implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            String ID = jsonObject.getString("artist_id");
             String name = jsonObject.getString("name");
             String biography = jsonObject.getString("biography");
-            String ID = jsonObject.getString();
-            artistsObservableList.add(new Artist(name, biography));
+            artistsObservableList.add(new Artist(ID, name, biography));
         }
         tableView.setItems(artistsObservableList);
         FilteredList<Artist> filteredList = new FilteredList<>(artistsObservableList, b-> true);
