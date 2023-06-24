@@ -132,8 +132,8 @@ public class ControllerSearchUser_9 implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("userPage.fxml"));
             loader.setControllerFactory(type -> {
-                if (type == ControllerUserPage.class) {
-                    return new ControllerUserPage(user, userRequest);
+                if (type == ControllerUserPage_22.class) {
+                    return new ControllerUserPage_22(user, userRequest);
                 }
                 try {
                     return type.getConstructor().newInstance();

@@ -21,7 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -193,8 +192,8 @@ public class ControllerFollowings_20 implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("userPage.fxml"));
             loader.setControllerFactory(type -> {
-                if (type == ControllerUserPage.class) {
-                    return new ControllerUserPage(user, userRequest);
+                if (type == ControllerUserPage_22.class) {
+                    return new ControllerUserPage_22(user, userRequest);
                 }
                 try {
                     return type.getConstructor().newInstance();
@@ -223,8 +222,8 @@ public class ControllerFollowings_20 implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("artistPage.fxml"));
             loader.setControllerFactory(type -> {
-                if (type == ControllerArtistPage.class) {
-                    return new ControllerArtistPage(this.userRequest, artist);
+                if (type == ControllerArtistPage_23.class) {
+                    return new ControllerArtistPage_23(this.userRequest, artist);
                 }
                 try {
                     return type.getConstructor().newInstance();

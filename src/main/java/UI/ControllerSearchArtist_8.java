@@ -140,8 +140,8 @@ public class ControllerSearchArtist_8 implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("artistPage.fxml"));
             loader.setControllerFactory(type -> {
-                if (type == ControllerArtistPage.class) {
-                    return new ControllerArtistPage(this.userRequest, artist);
+                if (type == ControllerArtistPage_23.class) {
+                    return new ControllerArtistPage_23(this.userRequest, artist);
                 }
                 try {
                     return type.getConstructor().newInstance();
