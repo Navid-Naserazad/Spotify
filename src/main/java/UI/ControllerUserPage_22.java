@@ -340,60 +340,122 @@ public class ControllerUserPage_22 implements Initializable {
         likesTableView.setItems(likesSortedList);
     }
     public void viewPlaylist(ActionEvent event) {
-        try {
-            ObservableList<PlayList> playLists = playlistsTableView.getSelectionModel().getSelectedItems();
-            PlayList playList = playLists.get(0);
-
-            // Musics Of PlayList
-            musicTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-            musicArtistColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
-
-            int allMusicsNumber = 0;
+        if (musicsObservableList.size() == 0) {
             try {
-                allMusicsNumber = this.userRequest.numberOfAllMusicsForSpecificPlayList(playList.getPlayListId());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            for (int i = 1; i <= allMusicsNumber; i++) {
-                JSONObject jsonObject = null;
+                ObservableList<PlayList> playLists = playlistsTableView.getSelectionModel().getSelectedItems();
+                PlayList playList = playLists.get(0);
+
+                // Musics Of PlayList
+                musicTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+                musicArtistColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
+
+                int allMusicsNumber = 0;
                 try {
-                    jsonObject = userRequest.getRow_iMusicFromPlayList(i, playList.getPlayListId());
+                    allMusicsNumber = this.userRequest.numberOfAllMusicsForSpecificPlayList(playList.getPlayListId());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                String title = jsonObject.getString("title");
-                String artists = jsonObject.getString("artist");
-                musicsObservableList.add(new Music(title, artists));
-            }
-
-
-
-
-            musicTableView.setItems(musicsObservableList);
-            FilteredList<Music> musicsFilteredList = new FilteredList<>(musicsObservableList, b-> true);
-
-            musicsSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-                musicsFilteredList.setPredicate( music -> {
-
-                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
-                    return  true;
-                }
-                String musicsSearchKeyword = newValue.toLowerCase();
-                if (music.getTitle().toLowerCase().indexOf(musicsSearchKeyword) > -1){
-                    return true;
-                }
-                else {
-                        return false;
+                for (int i = 1; i <= allMusicsNumber; i++) {
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = userRequest.getRow_iMusicFromPlayList(i, playList.getPlayListId());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
+                    String title = jsonObject.getString("title");
+                    String artists = jsonObject.getString("artist");
+                    musicsObservableList.add(new Music(title, artists));
+                }
+
+
+
+
+                musicTableView.setItems(musicsObservableList);
+                FilteredList<Music> musicsFilteredList = new FilteredList<>(musicsObservableList, b-> true);
+
+                musicsSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+                    musicsFilteredList.setPredicate( music -> {
+
+                        if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                            return  true;
+                        }
+                        String musicsSearchKeyword = newValue.toLowerCase();
+                        if (music.getTitle().toLowerCase().indexOf(musicsSearchKeyword) > -1){
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    });
                 });
-            });
 
-            SortedList<Music> musicsSortedList = new SortedList<>(musicsFilteredList);
-            musicsSortedList.comparatorProperty().bind(musicTableView.comparatorProperty());
-            musicTableView.setItems(musicsSortedList);
+                SortedList<Music> musicsSortedList = new SortedList<>(musicsFilteredList);
+                musicsSortedList.comparatorProperty().bind(musicTableView.comparatorProperty());
+                musicTableView.setItems(musicsSortedList);
 
+            }
+            catch (IndexOutOfBoundsException e) {
+
+            }
         }
-        catch (IndexOutOfBoundsException e) {
+        else {
+            musicsObservableList = FXCollections.observableArrayList();
+            try {
+                ObservableList<PlayList> playLists = playlistsTableView.getSelectionModel().getSelectedItems();
+                PlayList playList = playLists.get(0);
+
+                // Musics Of PlayList
+                musicTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+                musicArtistColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
+
+                int allMusicsNumber = 0;
+                try {
+                    allMusicsNumber = this.userRequest.numberOfAllMusicsForSpecificPlayList(playList.getPlayListId());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                for (int i = 1; i <= allMusicsNumber; i++) {
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = userRequest.getRow_iMusicFromPlayList(i, playList.getPlayListId());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    String title = jsonObject.getString("title");
+                    String artists = jsonObject.getString("artist");
+                    musicsObservableList.add(new Music(title, artists));
+                }
+
+
+
+
+                musicTableView.setItems(musicsObservableList);
+                FilteredList<Music> musicsFilteredList = new FilteredList<>(musicsObservableList, b-> true);
+
+                musicsSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+                    musicsFilteredList.setPredicate( music -> {
+
+                        if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                            return  true;
+                        }
+                        String musicsSearchKeyword = newValue.toLowerCase();
+                        if (music.getTitle().toLowerCase().indexOf(musicsSearchKeyword) > -1){
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    });
+                });
+
+                SortedList<Music> musicsSortedList = new SortedList<>(musicsFilteredList);
+                musicsSortedList.comparatorProperty().bind(musicTableView.comparatorProperty());
+                musicTableView.setItems(musicsSortedList);
+
+            }
+            catch (IndexOutOfBoundsException e) {
+
+            }
 
         }
     }
