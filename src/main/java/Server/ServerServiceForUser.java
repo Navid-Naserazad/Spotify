@@ -187,5 +187,4 @@ public class ServerServiceForUser implements Runnable {
                 break;
         }
     }
-
 }

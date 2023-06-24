@@ -57,6 +57,7 @@ public class ControllerMyPlaylists_14 implements Initializable {
     public void initialize(URL location, ResourceBundle resources)throws RuntimeException {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("playListId"));
         myPlaylistsColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+
         int numberOfAllPlayListOfUser = 0;
         try {
             numberOfAllPlayListOfUser = this.userRequest.numberOfAllPlayListForSpecificUser(this.user.getUser_id());
