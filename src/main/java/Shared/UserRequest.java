@@ -364,7 +364,7 @@ public class UserRequest {
     public void addFollowArtist(String user_id, String artist_id) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "30");
-        jsonObject.put("user_id_", user_id);
+        jsonObject.put("user_id", user_id);
         jsonObject.put("artist_id", artist_id);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
