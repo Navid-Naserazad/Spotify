@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -66,6 +67,15 @@ public class ControllerUserPage_22 implements Initializable {
     private TextField playlistsSearch;
     ObservableList<PlayList> playlistsObservableList = FXCollections.observableArrayList();
     @FXML
+    private TableView<Music> musicTableView;
+    @FXML
+    private TableColumn<Music, String> musicTitleColumn;
+    @FXML
+    private TableColumn<Music, String> musicArtistColumn;
+    @FXML
+    private TextField musicsSearch;
+    ObservableList<Music> musicsObservableList = FXCollections.observableArrayList();
+    @FXML
     private TableView<Music> likesTableView;
     @FXML
     private TableColumn<Music, String> titleColumn;
@@ -74,6 +84,7 @@ public class ControllerUserPage_22 implements Initializable {
     @FXML
     private TextField likesSearch;
     ObservableList<Music> likesObservableList = FXCollections.observableArrayList();
+
 
     // Constructor
     public ControllerUserPage_22(User selectedUser, UserRequest userRequest) {
@@ -327,5 +338,46 @@ public class ControllerUserPage_22 implements Initializable {
         SortedList<Music> likesSortedList = new SortedList<>(likesFilteredList);
         likesSortedList.comparatorProperty().bind(likesTableView.comparatorProperty());
         likesTableView.setItems(likesSortedList);
+    }
+    public void viewPlaylist(ActionEvent event) {
+        try {
+            ObservableList<PlayList> playLists = playlistsTableView.getSelectionModel().getSelectedItems();
+            PlayList playList = playLists.get(0);
+
+            musicTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+            musicArtistColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
+
+            // database
+
+            musicsObservableList.add(new Music(title, artists));
+
+
+            musicTableView.setItems(musicsObservableList);
+            FilteredList<Music> musicsFilteredList = new FilteredList<>(musicsObservableList, b-> true);
+
+            musicsSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+                musicsFilteredList.setPredicate( music -> {
+
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return  true;
+                }
+                String musicsSearchKeyword = newValue.toLowerCase();
+                if (music.getTitle().toLowerCase().indexOf(musicsSearchKeyword) > -1){
+                    return true;
+                }
+                else {
+                        return false;
+                    }
+                });
+            });
+
+            SortedList<Music> musicsSortedList = new SortedList<>(musicsFilteredList);
+            musicsSortedList.comparatorProperty().bind(musicTableView.comparatorProperty());
+            musicTableView.setItems(musicsSortedList);
+
+        }
+        catch (IndexOutOfBoundsException e) {
+
+        }
     }
 }
