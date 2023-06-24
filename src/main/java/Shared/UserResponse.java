@@ -420,7 +420,21 @@ public class UserResponse {
         this.output.flush();
     }
 
+    public void unfollow_UserToUser(String user_id_1, String user_id_2) throws SQLException, IOException {
+        String sqmCommand = "DELETE FROM user_user_follow WHERE user_id_1 = '" + user_id_1 +
+                "' AND user_id_2 = '" + user_id_2 + "'" ;
+        int result = statement.executeUpdate(sqmCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
 
+    public void unfollow_UserToArtist(String user_id, String artist_id) throws SQLException, IOException {
+        String sqmCommand = "DELETE FROM user_artist_follow WHERE user_id = '" + user_id +
+                "' AND artist_id  = '" + artist_id + "'" ;
+        int result = statement.executeUpdate(sqmCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
 
     // Setter
 
