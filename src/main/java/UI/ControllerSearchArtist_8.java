@@ -111,7 +111,7 @@ public class ControllerSearchArtist_8 implements Initializable {
             ObservableList<Artist> artists = tableView.getSelectionModel().getSelectedItems();
             Artist artist = artists.get(0);
             message.setText("");
-            String artistID = artist.getiD();
+            String artistID = artist.getArtist_id();
             if (!this.userRequest.checkFollowArtist(this.user.getiD(), artistID)) {
                 this.userRequest.addFollowArtist(this.user.getiD(), artistID);
                 message.setText(artist.getName() + " is followed now!");

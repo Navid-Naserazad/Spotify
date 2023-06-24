@@ -5,7 +5,8 @@ import java.util.UUID;
 public class User {
 
     // Attributes
-    private String iD;
+
+    private String user_id;
     private String username;
     private String password;
     private String emailAddress;
@@ -16,8 +17,8 @@ public class User {
     /*Constructor*/
 
     //Constructor For Login
-    public User(String iD, String username, String password, String emailAddress) {
-        this.iD = iD;
+    public User(String user_id, String username, String password, String emailAddress) {
+        this.user_id = user_id;
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
@@ -26,22 +27,22 @@ public class User {
     // Constructor For Signup
 
     public User(String username, String password, String emailAddress) {
-        this.iD = UUID.randomUUID().toString();
+        this.user_id = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
     }
 
     // Constructor For Observable
-    public User(String iD, String username) {
-        this.iD = iD;
+    public User(String user_id, String username) {
+        this.user_id = user_id;
         this.username = username;
     }
 
     // Getter
 
-    public String getiD() {
-        return iD;
+    public String getUser_id() {
+        return user_id;
     }
 
     public String getUsername() {

@@ -53,13 +53,13 @@
                </columns>
             </TableView>
             <TextField fx:id="userSearch" layoutX="72.0" layoutY="28.0" prefHeight="25.0" prefWidth="180.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
-            <TableView fx:id="artistTableView" layoutX="321.0" layoutY="63.0" prefHeight="384.0" prefWidth="250.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+            <TableView fx:id="artistTableView" layoutX="321.0" layoutY="63.0" prefHeight="384.0" prefWidth="261.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
                <columns>
-                  <TableColumn fx:id="artistColumn" prefWidth="244.0" style="-fx-background-color: #1394ab;" text="Artists" />
+                  <TableColumn fx:id="artistColumn" prefWidth="255.0" style="-fx-background-color: #1394ab;" text="Artists" />
                   <TableColumn fx:id="artistIDColumn" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #1394ab;" text="ID" />
                </columns>
             </TableView>
-            <TextField fx:id="artistSearch" layoutX="356.0" layoutY="28.0" prefHeight="25.0" prefWidth="180.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <TextField fx:id="artistSearch" layoutX="362.0" layoutY="28.0" prefHeight="25.0" prefWidth="180.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
             <Label fx:id="message" alignment="CENTER" layoutX="21.0" layoutY="456.0" prefHeight="30.0" prefWidth="559.0" textFill="RED">
                <font>
                   <Font name="System Italic" size="18.0" />

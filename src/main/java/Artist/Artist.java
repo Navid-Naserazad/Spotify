@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Artist {
 
     // Attributes
-    private String iD;
+    private String artist_id;
 
     public String name;
     private String password;
@@ -18,8 +18,8 @@ public class Artist {
 
     // Constructor For Login
 
-    public Artist(String iD, String name, String password, String emailAddress, String biography) {
-        this.iD = iD;
+    public Artist(String artist_id, String name, String password, String emailAddress, String biography) {
+        this.artist_id = artist_id;
         this.name = name;
         this.password = password;
         this.emailAddress = emailAddress;
@@ -43,11 +43,14 @@ public class Artist {
     public Artist(String name) {
         this.name = name;
     }
+    public Artist() {
+
+    }
     // Getter
 
 
-    public String getiD() {
-        return iD;
+    public String getArtist_id() {
+        return artist_id;
     }
 
     public String getName() {
@@ -64,5 +67,25 @@ public class Artist {
 
     public String getBiography() {
         return biography;
+    }
+
+    public void setArtist_id(String artist_id) {
+        this.artist_id = artist_id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 }

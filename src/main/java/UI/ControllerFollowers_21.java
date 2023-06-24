@@ -53,10 +53,10 @@ public class ControllerFollowers_21 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        userIDColumn.setCellValueFactory(new PropertyValueFactory<>("iD"));
+        userIDColumn.setCellValueFactory(new PropertyValueFactory<>("user_id"));
         int numberOfUserToUserFollowers = 0;
         try {
-            numberOfUserToUserFollowers = this.userRequest.numberOfFollowers_UserToUser(this.user.getiD());
+            numberOfUserToUserFollowers = this.userRequest.numberOfFollowers_UserToUser(this.user.getUser_id());
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -64,12 +64,12 @@ public class ControllerFollowers_21 implements Initializable {
         for (int i = 1; i <= numberOfUserToUserFollowers; i++) {
             String username = null;
             try {
-                username = this.userRequest.getRow_i_usernameOfUserToUserFollowers(i, this.user.getiD());
+                username = this.userRequest.getRow_i_usernameOfUserToUserFollowers(i, this.user.getUser_id());
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
-//            usersObservableList.add();
+            usersObservableList.add(new User(ID, username));
         }
 
         tableView.setItems(usersObservableList);
@@ -101,7 +101,7 @@ public class ControllerFollowers_21 implements Initializable {
             User Anotheruser = users.get(0);
             message.setText("");
             String username = Anotheruser.getUsername();
-            this.userRequest.unfollow_UserToUser(Anotheruser.getiD(), this.user.getiD());
+            this.userRequest.unfollow_UserToUser(Anotheruser.getUser_id(), this.user.getUser_id());
             message.setText(username + " is removed from your followers!");
         }
         catch (IndexOutOfBoundsException e) {

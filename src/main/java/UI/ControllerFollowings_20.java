@@ -67,7 +67,7 @@ public class ControllerFollowings_20 implements Initializable {
         userIDColumn.setCellValueFactory(new PropertyValueFactory<>("iD"));
         int numberOfUserToUserFollowings = 0;
         try {
-            numberOfUserToUserFollowings = this.userRequest.numberOfFollowings_UserToUser(this.user.getiD());
+            numberOfUserToUserFollowings = this.userRequest.numberOfFollowings_UserToUser(this.user.getUser_id());
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -75,7 +75,7 @@ public class ControllerFollowings_20 implements Initializable {
         for (int i = 1; i <= numberOfUserToUserFollowings; i++) {
             JSONObject jsonObject = null;
             try {
-                jsonObject = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getiD());
+                jsonObject = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getUser_id());
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
@@ -109,10 +109,10 @@ public class ControllerFollowings_20 implements Initializable {
 
         // Artist table view
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        artistIDColumn.setCellValueFactory(new PropertyValueFactory<>("iD"));
+        artistIDColumn.setCellValueFactory(new PropertyValueFactory<>("artist_id"));
         int numberOfUserToArtistFollowings = 0;
         try {
-            numberOfUserToArtistFollowings = this.userRequest.numberOfFollowings_UserToArtist(this.user.getiD());
+            numberOfUserToArtistFollowings = this.userRequest.numberOfFollowings_UserToArtist(this.user.getUser_id());
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -120,14 +120,17 @@ public class ControllerFollowings_20 implements Initializable {
         for (int i = 1; i <= numberOfUserToArtistFollowings; i++) {
             JSONObject jsonObject = null;
             try {
-                jsonObject = this.userRequest.getRow_i_nameOfUserToArtistFollowings(i, this.user.getiD());
+                jsonObject = this.userRequest.getRow_i_nameOfUserToArtistFollowings(i, this.user.getUser_id());
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
             String id = jsonObject.getString("artist_id");
             String name = jsonObject.getString("name");
-            artistsObservableList.add(new Artist(id, name));
+            Artist artist = new Artist();
+            artist.setArtist_id(id);
+            artist.setName(name);
+            artistsObservableList.add(artist);
         }
         // database
 
@@ -204,9 +207,9 @@ public class ControllerFollowings_20 implements Initializable {
         stage.show();
     }
     public void unfollowUser(User anotheruser) throws IOException {
-        this.userRequest.unfollow_UserToUser(this.user.getiD(), anotheruser.getiD());
+        this.userRequest.unfollow_UserToUser(this.user.getUser_id(), anotheruser.getUser_id());
     }
     public void unfollowArtist(Artist artist) throws IOException {
-        this.userRequest.unfollow_UserToArtist(this.user.getiD(), artist.getiD());
+        this.userRequest.unfollow_UserToArtist(this.user.getUser_id(), artist.getArtist_id());
     }
 }
