@@ -338,7 +338,7 @@ public class UserRequest {
         return this.input.readInt();
     }
 
-    public String getRow_i_UsernameOfUserToUserFollowings(int n, String user_id) throws IOException {
+    public JSONObject getRow_i_UsernameOfUserToUserFollowings(int n, String user_id) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "28");
         jsonObject.put("row", n);
@@ -346,7 +346,7 @@ public class UserRequest {
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
-        return this.input.readUTF();
+        return new JSONObject(this.input.readUTF());
     }
 
     public boolean checkFollowArtist(String user_id, String artist_id) throws IOException {
@@ -455,14 +455,5 @@ public class UserRequest {
         this.output.writeUTF(jsonCommand);
         this.output.flush();
         return new JSONObject(this.input.readUTF());
-    }
-    public String getUsernameFromUserID(String user_id) throws IOException {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("number", "39");
-        jsonObject.put("user_id" , user_id);
-        String jsonCommand = jsonObject.toString();
-        this.output.writeUTF(jsonCommand);
-        this.output.flush();
-        return this.input.readUTF();
     }
 }

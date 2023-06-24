@@ -73,15 +73,15 @@ public class ControllerFollowings_20 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= numberOfUserToUserFollowings; i++) {
-            String ID = null;
-            String username = null;
+            JSONObject jsonObject = null;
             try {
-                ID = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getiD());
-                username = this.userRequest.getUsernameFromUserID(ID);
+                jsonObject = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getiD());
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            String ID = jsonObject.getString("user_id");
+            String username = jsonObject.getString("username");
             usersObservableList.add(new User(ID, username));
         }
         userTableView.setItems(usersObservableList);

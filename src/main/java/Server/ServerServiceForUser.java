@@ -184,9 +184,6 @@ public class ServerServiceForUser implements Runnable {
                 this.userResponse.getRow_i_UserLike(jsonObject.getInt("row"),
                         jsonObject.getString("user_id"));
                 break;
-            case 39 :
-                this.userResponse.getUsernameFromUserID(jsonObject.getString("user_id"));
-                break;
         }
     }
 
