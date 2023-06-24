@@ -90,7 +90,6 @@ public class UserResponse {
         ResultSet resultSet2 = statement.executeQuery(sqlCommand_2);
         resultSet2.next();
         int rows = resultSet2.getInt(1);
-        System.out.println(rows);
         String sqlCommand_3 = "SELECT artist.name FROM music_artists ,artist " +
                 "WHERE music_artists.track_id = '" + track_id + "'" +
                 "AND music_artists.artist_id = artist.artist_id";
@@ -234,7 +233,6 @@ public class UserResponse {
         ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
         resultSet3.next();
         int rows = resultSet3.getInt(1);
-        System.out.println(rows);
         String sqlCommand3 = "SELECT artist.name FROM music_artists ,artist " +
                 "WHERE music_artists.track_id = '" + track_id + "'" +
                 "AND music_artists.artist_id = artist.artist_id";
@@ -475,7 +473,6 @@ public class UserResponse {
         ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
         resultSet3.next();
         int rows = resultSet3.getInt(1);
-        System.out.println(rows);
         String sqlCommand_4 = "SELECT artist.name FROM music_artists ,artist " +
                 "WHERE music_artists.track_id = '" + track_id + "'" +
                 "AND music_artists.artist_id = artist.artist_id";
@@ -493,6 +490,74 @@ public class UserResponse {
         }
         jsonObject.put("artist", artists);
         this.output.writeUTF(jsonObject.toString());
+        this.output.flush();
+    }
+
+    public void numberOfArtistFollowers(String artist_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM user_artist_follow WHERE artist_id = '" + artist_id +"'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeInt(resultSet.getInt(1));
+        this.output.flush();
+    }
+
+    public void getRow_i_ArtistFollower(int n, String artist_id) throws SQLException, IOException {
+        String sqlCommand1 = "SELECT user_id FROM user_artist_follow WHERE artist_id = '" + artist_id + "'";
+        ResultSet resultSet1 = statement.executeQuery(sqlCommand1);
+        for (int i = 0; i < n; i++) {
+            resultSet1.next();
+        }
+        String user_id = resultSet1.getString(1);
+        String sqlCommand2 = "SELECT username FROM user WHERE user_id = '" + user_id + "'";
+        ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
+        resultSet2.next();
+        this.output.writeUTF(resultSet2.getString(1));
+        this.output.flush();
+    }
+
+    public void numberOfMusicForSpecificArtist(String artist_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM music_artists WHERE artist_id = '" + artist_id +"'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeInt(resultSet.getInt(1));
+        this.output.flush();
+    }
+
+    public void getRow_i_MusicArtist(int n, String artist_id) throws SQLException, IOException {
+        String sqlCommand_1 = "SELECT track_id FROM music_artists WHERE artist_id = '" + artist_id + "'";
+        ResultSet resultSet1 = statement.executeQuery(sqlCommand_1);
+        for (int i = 0; i < n; i++) {
+            resultSet1.next();
+        }
+        String track_id = resultSet1.getString(1);
+        String sqlCommand_2 = "SELECT * FROM music WHERE track_id = '" + track_id + "'";
+        ResultSet resultSet2 = statement.executeQuery(sqlCommand_2);
+        resultSet2.next();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("title", resultSet2.getString("title"));
+        jsonObject.put("album", resultSet2.getString("album"));
+        String sqlCommand_3 = "SELECT count(*) FROM music_artists WHERE track_id = '" + track_id + "'";
+        ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
+        resultSet3.next();
+        int rows = resultSet3.getInt(1);
+        String sqlCommand_4 = "SELECT artist.name FROM music_artists ,artist " +
+                "WHERE music_artists.track_id = '" + track_id + "'" +
+                "AND music_artists.artist_id = artist.artist_id";
+        ResultSet resultSet4 = statement.executeQuery(sqlCommand_4);
+        String artists = null;
+        resultSet4.next();
+        for (int i = 0; i < rows; i++) {
+            if (i == rows - 1) {
+                artists = artists + resultSet4.getString(1);
+            }
+            else {
+                artists = artists + resultSet4.getString(1) + '-';
+            }
+            resultSet4.next();
+        }
+        jsonObject.put("artist", artists);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
         this.output.flush();
     }
 
