@@ -4,6 +4,7 @@ import User.User;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.security.PublicKey;
 import java.util.jar.JarOutputStream;
 
 public class UserRequest {
@@ -290,6 +291,39 @@ public class UserRequest {
         jsonObject.put("number", "23");
         jsonObject.put("user_id", user_id);
         jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
+
+    public void addDownload(String user_id, String track_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "24");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
+
+    public boolean checkFollow(String user_id_1, String user_id_2) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "25");
+        jsonObject.put("user_id_1", user_id_1);
+        jsonObject.put("user_id_2", user_id_2);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readBoolean();
+    }
+
+    public void addFollow(String user_id_1, String user_id_2) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "26");
+        jsonObject.put("user_id_1", user_id_1);
+        jsonObject.put("user_id_2", user_id_2);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();

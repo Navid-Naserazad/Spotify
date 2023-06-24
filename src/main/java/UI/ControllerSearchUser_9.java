@@ -1,6 +1,5 @@
 package UI;
 
-import Artist.Artist;
 import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
@@ -20,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -99,16 +97,16 @@ public class ControllerSearchUser_9 implements Initializable {
     public void follow (ActionEvent event) throws IOException {
         try {
             ObservableList<User> users = tableView.getSelectionModel().getSelectedItems();
-            User user = users.get(0);
+            User secondUser = users.get(0);
             message.setText("");
-            String username = user.getUsername();
-            // add to database
-//        if () {
-//            message.setText(username + " is followed now!");
-//        }
-//        else {
-//            message.setText("You have already followed " + username);
-//        }
+            String user_id_2 = secondUser.getiD();
+            if (!this.userRequest.checkFollow(this.user.getiD(), user_id_2)) {
+                this.userRequest.addFollow(this.user.getiD(), user_id_2);
+                message.setText(secondUser.getUsername() + " is followed now!");
+            }
+            else {
+                message.setText("You have already followed " + secondUser.getUsername());
+            }
         }
         catch (IndexOutOfBoundsException e) {
             message.setText("You did not choose any user!");

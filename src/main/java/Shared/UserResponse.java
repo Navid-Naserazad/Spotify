@@ -299,7 +299,7 @@ public class UserResponse {
     }
 
     public void addLike(String user_id, String track_id) throws SQLException, IOException {
-        String sqlCommand = "INSERT INTO liked VALUES (" + user_id + ',' + track_id + ')';
+        String sqlCommand = "INSERT INTO liked VALUES ('" + user_id + "','" + track_id + "')";
         int result = statement.executeUpdate(sqlCommand);
         this.output.writeUTF("");
         this.output.flush();
@@ -308,6 +308,29 @@ public class UserResponse {
     public void addDisLike(String user_id, String track_id) throws SQLException, IOException {
         String sqlCommand = "DELETE FROM liked WHERE user_id = '" + user_id + "' AND track_id = '" +
                 track_id + "'";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
+
+    public void addDownload(String user_id, String track_id) throws IOException, SQLException {
+        String sqlCommand = "INSERT INTO music_downloads VALUES ('" + user_id + "','" + track_id + "')";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
+
+    public void checkFollow(String user_id_1, String user_id_2) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM music_downloads WHERE user_id_1 = '" + user_id_1 + "' AND user_id_2 = '" +
+                user_id_2 + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeBoolean(resultSet.getInt(1) != 0);
+        this.output.flush();
+    }
+
+    public void addFollow(String user_id_1, String user_id_2) throws SQLException, IOException {
+        String sqlCommand = "INSERT INT follow VALUES (" + user_id_1 + ',' + user_id_2 + ')';
         int result = statement.executeUpdate(sqlCommand);
         this.output.writeUTF("");
         this.output.flush();
