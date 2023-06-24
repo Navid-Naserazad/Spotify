@@ -55,6 +55,7 @@ public class ControllerUserMenu_5 {
         stage.show();
     }
     public void switchToScene1(ActionEvent event) throws IOException {
+        // Log Out
         root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

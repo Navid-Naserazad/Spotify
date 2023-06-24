@@ -86,7 +86,11 @@ public class ControllerUserSearch_6 {
         stage.show();
     }
     public void switchToUserMenu(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("userMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("userMenu.fxml"));
+        root = loader.load();
+        ControllerUserMenu_5 controllerUserMenu_5 = loader.getController();
+        controllerUserMenu_5.setUser(user);
+        controllerUserMenu_5.setUserRequest(this.userRequest);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
