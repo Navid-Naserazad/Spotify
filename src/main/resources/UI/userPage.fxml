@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.ControllerUserPage">
+   <left>
+      <AnchorPane prefHeight="499.0" prefWidth="178.0" style="-fx-background-color: #191414;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="170.0" layoutX="4.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Spotify_Logo_RGB_Green.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="48.0" layoutY="454.0" text="User Page" textFill="#1ed760">
+               <font>
+                  <Font name="Bodoni MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel" alignment="CENTER" layoutX="7.0" layoutY="232.0" prefHeight="36.0" prefWidth="165.0" style="-fx-background-color: #191414;" text="Username" textFill="#1ed760">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #1ed760;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="followersSearch" layoutX="48.0" layoutY="61.0" prefHeight="25.0" prefWidth="78.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <TableView fx:id="followersTableView" layoutX="14.0" layoutY="102.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+               <columns>
+                  <TableColumn fx:id="followersColumn" prefWidth="140.0" style="-fx-background-color: #1394ab;" text="Users" />
+               </columns>
+            </TableView>
+            <TableView fx:id="userFollowingsTableView" layoutX="190.0" layoutY="102.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+               <columns>
+                  <TableColumn fx:id="userFollowingsColumn" prefWidth="140.0" style="-fx-background-color: #1394ab;" text="Users" />
+               </columns>
+            </TableView>
+            <TableView fx:id="artistFollowingsTableView" layoutX="361.0" layoutY="102.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+               <columns>
+                  <TableColumn fx:id="artistFollowingsColumn" prefWidth="140.0" style="-fx-background-color: #1394ab;" text="Artists" />
+               </columns>
+            </TableView>
+            <TableView fx:id="playlistsTableView" layoutX="532.0" layoutY="100.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+               <columns>
+                  <TableColumn fx:id="playlistsColumn" prefWidth="140.0" style="-fx-background-color: #1394ab;" text="Playlists" />
+               </columns>
+            </TableView>
+            <TableView fx:id="likesTableView" layoutX="703.0" layoutY="100.0" prefHeight="384.0" prefWidth="146.0" style="-fx-background-color: #1ed760; -fx-border-color: #191414; -fx-border-width: 5;">
+               <columns>
+                  <TableColumn fx:id="likesColumn" prefWidth="140.0" style="-fx-background-color: #1394ab;" text="Likes" />
+               </columns>
+            </TableView>
+            <TextField fx:id="userFollowingsSearch" layoutX="224.0" layoutY="61.0" prefHeight="25.0" prefWidth="78.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <TextField fx:id="artistFollowingsSearch" layoutX="395.0" layoutY="61.0" prefHeight="25.0" prefWidth="78.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <TextField fx:id="playlistsSearch" layoutX="566.0" layoutY="61.0" prefHeight="25.0" prefWidth="78.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <TextField fx:id="likesSearch" layoutX="737.0" layoutY="61.0" prefHeight="25.0" prefWidth="78.0" promptText="Search" style="-fx-background-color: #191414; -fx-text-fill: #1ed760;" />
+            <Label alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="36.0" prefWidth="130.0" style="-fx-background-color: #191414;" text="Followers" textFill="#1ed760">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="192.0" layoutY="14.0" prefHeight="36.0" prefWidth="142.0" style="-fx-background-color: #191414;" text="Followeings" textFill="#1ed760">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="363.0" layoutY="14.0" prefHeight="36.0" prefWidth="142.0" style="-fx-background-color: #191414;" text="Followeings" textFill="#1ed760">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="540.0" layoutY="14.0" prefHeight="36.0" prefWidth="130.0" style="-fx-background-color: #191414;" text="Playlists" textFill="#1ed760">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="711.0" layoutY="14.0" prefHeight="36.0" prefWidth="130.0" style="-fx-background-color: #191414;" text="Likes" textFill="#1ed760">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
