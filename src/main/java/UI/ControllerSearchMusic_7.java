@@ -171,6 +171,7 @@ public class ControllerSearchMusic_7 implements Initializable  {
             warning.setText("");
             if (!this.userRequest.checkIfUserDownloadsSpecificMusic(this.user.getiD(), music.getTrackID())) {
                 this.userRequest.addMusicToFolder(music.getTrackID(), this.user.getUsername());
+                this.userRequest.addDownload(this.user.getiD(), music.getTrackID());
                 warning.setText(music.getTitle() + " is downloaded now!");
             }
             else {

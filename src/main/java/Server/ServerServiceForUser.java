@@ -124,6 +124,22 @@ public class ServerServiceForUser implements Runnable{
             case 23:
                 this.userResponse.addDisLike(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
                 break;
+            case 24:
+                this.userResponse.addDownload(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                break;
+            case 25:
+                this.userResponse.checkFollowUser(jsonObject.getString("user_id_1"), jsonObject.getString("user_id_2"));
+                break;
+            case 26:
+                this.userResponse.addFollowUser(jsonObject.getString("user_id_1"), jsonObject.getString("user_id_2"));
+                break;
+            case 27:
+                this.userResponse.numberOfFollowings_UserToUser(jsonObject.getString("user_id"));
+                break;
+            case 28:
+                this.userResponse.getRow_i_UsernameOfUserToUserFollowings(jsonObject.getInt("row"),
+                        jsonObject.getString("user_id"));
+                break;
         }
     }
 }

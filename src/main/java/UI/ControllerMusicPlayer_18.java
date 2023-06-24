@@ -155,7 +155,7 @@ public class ControllerMusicPlayer_18 implements Initializable {
         loader.setLocation(getClass().getResource("showLyrics.fxml"));
         loader.setControllerFactory(type -> {
             if (type == ControllerShowLyrics.class) {
-                return new ControllerShowLyrics();
+                //return new ControllerShowLyrics();
             }
             try {
                 return type.getConstructor().newInstance();

@@ -299,7 +299,7 @@ public class UserResponse {
     }
 
     public void addLike(String user_id, String track_id) throws SQLException, IOException {
-        String sqlCommand = "INSERT INTO liked VALUES (" + user_id + ',' + track_id + ')';
+        String sqlCommand = "INSERT INTO liked VALUES ('" + user_id + "','" + track_id + "')";
         int result = statement.executeUpdate(sqlCommand);
         this.output.writeUTF("");
         this.output.flush();
@@ -313,7 +313,51 @@ public class UserResponse {
         this.output.flush();
     }
 
+    public void addDownload(String user_id, String track_id) throws IOException, SQLException {
+        String sqlCommand = "INSERT INTO music_downloads VALUES ('" + user_id + "','" + track_id + "')";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
 
+    public void checkFollowUser(String user_id_1, String user_id_2) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM user_user_follow WHERE user_id_1 = '" + user_id_1 + "' AND user_id_2 = '" +
+                user_id_2 + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeBoolean(resultSet.getInt(1) != 0);
+        this.output.flush();
+    }
+
+    public void addFollowUser(String user_id_1, String user_id_2) throws SQLException, IOException {
+        String sqlCommand = "INSERT INTO user_user_follow VALUES (" + user_id_1 + ',' + user_id_2 + ')';
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
+
+    public void numberOfFollowings_UserToUser(String user_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM user_user_follow WHERE user_id_1 = '" + user_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeInt(resultSet.getInt(1));
+        this.output.flush();
+    }
+
+    public void getRow_i_UsernameOfUserToUserFollowings(int n, String user_id) throws SQLException, IOException {
+        String sqlCommand1 = "SELECT user_id_2 FROM user_user_follow WHERE user_id_1 = '" + user_id + "'" +
+                "ORDER BY ASC";
+        ResultSet resultSet1 = statement.executeQuery(sqlCommand1);
+        for (int i = 0; i < n; i++) {
+            resultSet1.next();
+        }
+        String user_id_2 = resultSet1.getString(1);
+        String sqlCommand2 = "SELECT username FROM user WHERE user_id = '" + user_id_2 + "'";
+        ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
+        resultSet2.next();
+        this.output.writeUTF(resultSet2.getString(1));
+        this.output.flush();
+    }
 
 
 

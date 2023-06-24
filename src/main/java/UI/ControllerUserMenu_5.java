@@ -5,8 +5,6 @@ import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +17,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -122,8 +119,8 @@ public class ControllerUserMenu_5 implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("followings.fxml"));
         loader.setControllerFactory(type -> {
-            if (type == ControllerFollowings.class) {
-                return new ControllerFollowings(this.user, this.userRequest);
+            if (type == ControllerFollowings_20.class) {
+                return new ControllerFollowings_20(this.user, this.userRequest);
             }
             try {
                 return type.getConstructor().newInstance();
@@ -142,8 +139,8 @@ public class ControllerUserMenu_5 implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("followers.fxml"));
         loader.setControllerFactory(type -> {
-            if (type == ControllerFollowers.class) {
-                return new ControllerFollowers(this.user, this.userRequest);
+            if (type == ControllerFollowers_21.class) {
+                return new ControllerFollowers_21(this.user, this.userRequest);
             }
             try {
                 return type.getConstructor().newInstance();
