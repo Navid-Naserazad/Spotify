@@ -456,4 +456,13 @@ public class UserRequest {
         this.output.flush();
         return new JSONObject(this.input.readUTF());
     }
+    public String getUsernameFromUserID(String user_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "39");
+        jsonObject.put("user_id" , user_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readUTF();
+    }
 }

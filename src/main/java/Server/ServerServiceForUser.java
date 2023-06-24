@@ -177,6 +177,16 @@ public class ServerServiceForUser implements Runnable {
                 this.userResponse.unfollow_UserToArtist(jsonObject.getString("user_id"),
                         jsonObject.getString("artist_id"));
                 break;
+            case 37 :
+                this.userResponse.numberOfUserLike(jsonObject.getString("user_id"));
+                break;
+            case 38 :
+                this.userResponse.getRow_i_UserLike(jsonObject.getInt("row"),
+                        jsonObject.getString("user_id"));
+                break;
+            case 39 :
+                this.userResponse.getUsernameFromUserID(jsonObject.getString("user_id"));
+                break;
         }
     }
 

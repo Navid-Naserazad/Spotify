@@ -450,7 +450,7 @@ public class UserResponse {
         }
         JSONObject jsonObject = new JSONObject();
         String track_id = resultSet1.getString(1);
-        String sqlCommand_2 = "SELECT name FROM music WHERE track_id = '" + track_id + "'";
+        String sqlCommand_2 = "SELECT title FROM music WHERE track_id = '" + track_id + "'";
         ResultSet resultSet2 = statement.executeQuery(sqlCommand_2);
         resultSet2.next();
         jsonObject.put("title", resultSet2.getString(1));
@@ -476,6 +476,13 @@ public class UserResponse {
         }
         jsonObject.put("artist", artists);
         this.output.writeUTF(jsonObject.toString());
+        this.output.flush();
+    }
+    public void getUsernameFromUserID(String user_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT username FROM user WHERE user_id = '" + user_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeUTF(resultSet.getString(1));
         this.output.flush();
     }
 

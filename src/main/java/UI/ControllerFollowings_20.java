@@ -46,6 +46,8 @@ public class ControllerFollowings_20 implements Initializable {
     @FXML
     private TableColumn<Artist, String> artistColumn;
     @FXML
+    private TableColumn<Artist, String> artistIDColumn;
+    @FXML
     private TextField userSearch;
     @FXML
     private TextField artistSearch;
@@ -71,15 +73,16 @@ public class ControllerFollowings_20 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= numberOfUserToUserFollowings; i++) {
-            JSONObject jsonObject = null;
+            String ID = null;
+            String username = null;
             try {
-                username = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getiD());
-                
+                ID = this.userRequest.getRow_i_UsernameOfUserToUserFollowings(i, this.user.getiD());
+                username = this.userRequest.getUsernameFromUserID(ID);
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            usersObservableList.add(new User(username));
+            usersObservableList.add(new User(ID, username));
         }
         userTableView.setItems(usersObservableList);
         FilteredList<User> userFilteredList = new FilteredList<>(usersObservableList, b-> true);
@@ -106,6 +109,7 @@ public class ControllerFollowings_20 implements Initializable {
 
         // Artist table view
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        artistIDColumn.setCellValueFactory(new PropertyValueFactory<>("iD"));
         int numberOfUserToArtistFollowings = 0;
         try {
             numberOfUserToArtistFollowings = this.userRequest.numberOfFollowings_UserToArtist(this.user.getiD());

@@ -62,14 +62,14 @@ public class ControllerFollowers_21 implements Initializable {
             throw new RuntimeException(e);
         }
         for (int i = 1; i <= numberOfUserToUserFollowers; i++) {
-            JSONObject jsonObject = null;
+            String username = null;
             try {
                 username = this.userRequest.getRow_i_usernameOfUserToUserFollowers(i, this.user.getiD());
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            usersObservableList.add(new User(username));
+//            usersObservableList.add();
         }
 
         tableView.setItems(usersObservableList);

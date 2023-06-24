@@ -33,7 +33,8 @@ public class User {
     }
 
     // Constructor For Observable
-    public User(String username) {
+    public User(String iD, String username) {
+        this.iD = iD;
         this.username = username;
     }
 
