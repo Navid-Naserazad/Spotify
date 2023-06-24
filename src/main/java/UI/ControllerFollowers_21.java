@@ -48,6 +48,7 @@ public class ControllerFollowers_21 implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         int numberOfUserToUserFollowers = 0;
         try {
@@ -66,6 +67,7 @@ public class ControllerFollowers_21 implements Initializable {
             }
             usersObservableList.add(new User(username));
         }
+
         tableView.setItems(usersObservableList);
         FilteredList<User> filteredList = new FilteredList<>(usersObservableList, b-> true);
 

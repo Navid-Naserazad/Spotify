@@ -9,13 +9,11 @@ import java.sql.*;
 public class UserResponse {
 
     // Attributes
-
     Connection connection;
     Statement statement;
     DataOutputStream output;
 
     // Constructor
-
     public UserResponse() throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spotify",
                 "root",
@@ -436,8 +434,52 @@ public class UserResponse {
         this.output.flush();
     }
 
-    // Setter
+    public void numberOfUserLike(String user_id) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM liked WHERE user_id = '" + user_id + "'";
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeInt(resultSet.getInt(1));
+        this.output.flush();
+    }
 
+    public void getRow_i_UserLike(int n, String user_id) throws SQLException, IOException {
+        String sqlCommand_1 = "SELECT track_id FROM liked WHERE user_id = '" + user_id + "'";
+        ResultSet resultSet1 = statement.executeQuery(sqlCommand_1);
+        for (int i = 0; i < n; i++) {
+            resultSet1.next();
+        }
+        JSONObject jsonObject = new JSONObject();
+        String track_id = resultSet1.getString(1);
+        String sqlCommand_2 = "SELECT name FROM music WHERE track_id = '" + track_id + "'";
+        ResultSet resultSet2 = statement.executeQuery(sqlCommand_2);
+        resultSet2.next();
+        jsonObject.put("title", resultSet2.getString(1));
+        String sqlCommand_3 = "SELECT count(*) FROM music_artists WHERE track_id = '" + track_id + "'";
+        ResultSet resultSet3 = statement.executeQuery(sqlCommand_3);
+        resultSet3.next();
+        int rows = resultSet3.getInt(1);
+        System.out.println(rows);
+        String sqlCommand_4 = "SELECT artist.name FROM music_artists ,artist " +
+                "WHERE music_artists.track_id = '" + track_id + "'" +
+                "AND music_artists.artist_id = artist.artist_id";
+        ResultSet resultSet4 = statement.executeQuery(sqlCommand_4);
+        String artists = null;
+        resultSet4.next();
+        for (int i = 0; i < rows; i++) {
+            if (i == rows - 1) {
+                artists = artists + resultSet4.getString(1);
+            }
+            else {
+                artists = artists + resultSet4.getString(1) + '-';
+            }
+            resultSet4.next();
+        }
+        jsonObject.put("artist", artists);
+        this.output.writeUTF(jsonObject.toString());
+        this.output.flush();
+    }
+
+    // Setter
     public void setOutput(DataOutputStream output) {
         this.output = output;
     }

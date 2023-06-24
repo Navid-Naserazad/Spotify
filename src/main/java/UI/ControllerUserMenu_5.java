@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,25 +51,24 @@ public class ControllerUserMenu_5 implements Initializable {
         usernameLabel.setText(this.user.getUsername());
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistsColumn.setCellValueFactory(new PropertyValueFactory<>("artists"));
-//        int allMusicsNumber = 0;
-//        try {
-//            allMusicsNumber = userRequest.numberOfAllMusics();
-//        }
-//        catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        for (int i = 1; i <= allMusicsNumber; i++) {
-//            JSONObject jsonObject = null;
-//            try {
-//                jsonObject = userRequest.getRow_iMusic(i);
-//            }
-//            catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            String title = jsonObject.getString("title");
-//            String artists = jsonObject.getString("artist");
-//            musicObservableList.add(new Music(title, artists));
-//        }
+        int allLikedMusicsUserNum = 0;
+        try {
+            allLikedMusicsUserNum = this.userRequest.numberOfAllMusics();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i = 1; i <= allLikedMusicsUserNum; i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = this.userRequest.getRow_iMusic(i);
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String title = jsonObject.getString("title");
+            String artists = jsonObject.getString("artist");
+        }
         tableView.setItems(likesObservableList);
     }
 
