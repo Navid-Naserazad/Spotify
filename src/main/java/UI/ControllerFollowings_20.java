@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 public class ControllerFollowings_20 implements Initializable {
 
-    // Atributtes
+    // Attributes
     Parent root;
     Stage stage;
     Scene scene;
@@ -145,7 +145,7 @@ public class ControllerFollowings_20 implements Initializable {
         artistSortedList.comparatorProperty().bind(artistTableView.comparatorProperty());
         artistTableView.setItems(artistSortedList);
     }
-    public void unfollow(ActionEvent event) {
+    public void unfollow(ActionEvent event) throws IOException {
         ObservableList<User> users = userTableView.getSelectionModel().getSelectedItems();
         ObservableList<Artist> artists = artistTableView.getSelectionModel().getSelectedItems();
         if (users.size() != 0 && artists.size() != 0) {
@@ -192,13 +192,10 @@ public class ControllerFollowings_20 implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void unfollowUser(User user) {
-        // database
-
+    public void unfollowUser(User anotheruser) throws IOException {
+        this.userRequest.unfollow_UserToUser(this.user.getiD(), anotheruser.getiD());
     }
-    public void unfollowArtist(Artist artist) {
-        // database
-
+    public void unfollowArtist(Artist artist) throws IOException {
+        this.userRequest.unfollow_UserToArtist(this.user.getiD(), artist.getiD());
     }
-
 }

@@ -18,7 +18,8 @@ public class ServerServiceForUser implements Runnable {
     private UserResponse userResponse;
 
     // Constructor
-    public ServerServiceForUser(Socket client, DataInputStream input, DataOutputStream output, UserResponse userResponse) {
+    public ServerServiceForUser(Socket client, DataInputStream input, DataOutputStream output,
+                                UserResponse userResponse) {
         this.client = client;
         this.input = input;
         this.output = output;
@@ -87,7 +88,8 @@ public class ServerServiceForUser implements Runnable {
                         jsonObject.getString("password"));
                 break;
             case 12:
-                this.userResponse.checkCurrentEmail(jsonObject.getString("user_id"), jsonObject.getString("email"));
+                this.userResponse.checkCurrentEmail(jsonObject.getString("user_id"),
+                        jsonObject.getString("email"));
                 break;
             case 13:
                 this.userResponse.changeEmail(jsonObject.getString("user_id"), jsonObject.getString("email"));
@@ -102,7 +104,8 @@ public class ServerServiceForUser implements Runnable {
                 this.userResponse.numberOfAllMusicsForSpecificPlayList(jsonObject.getString("playListId"));
                 break;
             case 17:
-                this.userResponse.getRow_iMusicFromPlayList(jsonObject.getInt("row"), jsonObject.getString("playListId"));
+                this.userResponse.getRow_iMusicFromPlayList(jsonObject.getInt("row"),
+                        jsonObject.getString("playListId"));
                 break;
             case 18:
                 this.userResponse.checkIfUserDownloadsSpecificMusic(jsonObject.getString("user_id"),
@@ -115,22 +118,28 @@ public class ServerServiceForUser implements Runnable {
                 this.userResponse.getMusicAddress(jsonObject.getString("track_id"));
                 break;
             case 21:
-                this.userResponse.checkUserLike(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                this.userResponse.checkUserLike(jsonObject.getString("user_id"),
+                        jsonObject.getString("track_id"));
                 break;
             case 22:
-                this.userResponse.addLike(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                this.userResponse.addLike(jsonObject.getString("user_id"),
+                        jsonObject.getString("track_id"));
                 break;
             case 23:
-                this.userResponse.addDisLike(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                this.userResponse.addDisLike(jsonObject.getString("user_id"),
+                        jsonObject.getString("track_id"));
                 break;
             case 24:
-                this.userResponse.addDownload(jsonObject.getString("user_id"), jsonObject.getString("track_id"));
+                this.userResponse.addDownload(jsonObject.getString("user_id"),
+                        jsonObject.getString("track_id"));
                 break;
             case 25:
-                this.userResponse.checkFollowUser(jsonObject.getString("user_id_1"), jsonObject.getString("user_id_2"));
+                this.userResponse.checkFollowUser(jsonObject.getString("user_id_1"),
+                        jsonObject.getString("user_id_2"));
                 break;
             case 26:
-                this.userResponse.addFollowUser(jsonObject.getString("user_id_1"), jsonObject.getString("user_id_2"));
+                this.userResponse.addFollowUser(jsonObject.getString("user_id_1"),
+                        jsonObject.getString("user_id_2"));
                 break;
             case 27:
                 this.userResponse.numberOfFollowings_UserToUser(jsonObject.getString("user_id"));
@@ -140,10 +149,12 @@ public class ServerServiceForUser implements Runnable {
                         jsonObject.getString("user_id"));
                 break;
             case 29:
-                this.userResponse.checkFollowArtist(jsonObject.getString("user_id"), jsonObject.getString("artist_id"));
+                this.userResponse.checkFollowArtist(jsonObject.getString("user_id"),
+                        jsonObject.getString("artist_id"));
                 break;
             case 30:
-                this.userResponse.addFollowArtist(jsonObject.getString("user_id"), jsonObject.getString("artist_id"));
+                this.userResponse.addFollowArtist(jsonObject.getString("user_id"),
+                        jsonObject.getString("artist_id"));
                 break;
             case 31:
                 this.userResponse.numberOfFollowings_UserToArtist(jsonObject.getString("user_id"));
@@ -158,6 +169,13 @@ public class ServerServiceForUser implements Runnable {
             case 34:
                 this.userResponse.getRow_i_usernameOfUserToUserFollowers(jsonObject.getInt("row"),
                         jsonObject.getString("user_id"));
+                break;
+            case 35:
+                this.userResponse.unfollow_UserToUser(jsonObject.getString("user_id_1"),
+                        jsonObject.getString("user_id_2"));
+            case 36:
+                this.userResponse.unfollow_UserToArtist(jsonObject.getString("user_id"),
+                        jsonObject.getString("artist_id"));
                 break;
         }
     }

@@ -412,4 +412,26 @@ public class UserRequest {
         this.output.flush();
         return this.input.readUTF();
     }
+
+    public void unfollow_UserToUser(String user_id_1, String user_id_2) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "35");
+        jsonObject.put("user_id_1", user_id_1);
+        jsonObject.put("user_id_2", user_id_2);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
+
+    public void unfollow_UserToArtist(String user_id, String artist_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "36");
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("artist_id", artist_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
 }
