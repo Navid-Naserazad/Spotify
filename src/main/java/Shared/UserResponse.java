@@ -46,7 +46,7 @@ public class UserResponse {
         String jsonData = "";
         if (user != null) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("iD", user.getiD());
+            jsonObject.put("iD", user.getUser_id());
             jsonObject.put("username", user.getUsername());
             jsonObject.put("password", user.getPassword());
             jsonObject.put("email_address", user.getEmailAddress());
@@ -418,11 +418,15 @@ public class UserResponse {
         for (int i = 0; i < n; i++) {
             resultSet1.next();
         }
+        JSONObject jsonObject = new JSONObject();
         String user_id_1 = resultSet1.getString(1);
+        jsonObject.put("user_id", user_id_1);
         String sqlCommand2 = "SELECT username FROM user WHERE user_id = '" + user_id_1 + "'";
         ResultSet resultSet2 = statement.executeQuery(sqlCommand2);
         resultSet2.next();
-        this.output.writeUTF(resultSet2.getString(1));
+        jsonObject.put("username", resultSet2.getString(1));
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
         this.output.flush();
     }
 

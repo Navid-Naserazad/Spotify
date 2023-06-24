@@ -60,7 +60,7 @@ public class UserRequest {
 
     public void addClientToDB(User user) throws IOException {
         JSONObject userJson = new JSONObject();
-        userJson.put("iD", user.getiD());
+        userJson.put("iD", user.getUser_id());
         userJson.put("username", user.getUsername());
         userJson.put("password", user.getPassword());
         userJson.put("emailAddress", user.getEmailAddress());
@@ -402,7 +402,7 @@ public class UserRequest {
         return this.input.readInt();
     }
 
-    public String getRow_i_usernameOfUserToUserFollowers(int n, String user_id) throws IOException {
+    public JSONObject getRow_i_usernameOfUserToUserFollowers(int n, String user_id) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("number", "34");
         jsonObject.put("row", n);
@@ -410,7 +410,7 @@ public class UserRequest {
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
         this.output.flush();
-        return this.input.readUTF();
+        return new JSONObject(this.input.readUTF());
     }
 
     public void unfollow_UserToUser(String user_id_1, String user_id_2) throws IOException {
