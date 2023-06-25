@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -156,6 +157,7 @@ public class ControllerViewedPlaylist_15 implements Initializable {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.showAndWait();
     }
 

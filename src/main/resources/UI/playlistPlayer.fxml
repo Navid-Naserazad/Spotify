@@ -51,7 +51,7 @@
             </Button>
          </children>
       </HBox>
-      <Button fx:id="resetButton" layoutX="455.0" layoutY="208.0" mnemonicParsing="false" onAction="#ResetButton" prefHeight="65.0" prefWidth="114.0" style="-fx-background-color: #1ed760;" text="Next" textFill="#191414">
+      <Button fx:id="resetButton" layoutX="455.0" layoutY="208.0" mnemonicParsing="false" onAction="#NextButton" prefHeight="65.0" prefWidth="114.0" style="-fx-background-color: #1ed760;" text="Next" textFill="#191414">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>

@@ -58,7 +58,7 @@ public class ControllerPlaylistPlayer_19 implements Initializable {
     private File directory;
     private File[] files;
 
-    private ArrayList<File> songs;
+    private ArrayList<File> songs = new ArrayList<>();
     private int songID;
     private Timer timer;
     private TimerTask task;
