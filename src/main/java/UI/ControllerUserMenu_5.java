@@ -19,7 +19,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -109,7 +112,6 @@ public class ControllerUserMenu_5 implements Initializable {
         stage.show();
     }
     public void switchToScene1(ActionEvent event) throws IOException {
-        // Log Out
         root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

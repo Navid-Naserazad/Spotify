@@ -5,6 +5,7 @@ import User.User;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.Socket;
 import java.sql.*;
 
 public class UserResponse {
@@ -13,13 +14,15 @@ public class UserResponse {
     Connection connection;
     Statement statement;
     DataOutputStream output;
+    private Socket socket;
 
     // Constructor
-    public UserResponse() throws SQLException {
+    public UserResponse(Socket socket) throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spotify",
                 "root",
                 "password");
         this.statement = connection.createStatement();
+        this.socket = socket;
     }
 
     // Public Functions
@@ -100,8 +103,7 @@ public class UserResponse {
         for (int i = 0; i < rows; i++) {
             if (i == rows - 1) {
                 artists = artists + resultSet3.getString(1);
-            }
-            else {
+            } else {
                 artists = artists + resultSet3.getString(1) + '-';
             }
             resultSet3.next();
@@ -244,8 +246,7 @@ public class UserResponse {
         for (int i = 0; i < rows; i++) {
             if (i == rows - 1) {
                 artists = artists + resultSet4.getString(1);
-            }
-            else {
+            } else {
                 artists = artists + resultSet4.getString(1) + '-';
             }
             resultSet4.next();
@@ -437,7 +438,7 @@ public class UserResponse {
 
     public void unfollow_UserToUser(String user_id_1, String user_id_2) throws SQLException, IOException {
         String sqmCommand = "DELETE FROM user_user_follow WHERE user_id_1 = '" + user_id_1 +
-                "' AND user_id_2 = '" + user_id_2 + "'" ;
+                "' AND user_id_2 = '" + user_id_2 + "'";
         int result = statement.executeUpdate(sqmCommand);
         this.output.writeUTF("");
         this.output.flush();
@@ -445,7 +446,7 @@ public class UserResponse {
 
     public void unfollow_UserToArtist(String user_id, String artist_id) throws SQLException, IOException {
         String sqmCommand = "DELETE FROM user_artist_follow WHERE user_id = '" + user_id +
-                "' AND artist_id  = '" + artist_id + "'" ;
+                "' AND artist_id  = '" + artist_id + "'";
         int result = statement.executeUpdate(sqmCommand);
         this.output.writeUTF("");
         this.output.flush();
@@ -484,8 +485,7 @@ public class UserResponse {
         for (int i = 0; i < rows; i++) {
             if (i == rows - 1) {
                 artists = artists + resultSet4.getString(1);
-            }
-            else {
+            } else {
                 artists = artists + resultSet4.getString(1) + '-';
             }
             resultSet4.next();
@@ -496,7 +496,7 @@ public class UserResponse {
     }
 
     public void numberOfArtistFollowers(String artist_id) throws SQLException, IOException {
-        String sqlCommand = "SELECT count(*) FROM user_artist_follow WHERE artist_id = '" + artist_id +"'";
+        String sqlCommand = "SELECT count(*) FROM user_artist_follow WHERE artist_id = '" + artist_id + "'";
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         resultSet.next();
         this.output.writeInt(resultSet.getInt(1));
@@ -518,7 +518,7 @@ public class UserResponse {
     }
 
     public void numberOfMusicForSpecificArtist(String artist_id) throws SQLException, IOException {
-        String sqlCommand = "SELECT count(*) FROM music_artists WHERE artist_id = '" + artist_id +"'";
+        String sqlCommand = "SELECT count(*) FROM music_artists WHERE artist_id = '" + artist_id + "'";
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         resultSet.next();
         this.output.writeInt(resultSet.getInt(1));
@@ -551,8 +551,7 @@ public class UserResponse {
         for (int i = 0; i < rows; i++) {
             if (i == rows - 1) {
                 artists = artists + resultSet4.getString(1);
-            }
-            else {
+            } else {
                 artists = artists + resultSet4.getString(1) + '-';
             }
             resultSet4.next();
@@ -564,7 +563,7 @@ public class UserResponse {
     }
 
     public void checkPlayListExist(String title) throws SQLException, IOException {
-        String sqlCommand = "SELECT count(*) FROM play_list WHERE title = '" + title + "'" ;
+        String sqlCommand = "SELECT count(*) FROM play_list WHERE title = '" + title + "'";
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         resultSet.next();
         this.output.writeBoolean(resultSet.getInt(1) != 0);
@@ -578,9 +577,16 @@ public class UserResponse {
         this.output.writeUTF("");
         this.output.flush();
     }
+
     public void addMusicToPlaylist(String playList_id, String track_id) throws IOException, SQLException {
         String sqlCommand = "INSERT INTO playlist_musics VALUES ('" + playList_id + "', '" + track_id + "')";
         int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
+
+    public void closSocket(String none) throws IOException {
+        this.socket.close();
         this.output.writeUTF("");
         this.output.flush();
     }

@@ -210,6 +210,9 @@ public class ServerServiceForUser implements Runnable {
                 this.userResponse.addMusicToPlaylist(jsonObject.getString("playList_id")
                         , jsonObject.getString("track_id"));
                 break;
+            case 46:
+                this.userResponse.closSocket(jsonObject.getString("none"));
+                break;
         }
     }
 }

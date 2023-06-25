@@ -4,22 +4,21 @@ import User.User;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.Socket;
 
 public class UserRequest {
 
     // Attributes
     private DataInputStream input;
     private DataOutputStream output;
+    private Socket socket;
 
-    public UserRequest(DataInputStream input, DataOutputStream output) {
+    public UserRequest(DataInputStream input, DataOutputStream output, Socket socket) {
         this.input = input;
         this.output = output;
+        this.socket = socket;
     }
 
-    // Exit From App
-    public void exitFromApp() {
-        System.exit(1);
-    }
 
     // Public Functions
 
@@ -530,5 +529,19 @@ public class UserRequest {
         this.output.writeUTF(jsonCommand);
         this.output.flush();
         this.input.readUTF();
+    }
+
+//    public void closeSocket() throws IOException {
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("number", "46");
+//        jsonObject.put("none", "");
+//        String jsonCommand = jsonObject.toString();
+//        this.output.writeUTF(jsonCommand);
+//        this.output.flush();
+//        this.input.readUTF();
+//    }
+
+    public void closeDone() throws IOException {
+        this.socket.close();
     }
 }

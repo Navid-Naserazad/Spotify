@@ -23,7 +23,7 @@ public class Main extends Application {
             Socket socket = new Socket("localhost", PORT);
             DataInputStream input = new DataInputStream(socket.getInputStream());
             DataOutputStream output = new DataOutputStream(socket.getOutputStream());
-            UserRequest userRequest = new UserRequest(input, output);
+            UserRequest userRequest = new UserRequest(input, output, socket);
             // UI
             primaryStage.setTitle("Spotify");
             primaryStage.getIcons().add(new Image("D:\\SBU\\Term 2\\AP\\Assignments\\Spotify\\src\\main\\resources\\UI\\spotify-icon-marilyn-scott-0.png"));

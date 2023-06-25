@@ -31,7 +31,7 @@ public class ServerMain {
                     break;
                 case "2":
                     System.out.println("User Connected.");
-                    UserResponse clientResponse = new UserResponse();
+                    UserResponse clientResponse = new UserResponse(myUser);
                     ServerServiceForUser serverServiceForUser = new ServerServiceForUser(myUser, input,
                             output, clientResponse);
                     Thread clientThread = new Thread(serverServiceForUser);
