@@ -59,7 +59,7 @@
                   <Font name="Bodoni MT Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="6.0" layoutY="64.0" prefHeight="30.0" prefWidth="378.0" text="Choose a title for your playlist!" textFill="#eb0000">
+            <Label fx:id="message" alignment="CENTER" layoutX="6.0" layoutY="64.0" prefHeight="30.0" prefWidth="378.0" text="Choose a title for your playlist!" textFill="#eb0000">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>

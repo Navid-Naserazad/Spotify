@@ -55,7 +55,7 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
     @FXML
     private Label warning;
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
-    private ArrayList<Music> musics;
+    private ArrayList<Music> addedMusics;
 
     // Constructor
 
@@ -69,7 +69,7 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playlistTitle.setText(playList.getTitle());
-        musics = new ArrayList<>();
+        addedMusics = new ArrayList<>();
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
@@ -135,38 +135,46 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
         try {
             ObservableList<Music> selectedItems = tableView.getSelectionModel().getSelectedItems();
             Music music = selectedItems.get(0);
-            if (musics.size() == 0) {
-                musics.add(music);
+            if (addedMusics.size() == 0) {
+                addedMusics.add(music);
                 warning.setText(music.getTitle() + " is added to " + playlistTitle.getText());
+                System.out.println(music.getTrackID());
             }
             else {
-                for (int i=0; i<musics.size(); i++) {
-                    if (musics.get(i).getTrackID().equals(music.getTrackID())) {
+                for (int i = 0; i < addedMusics.size(); i++) {
+                    if (addedMusics.get(i).getTrackID().equals(music.getTrackID())) {
+                        System.out.println(music.getTrackID());
                         warning.setText("You have already added " + music.getTitle() + " to your playlist");
+                        return;
                     }
-                    if (!musics.get(i).getTrackID().equals(music.getTrackID()) && i == musics.size()-1) {
-                        musics.add(music);
-                        warning.setText(music.getTitle() + " is added to " + playlistTitle.getText());
-                    }
+//                    if (!addedMusics.get(i).getTrackID().equals(music.getTrackID()) && i == addedMusics.size() - 1) {
+//                        addedMusics.add(music);
+//                        warning.setText(music.getTitle() + " is added to " + playlistTitle.getText());
+//                        System.out.println(music.getTrackID());
+//                    }
                 }
+                addedMusics.add(music);
+                warning.setText(music.getTitle() + " is added to " + playlistTitle.getText() + "!");
             }
         }
         catch (IndexOutOfBoundsException e) {
-            warning.setText("You did not choose any music to add");
+            warning.setText("You did not choose any music to add!");
         }
     }
     public void doneButton(ActionEvent event) throws IOException {
-        // the playlist is created and it must be added to the database
-        if (musics.size() != 0) {
-            for (int i = 0; i < musics.size(); i++) {
-                Music myMusic = musics.get(i);
+        // the playlist is created and it must be added to the database music
+        if (addedMusics.size() != 0) {
+            for (int i = 0; i < addedMusics.size(); i++) {
+                Music myMusic = addedMusics.get(i);
+                System.out.println("Music ID : " + myMusic.getTrackID());
+                System.out.println("Playlist ID : " + this.playList.getPlayListId());
                 this.userRequest.addMusicToPlayList(this.playList.getPlayListId(), myMusic.getTrackID());
             }
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("createPlaylist.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("userPlaylist.fxml"));
             root = loader.load();
-            ControllerCreatePlaylist_16 controllerCreatePlaylist = loader.getController();
-            controllerCreatePlaylist.setUser(this.user);
-            controllerCreatePlaylist.setUserRequest(this.userRequest);
+            ControllerUserPlaylist_13 controllerUserPlaylist_13 = loader.getController();
+            controllerUserPlaylist_13.setUser(this.user);
+            controllerUserPlaylist_13.setUserRequest(this.userRequest);
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

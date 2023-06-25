@@ -39,12 +39,12 @@ public class ControllerCreatePlaylist_16 {
         if (!playlistTitle.getText().isBlank()) {
             String title = playlistTitle.getText();
             if (this.userRequest.checkPlayListExist(title)) {
-//                message.setText("This title has been chosen!");
+                message.setText("This title has been chosen!");
             }
             else {
                 PlayList playList = new PlayList(title);
                 playList.setUser_id(this.user.getUser_id());
-                this.userRequest.addPlayList(this.user.getUser_id(), playList.getPlayListId() ,title);
+                this.userRequest.addPlayList(playList.getPlayListId(), this.user.getUser_id(), title);
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("addMusicToCreatedPlaylist.fxml"));
                 loader.setControllerFactory(type -> {
