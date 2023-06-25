@@ -1,6 +1,7 @@
 package UI;
 
 import Artist.Music;
+import Artist.PlayList;
 import Shared.UserRequest;
 import User.User;
 import javafx.collections.FXCollections;
@@ -32,7 +33,7 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
     Scene scene;
     private User user;
     private UserRequest userRequest;
-    private String title;
+    private PlayList playList;
     @FXML
     private TableView<Music> tableView;
     @FXML
@@ -54,20 +55,20 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
     @FXML
     private Label warning;
     ObservableList<Music> musicObservableList = FXCollections.observableArrayList();
-    ArrayList<Music> musics;
+    private ArrayList<Music> musics;
 
     // Constructor
 
-    public ControllerAddMusicCreatedPlaylist_17(User user, UserRequest userRequest, String title) {
+    public ControllerAddMusicCreatedPlaylist_17(User user, UserRequest userRequest, PlayList playList) {
         this.user = user;
         this.userRequest = userRequest;
-        this.title = title;
+        this.playList = playList;
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        playlistTitle.setText(title);
+        playlistTitle.setText(playList.getTitle());
         musics = new ArrayList<>();
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
@@ -89,7 +90,7 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            String trackID = jsonObject.getString("trackID");
+            String trackID = jsonObject.getString("track_id");
             String title = jsonObject.getString("title");
             String genre = jsonObject.getString("genre");
             String album = jsonObject.getString("album");
@@ -157,6 +158,10 @@ public class ControllerAddMusicCreatedPlaylist_17 implements Initializable {
     public void doneButton(ActionEvent event) throws IOException {
         // the playlist is created and it must be added to the database
         if (musics.size() != 0) {
+            for (int i = 0; i < musics.size(); i++) {
+                Music myMusic = musics.get(i);
+                this.userRequest.addMusicToPlayList(this.playList.getPlayListId(), myMusic.getTrackID());
+            }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("createPlaylist.fxml"));
             root = loader.load();
             ControllerCreatePlaylist_16 controllerCreatePlaylist = loader.getController();

@@ -1,5 +1,6 @@
 package Shared;
 
+import Artist.PlayList;
 import User.User;
 import org.json.JSONObject;
 
@@ -559,6 +560,28 @@ public class UserResponse {
         jsonObject.put("artist", artists);
         String jsonCommand = jsonObject.toString();
         this.output.writeUTF(jsonCommand);
+        this.output.flush();
+    }
+
+    public void checkPlayListExist(String title) throws SQLException, IOException {
+        String sqlCommand = "SELECT count(*) FROM play_list WHERE title = '" + title + "'" ;
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
+        resultSet.next();
+        this.output.writeBoolean(resultSet.getInt(1) != 0);
+        this.output.flush();
+    }
+
+    public void addPlayList(String playList_id, String user_id, String title) throws IOException, SQLException {
+        String sqlCommand = "INSERT INTO play_list VALUES ('" + playList_id + "','" +
+                user_id + "','" + title + "')";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
+        this.output.flush();
+    }
+    public void addMusicToPlaylist(String playList_id, String track_id) throws IOException, SQLException {
+        String sqlCommand = "INSERT INTO playlist_musics VALUES ('" + playList_id + "', '" + track_id + "')";
+        int result = statement.executeUpdate(sqlCommand);
+        this.output.writeUTF("");
         this.output.flush();
     }
 

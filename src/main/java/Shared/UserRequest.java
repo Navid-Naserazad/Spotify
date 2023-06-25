@@ -498,4 +498,37 @@ public class UserRequest {
         this.output.flush();
         return new JSONObject(this.input.readUTF());
     }
+
+    public boolean checkPlayListExist(String title) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "43");
+        jsonObject.put("title", title);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        return this.input.readBoolean();
+    }
+
+    public void addPlayList(String playList_id, String user_id, String title) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "44");
+        jsonObject.put("playList_id", playList_id);
+        jsonObject.put("user_id", user_id);
+        jsonObject.put("title", title);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
+
+    public void addMusicToPlayList(String playList_id, String track_id) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("number", "45");
+        jsonObject.put("playList_id", playList_id);
+        jsonObject.put("track_id", track_id);
+        String jsonCommand = jsonObject.toString();
+        this.output.writeUTF(jsonCommand);
+        this.output.flush();
+        this.input.readUTF();
+    }
 }

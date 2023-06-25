@@ -1,5 +1,7 @@
 package Artist;
 
+import java.util.UUID;
+
 public class PlayList {
 
     // Attributes
@@ -13,7 +15,17 @@ public class PlayList {
         this.title = title;
     }
 
-    // Setter
+    public PlayList(String title) {
+        this.playListId = UUID.randomUUID().toString();
+        this.title = title;
+    }
+
+    //Setter
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    // Getter
     public String getTitle() {
         return title;
     }
